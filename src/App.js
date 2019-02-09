@@ -77,7 +77,7 @@ class App extends Component {
 
                 client.eventReact().onDisconnect(() => {
                     setTimeout(()=> {
-                        if(!client.isSocketConnected()) {
+                        if(!client.isConnected()) {
                             this.setError('The connection to the server is lost.');
                         }
                     },5000)
