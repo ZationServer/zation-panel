@@ -22,7 +22,6 @@
     "@emotion/core": "latest",
     "bootstrap": "4.2.1",
     "mdbreact": "4.10.0",
-    "node-sass": "^4.11.0",
     "react": "16.8.1",
     "react-bootstrap": "1.0.0-beta.5",
     "react-center": "^1.1.1",
@@ -49,6 +48,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage": "/zation/assets/panel/",
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -56,6 +56,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "fsevents": "^1.2.7"
+    "fsevents": "^1.2.7",
+    "node-sass": "^4.11.0"
   }
 }

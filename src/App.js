@@ -112,7 +112,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        if(window.location.pathname !== '/') {
+        if(devMode && window.location.pathname !== '/') {
             window.location.pathname = '';
         }
     }
