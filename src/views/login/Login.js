@@ -46,11 +46,13 @@ class Login extends Component {
                     </div>
                         <div className={'form'}>
                             <div id="username-co" className={"wrap-input100 validate-input animated " + (error ? 'wrap-input-error' : '')} data-validate="Enter username">
-                                <input onChange={() => {this.setState({error : false})}} id="username" className="input100" type="text" name="username" placeholder="Username"/>
+                                <input onChange={() => {this.setState({error : false})}} id="username" onKeyPress={this._handleKeyPress.bind(this)}
+                                       className="input100" type="text" name="username" placeholder="Username"/>
                                     <span className="focus-input100 focus-input-user"/>
                             </div>
                             <div id="password-co" className={"wrap-input100 validate-input animated "  + (error ? 'wrap-input-error' : '')} data-validate="Enter password">
-                                <input onChange={() => {this.setState({error : false})}} id="password" className="input100" type="password" name="username" placeholder="Password"/>
+                                <input onChange={() => {this.setState({error : false})}} id="password" onKeyPress={this._handleKeyPress.bind(this)}
+                                       className="input100" type="password" name="username" placeholder="Password"/>
                                 <span className="focus-input100 focus-input-lock"/>
                             </div>
                         </div>
@@ -64,6 +66,12 @@ class Login extends Component {
             </div>
         );
     }
+
+    _handleKeyPress = async (e) => {
+        if (e.key === 'Enter') {
+            await this.login();
+        }
+    };
 
     async login() {
 

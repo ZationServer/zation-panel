@@ -5,6 +5,7 @@ import { SideNav, Nav } from 'react-sidenav'
 import './MainPanel.css';
 import {Icon} from "@blueprintjs/core";
 import { FaServer } from 'react-icons/fa';
+import Sidebar from "../../../components/sidebar/sidebar";
 
 class MainPanel extends Component {
     render() {
@@ -23,13 +24,8 @@ class MainPanel extends Component {
                             {' Zation'}
                         </Navbar.Brand>
                     </Navbar>
-                    <SideNav defaultSelectedPath="1">
-                        <Nav id="1">
-                            <Icon icon={FaServer()}/>
-                            Item 1
-                        </Nav>
-                    </SideNav>
                 </header>
+                <Sidebar/>
             </div>
         )
     }

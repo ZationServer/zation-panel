@@ -1,0 +1,41 @@
+@media (min-width: 992px)
+{
+    html:not([dir="rtl"]) .sidebar-lg-show .sidebar, html:not([dir="rtl"]) .sidebar-show .sidebar {
+        margin-left: 0;
+    }
+}
+@media(min-width: 992px) {
+    .sidebar-fixed .app-header + .app-body .sidebar {
+        height: calc(100vh - 55px);
+    }
+}
+html:not([dir="rtl"]) .sidebar {
+    margin-left: -200px;
+}
+
+@media (min-width: 992px)
+{
+    .sidebar-fixed .sidebar {
+        position: fixed;
+        z-index: 1019;
+        width: 200px;
+        height: 100vh;
+    }
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    order: -1;
+}
+
+.sidebar {
+    transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: #fff;
+    background: #2f353a;
+}
