@@ -6,6 +6,7 @@ import Loading from "./views/loading/Loading";
 import Login from "./views/login/Login";
 import MainPanel from "./views/panel/main/MainPanel";
 import Error from "./views/error/Error";
+import DataEngine from "./core/dataEngine";
 
 class App extends Component {
 
@@ -86,6 +87,9 @@ class App extends Component {
                 client.eventReact().onServerDeauthenticate(() => {
                     this.toAuth();
                 });
+
+                //connect to dataEngine and create
+                DataEngine.getEngine().connect();
 
                 try {
                     await client.connect();

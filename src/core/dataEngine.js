@@ -4,6 +4,7 @@ GitHub: LucaCode
 ©Copyright by Luca Scaringella
  */
 
+import {load}        from "zation-client";
 const EventEmitter = require('events');
 
 const workerTimeout = 7000;
@@ -89,6 +90,23 @@ export default class DataEngine {
         this.instanceCount = 0;
 
         this.emitter = new EventEmitter();
+    }
+
+    connect(key = 'default')
+    {
+        const client = load(key);
+        client.channelReact().onPubPanelOutCh('firstPong' ,(data => {
+            this.firstPong(data.id,data.info);
+        }));
+        client.channelReact().onPubPanelOutCh('ping',(data => {
+            this.workerPing(data.id);
+        }));
+        client.channelReact().onPubPanelOutCh('update-mainUpdate',(data => {
+            this.update('update-mainUpdate',data.id,data.info);
+        }));
+        client.channelReact().onPubPanelOutCh('update-workerStatus',(data => {
+            this.update('update-workerStatus',data.id,data.info);
+        }));
     }
 
     _processClusterInfo()
@@ -221,14 +239,14 @@ export default class DataEngine {
         if(this._checkWorkerExists(instanceId,workerFullId))
         {
             const idTarget = this._getIdTarget(instanceId,workerFullId);
-            if(event === 'mainUpdate') {
+            if(event === 'update-mainUpdate') {
                 this._updateSystemInfo(idTarget.instance,idTarget.worker,info['systemInfo']);
                 idTarget.worker.clientCount = info["clientCount"];
                 idTarget.worker.user = info['user'];
                 this._processClusterInfo();
                 this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
             }
-            else if(event === 'workerStatus') {
+            else if(event === 'update-workerStatus') {
                 idTarget.worker.avgHttpRequests = info['avgHttpRequests'];
                 idTarget.worker.avgWsRequests = info['avgWsRequests'];
                 this._processClusterInfo();
@@ -326,6 +344,10 @@ export default class DataEngine {
             clearTimeout(worker.timeout);
             this._setWorkerTimeout(this.storage[instanceId].workers,workerFullId,instanceId);
         }
+    }
+
+    workerPing(id) {
+        this.refreshWorkerPing(id['instanceId'],id['workerFullId']);
     }
 
     activateProcessClusterInfo() {
