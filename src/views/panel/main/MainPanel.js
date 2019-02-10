@@ -10,7 +10,7 @@ import Sidebar from "../../../components/sidebar/sidebar";
 class MainPanel extends Component {
     render() {
         return (
-            <div className="App transition-item detail-page">
+            <div className="App transition-item detail-page sidebar-lg-show">
                 <header className="App-header">
                     <Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="#home">

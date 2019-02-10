@@ -29,3 +29,5 @@ A
 src/mode.js,2/b/2b636d224f574c832425599b47075a58490bd67a
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+D
+src/serviceWorker.js,9/2/920ab6ab4a57ee20a36df4e3e2e73b70f9969d14
