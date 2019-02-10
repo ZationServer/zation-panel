@@ -142,14 +142,21 @@ export default class DataEngine {
                 if(instance.serverStartedTimestamp < startedTime) {
                     startedTime = instance.serverStartedTimestamp;
                 }
-
-                cpuFullUsage+=instance.cpu;
-                totalMemory+=instance.memory['totalMemMb'];
-                usedMemory+=instance.memory['usedMemMb'];
-                totalDrive+=instance.drive['totalGb'];
-                usedDrive+=instance.drive['usedGb'];
-                netInput+=instance.net['inputMb'];
-                netOutput+=instance.net['outputMb'];
+                if(instance.cpu) {
+                    cpuFullUsage+=instance.cpu;
+                }
+                if(instance.memory) {
+                    totalMemory+=instance.memory['totalMemMb'];
+                    usedMemory+=instance.memory['usedMemMb'];
+                }
+                if(instance.drive) {
+                    totalDrive+=instance.drive['totalGb'];
+                    usedDrive+=instance.drive['usedGb'];
+                }
+                if(instance.net) {
+                    netInput+=instance.net['inputMb'];
+                    netOutput+=instance.net['outputMb'];
+                }
                 brokerCount+=instance.brokerCount;
 
                 if(instance.debug) {
@@ -348,6 +355,7 @@ export default class DataEngine {
 
     workerPing(id) {
         this.refreshWorkerPing(id['instanceId'],id['workerFullId']);
+        this.emitter.emit('workerPing',id['instanceId'],id['workerFullId']);
     }
 
     activateProcessClusterInfo() {

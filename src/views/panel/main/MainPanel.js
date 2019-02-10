@@ -6,6 +6,7 @@ import './MainPanel.css';
 import {Icon} from "@blueprintjs/core";
 import { FaServer } from 'react-icons/fa';
 import Sidebar from "../../../components/sidebar/sidebar";
+import DataEngine from "../../../core/dataEngine";
 
 class MainPanel extends Component {
     render() {
@@ -28,6 +29,17 @@ class MainPanel extends Component {
                 <Sidebar/>
             </div>
         )
+    }
+
+    componentDidMount() {
+        console.log(DataEngine.getEngine().storage);
+        console.log(DataEngine.getEngine().panelAuthUserMap);
+        console.log(DataEngine.getEngine().defaultUserName);
+        console.log(DataEngine.getEngine().workerCount);
+        console.log(DataEngine.getEngine().instanceCount);
+
+        DataEngine.getEngine().processClusterInfo();
+        console.log(DataEngine.getEngine().clusterInfoStorage);
     }
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {create, save} from "zation-client";
+import {create, save, load} from "zation-client";
 import {devMode} from "./mode";
 import {ConnectionAbortError} from "zation-client/dist/lib/helper/error/connectionAbortError";
 import Loading from "./views/loading/Loading";
@@ -7,13 +7,14 @@ import Login from "./views/login/Login";
 import MainPanel from "./views/panel/main/MainPanel";
 import Error from "./views/error/Error";
 import DataEngine from "./core/dataEngine";
+import PingEngine from "./core/pingEngine";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            mode : 'panel',
+            mode : 'start',
             errorMessage : ''
         };
     }
@@ -33,14 +34,26 @@ class App extends Component {
         }
     }
 
-    loadPanel() {
+    async loadPanel() {
         this.setState({mode : 'loadPanel'});
 
+        const client = load();
 
-        //send first ping, sub panel out channel collect data
+        await client.subPanelOutCh();
+
+        //connect to dataEngine and create
+        DataEngine.getEngine().connect();
+
+        await client.pubPanelInCh('firstPing',{});
+
+        //wait 3500 ms for worker can respond
         setTimeout(() => {
+
+            //create ping interval (worker know that panel is still in use)
+            PingEngine.startPing();
+
             this.setState({mode : 'panel'});
-        },2500);
+        },3500);
     }
 
     toAuth() {
@@ -88,9 +101,6 @@ class App extends Component {
                     this.toAuth();
                 });
 
-                //connect to dataEngine and create
-                DataEngine.getEngine().connect();
-
                 try {
                     await client.connect();
 
@@ -98,7 +108,9 @@ class App extends Component {
                         client.getTokenPanelAccess() &&
                         client.getTokenVariable('ZATION-PANEL-USER-NAME')
                     ) {
-                        this.loadPanel();
+                        (async () => {
+                            await this.loadPanel();
+                        })();
                     }
                     else {
                         this.toAuth();
