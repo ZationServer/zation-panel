@@ -2,6 +2,11 @@
     html:not([dir="rtl"]) .main, html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .app-footer, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .main, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .app-footer {
         margin-left: 200px;
     }
+
+    .brand-minimized .navbar-brand{
+        left: -2rem;
+        position: relative;
+    }
 }
 
 .main {
@@ -10,6 +15,35 @@
     margin-top: 1rem;
     z-index: 1000;
     position: relative;
+}
+
+@media (min-width: 992px) {
+    .sidebar-minimized main{
+        margin-left: 3rem!important;
+    }
+}
+
+.profile{
+    position: absolute;
+    right: 0.6rem;
+    padding-top: 1.3rem;
+    text-align: right;
+    width: 20rem;
+}
+
+.profile li {
+    top: -0.6rem;
+    list-style: none;
+    float: right;
+}
+
+.profile .name{
+    font-family: "NexaBold";
+}
+
+.profile .nav-item:hover {
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .app-header, .app-footer, .sidebar, .main, .aside-menu {
@@ -37,3 +71,146 @@
         margin-right: 0;
         background-color: transparent;
     }
+
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.app-header .btn {
+    margin-top: 0!important;
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .app-header .btn {
+        display: block;
+    }
+
+}
+
+@media (max-width: 991.98px)
+{
+    .app-header .navbar-toggler {
+        color: #fff;
+    }
+
+    .sidebar-show main{
+        margin-left: 12.5rem;
+    }
+
+}
+
+    .app-header .navbar-toggler {
+        min-width: 50px;
+        padding: .25rem 0;
+    }
+
+.app-header .btn-primary {
+    background-color: #3099bb;
+    border-color: transparent;
+    outline: none;
+}
+
+.app-header .btn:active {
+    box-shadow: 0 5px #666;
+    background-color: #3099bb!important;
+    border-color: transparent!important;
+}
+
+.btn:focus {
+    outline:0!important;
+    box-shadow: none;
+}
+
+.app-header .navbar-nav .dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+.app-header .navbar-nav .dropdown-menu {
+    position: absolute;
+}
+.app-header .dropdown-menu {
+    padding-bottom: 0;
+    line-height: 1.5;
+}
+.navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+}
+.dropdown-menu.show {
+    display: block;
+}
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+.dropdown-menu {
+    left: -7rem;
+    width: 8rem;
+    position: absolute;
+    z-index: 2000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0;
+    margin: .125rem 0 0;
+    font-size: .875rem;
+    color: white;
+    text-align: left;
+    list-style: none;
+    background-color: #343a40;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    font-family: "NexaBold";
+    transition: all 0.25s ease-in-out;
+    top: 3.1rem;
+}
+
+.dropdown-menu .fa{
+    margin-right: 1.3rem;
+    margin-top: 0.4rem;
+}
+
+.app-header .dropdown-item {
+    min-width: 180px;
+}
+.dropdown-item {
+    position: relative;
+    padding: 10px 20px;
+    border-bottom: 1px solid #c8ced3;
+    transition: background,color .3s ease-in-out;
+    width: 7rem!important;
+    min-width: 7rem!important;
+    font-family: "NexaBold";
+    color: white;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #3099bb!important;
+    text-decoration: none;
+    background-color: #343a40;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    height: 1.8rem;
+}
+
+.dropdown-header {
+    display: block;
+    padding: .5rem 1.5rem;
+    margin-bottom: 0;
+    font-size: .875rem;
+    color: white;
+    white-space: nowrap;
+    background-color: #3a4248;
+}

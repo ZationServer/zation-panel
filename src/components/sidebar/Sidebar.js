@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 class Sidebar extends Component {
     render() {
         return (
-            <div className="sidebar">
+            <div className="sidebar ps--active-y ps">
                 <div className="scrollbar-container sidebar-nav ps ps-container ps--active-y">
                     <ul className="nav">
                         <li className="nav-item">
@@ -33,10 +33,21 @@ class Sidebar extends Component {
                         </li>
                     </ul>
                 </div>
-                <button className="sidebar-minimizer mt-auto" type="button">
+                <button className="sidebar-minimizer mt-auto" onClick={this.miniSidebar.bind(this)} type="button">
                 </button>
             </div>
         )
+    }
+
+    miniSidebar(){
+        const body = document.getElementsByTagName('body')[0];
+        const sideBar = document.getElementsByClassName('sidebar')[0];
+
+        body.classList.toggle('brand-minimized');
+        body.classList.toggle('sidebar-minimized');
+
+        sideBar.classList.toggle('ps--active-y');
+        sideBar.classList.toggle('ps');
     }
 }
 

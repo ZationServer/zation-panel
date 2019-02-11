@@ -107,8 +107,8 @@ class Login extends Component {
                 .data({username : username, password : password})
                 .onSuccessful(() => {
                     document.getElementById('login-co').classList.add('fadeOut');
-                    setTimeout(() => {
-                        this.props.app.loadPanel();
+                    setTimeout(async () => {
+                        await this.props.app.loadPanel();
                     },500);
                 })
                 .onError(() => {
@@ -118,7 +118,9 @@ class Login extends Component {
                 })
                 .send();
 
-            this.setState({loading : false});
+            setTimeout(() => {
+                this.setState({loading : false});
+            },500);
         }
     }
 
