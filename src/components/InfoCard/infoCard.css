@@ -7,6 +7,26 @@
     color: #fff;
 }
 
+.btn-time-control
+{
+    position: absolute;
+    right: 0.8rem;
+    top: -1.24rem;
+    color: white;
+    transition: all 0.25s ease-in-out;
+    z-index: 6;
+}
+
+.timeIcon, .timeIcon path, .timeIcon svg{
+    position: relative;
+    z-index: 2;
+}
+
+.btn-time-control:hover
+{
+   color: white;
+}
+
 .card {
     margin-bottom: 1.5rem;
 }

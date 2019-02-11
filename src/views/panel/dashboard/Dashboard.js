@@ -3,8 +3,21 @@ import InfoCard from "../../../components/InfoCard/InfoCard";
 import {Line} from "react-chartjs-2";
 import './dashboard.css';
 import CustomTooltips from "../../../components/chart/customTooltips";
+import DataEngine from "../../../core/DataEngine";
 
-const cardChartData2 = {
+const updateDataSet = (data,newData) =>{
+  if(data.length >= 20) {
+      const tmpData = data.splice(1);
+      tmpData.push(newData);
+      return tmpData;
+  }
+  else {
+      data.push(newData);
+      return data;
+  }
+};
+
+const connectedClientsData = {
     datasets: [
         {
             label: 'Clients connected',
@@ -43,7 +56,8 @@ const cardChartData2 = {
     ],
 };
 
-const cardChartOpts2 = {
+const cardChartOpts = {
+    spanGaps : true,
     tooltips: {
         enabled: false,
         custom : CustomTooltips
@@ -81,7 +95,7 @@ const cardChartOpts2 = {
             {
                 display: false,
                 ticks: {
-                    display: false,
+                    display: false
                 },
             }],
     },
@@ -99,15 +113,36 @@ const cardChartOpts2 = {
 };
 
 class Dashboard extends Component {
+
+    constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+
+        this.state = {
+            connectedClients : 0,
+            connectedClientsData : {
+                datasets: [
+                    {
+                        label: 'Clients connected',
+                        backgroundColor: 'rgba(255,255,255,.3)',
+                        borderColor: 'rgba(255,255,255,.55)',
+                        data: []
+                    },
+                ],
+            }
+        }
+    }
+
+
     render() {
         return (
             <div className="container-fluid">
                 <div className="animated fadeIn">
                     <div className="row">
                         <div className="col-12 col-sm-6 col-lg-3">
-                            <InfoCard value="10000" description="Clients connected">
+                            <InfoCard value={this.state.connectedClients} description="Clients connected" >
                                 <div className="chart-wrapper mx-3" style={{ height: '70px'}}>
-                                    <Line options={cardChartOpts2} data={cardChartData2} height={70}/>
+                                    <Line options={cardChartOpts} data={this.state.connectedClientsData} height={70}/>
                                 </div>
                             </InfoCard>
                         </div>
@@ -116,6 +151,40 @@ class Dashboard extends Component {
                 </div>
             </div>
         )
+    }
+
+
+    componentDidMount() {
+
+        const connectedClientsInterval = setInterval(() => {
+            const connectedClients = DataEngine.getEngine().clusterInfoStorage.clientCount + parseInt(Math.random()*10000);
+
+            const datasetsCopy = this.state.connectedClientsData.datasets.slice(0);
+            const dataCopy = datasetsCopy[0].data.slice(0);
+
+            datasetsCopy[0].data = updateDataSet(dataCopy,{
+                x: new Date(),
+                y: connectedClients
+            });
+
+            console.log(datasetsCopy);
+
+            if(connectedClients !== this.state.connectedClients) {
+                this.setState({
+                    connectedClients : connectedClients,
+                    connectedClientsData : Object.assign({},{
+                        datasets: datasetsCopy
+                    })
+                });
+            }
+
+        },1000);
+
+        this.setState({connectedClientsInterval : connectedClientsInterval})
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.connectedClientsInterval);
     }
 
 }

@@ -87,6 +87,7 @@ class MainPanel extends Component {
         console.log(DataEngine.getEngine().workerCount);
         console.log(DataEngine.getEngine().instanceCount);
 
+        DataEngine.getEngine().activateProcessClusterInfo();
         DataEngine.getEngine().processClusterInfo();
         console.log(DataEngine.getEngine().clusterInfoStorage);
 
@@ -108,9 +109,6 @@ class MainPanel extends Component {
 
     // noinspection JSMethodCanBeStatic
     offAccountDropDown(event) {
-        console.log(event.target);
-        console.log(event.target.classList);
-
         if(!event.target.classList.contains('account-switch')) {
             const accountDropdown = document.getElementById('account-dropdown-menu');
             if (accountDropdown.classList.contains('show')) {
