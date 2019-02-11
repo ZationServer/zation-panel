@@ -6,15 +6,15 @@ import Loading from "./views/loading/Loading";
 import Login from "./views/login/Login";
 import MainPanel from "./views/panel/main/MainPanel";
 import Error from "./views/error/Error";
-import DataEngine from "./core/dataEngine";
-import PingEngine from "./core/pingEngine";
+import DataEngine from "./core/DataEngine";
+import PingEngine from "./core/PingEngine";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            mode : 'start',
+            mode : 'panel',
             errorMessage : ''
         };
     }

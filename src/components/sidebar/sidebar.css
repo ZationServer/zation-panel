@@ -43,6 +43,8 @@ html:not([dir="rtl"]) .sidebar {
     padding: 0;
     color: #fff;
     background: #2f353a;
+    font-family: "Nexa Bold";
+    font-size: 1em;
 }
 
 .sidebar .sidebar-nav {
@@ -98,4 +100,71 @@ html:not([dir="rtl"]) .sidebar {
     background-position: center;
     background-size: 12.5px;
     transition: .3s;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar-minimizer {
+        display: none;
+    }
+}
+
+.sidebar .nav {
+    width: 200px;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 0;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.sidebar .nav-item {
+    position: relative;
+    margin: 0;
+    transition: background .3s ease-in-out;
+}
+
+.sidebar .nav-link.active {
+    color: #fff;
+    background: #3a4248;
+}
+
+
+.sidebar .nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    background: transparent;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.sidebar .nav-link.active .nav-icon {
+    color: #20a8d8;
+}
+
+.sidebar .nav-link .nav-icon {
+    display: inline-block;
+    width: 1.09375rem;
+    margin: 0 0.5rem 0.1rem 0;
+    font-size: 1rem;
+    color: #73818f;
+    text-align: center;
+}
+
+.sidebar .nav-title {
+    padding: 0.75rem 1rem;
+    font-size: 80%;
+    font-weight: 700;
+    color: #e4e7ea;
+    text-transform: uppercase;
 }

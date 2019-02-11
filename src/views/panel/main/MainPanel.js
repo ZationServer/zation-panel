@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import logo from '../../../assets/image/zationLogo.svg';
 import {Navbar} from 'react-bootstrap';
-import { SideNav, Nav } from 'react-sidenav'
 import './MainPanel.css';
-import {Icon} from "@blueprintjs/core";
-import { FaServer } from 'react-icons/fa';
-import Sidebar from "../../../components/sidebar/sidebar";
-import DataEngine from "../../../core/dataEngine";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import DataEngine from "../../../core/DataEngine";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Dashboard from "../dashboard/Dashboard";
+import Servers from "../servers/Servers";
 
 class MainPanel extends Component {
     render() {
         return (
+            <Router>
             <div className="App transition-item detail-page sidebar-lg-show">
                 <header className="App-header">
                     <Navbar bg="dark" variant="dark">
@@ -27,7 +28,12 @@ class MainPanel extends Component {
                     </Navbar>
                 </header>
                 <Sidebar/>
+                <main className="main">
+                    <Route exact path="/" component={Dashboard} />
+                    <Route exact path="/server" component={Servers} />
+                </main>
             </div>
+            </Router>
         )
     }
 
