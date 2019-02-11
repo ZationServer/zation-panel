@@ -7,7 +7,7 @@ import CustomTooltips from "../../../components/chart/customTooltips";
 const cardChartData2 = {
     datasets: [
         {
-            label: 'My First dataset',
+            label: 'Clients connected',
             backgroundColor: 'rgba(255,255,255,.3)',
             borderColor: 'rgba(255,255,255,.55)',
             data: [{
