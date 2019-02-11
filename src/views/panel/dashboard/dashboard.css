@@ -6,6 +6,10 @@
     margin-right: 1rem !important;
 }
 
+.chart-wrapper{
+    margin-top: 1rem;
+}
+
 .chartjs-tooltip {
     position: absolute;
     z-index: 1021;

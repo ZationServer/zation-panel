@@ -15,7 +15,7 @@ class MainPanel extends Component {
             <div className="App transition-item detail-page sidebar-lg-show">
                 <header className="App-header">
                     <Navbar bg="dark" variant="dark">
-                        <Navbar.Brand href="#home">
+                        <Navbar.Brand href="#home" className="sm-auto">
                             <img
                                 alt=""
                                 src={logo}

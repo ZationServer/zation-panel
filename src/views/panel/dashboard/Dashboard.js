@@ -11,12 +11,34 @@ const cardChartData2 = {
             backgroundColor: 'rgba(255,255,255,.3)',
             borderColor: 'rgba(255,255,255,.55)',
             data: [{
-                x: new Date(),
+                x: Date.parse('01 Jan 1970 00:00:00 GMT'),
                 y: 1
             }, {
-                t: new Date(''),
+                t: Date.parse('01 Jan 1970 00:00:01 GMT'),
                 y: 10
-            }]
+            },
+                {
+                    t: Date.parse('01 Jan 1970 00:00:02 GMT'),
+                    y: 4
+                },
+
+                {
+                    t: Date.parse('01 Jan 1970 00:00:03 GMT'),
+                    y: 9
+                },
+                {
+                    t: Date.parse('01 Jan 1970 00:00:04 GMT'),
+                    y: 19
+                },{
+                    t: Date.parse('01 Jan 1970 00:00:05 GMT'),
+                    y: 2
+                },
+                {
+                    t: Date.parse('01 Jan 1970 00:00:06 GMT'),
+                    y: 39
+                }
+
+            ]
         },
     ],
 };
@@ -29,6 +51,11 @@ const cardChartOpts2 = {
     maintainAspectRatio: false,
     legend: {
         display: false,
+    },
+    layout: {
+        padding: {
+            top: 8
+        }
     },
     scales: {
         xAxes: [
@@ -44,6 +71,9 @@ const cardChartOpts2 = {
                 ticks: {
                     fontSize: 2,
                     fontColor: 'transparent',
+                    autoSkip: true,
+                    min: 0,
+                    max: 2,
                 },
 
             }],
