@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import RTInfoCard from "../../components/InfoCard/RTInfoCard";
+import {Line} from "react-chartjs-2";
 import CustomTooltips from "../../components/chart/customTooltips";
-import Chart from "chart.js";
 import {updateDataSet} from "./RealTimeFunc";
 
 class BigRealTimeCard extends Component {
 
     constructor(props) {
         super(props);
-
-        this.id = BigRealTimeCard.id;
-        BigRealTimeCard.id++;
 
         this.chartOptions = {
             spanGaps : true,
@@ -82,14 +79,15 @@ class BigRealTimeCard extends Component {
         const firstData = this.props.getData();
 
 
-        this.data = {
+        const data = {
             datasets: [
             ],
         };
 
         this.state = {
             value : firstData,
-            isRunning : true
+            isRunning : true,
+            data : data
         };
 
         this.fillDataSet.bind(this)();
@@ -103,7 +101,7 @@ class BigRealTimeCard extends Component {
         d2.setMilliseconds(d1.getMilliseconds()+(this.interval || 1000));
 
         this.state.value.forEach((value,i) => {
-            this.data.datasets.push(
+            this.state.data.datasets.push(
                 {
                     label: this.props.label ? this.props.label[i] : this.props.getDataLabel(value),
                     backgroundColor: i===0 ? 'rgba(48, 153, 187,.3)' : 'rgba(43, 225, 98,.3)',
@@ -128,7 +126,7 @@ class BigRealTimeCard extends Component {
             <RTInfoCard value={this.getValue.bind(this)()} big={true}
                         description={this.getDescription.bind(this)()} onTimeChange={this.timeChange.bind(this)}>
                 <div className="chart-wrapper mx-3" style={{ height: '300px'}}>
-                    <canvas id={"bigLineChart-"+this.id} height="70"/>
+                    <Line options={this.chartOptions} data={this.state.data} height={70}/>
                 </div>
             </RTInfoCard>
         )
@@ -170,13 +168,6 @@ class BigRealTimeCard extends Component {
 
     componentDidMount() {
 
-        const ctx = document.getElementById("bigLineChart-"+this.id).getContext('2d');
-        this.chart = new Chart(ctx,{
-            type : 'line',
-            data : this.data,
-            options : this.chartOptions
-        });
-
         const interval = setInterval(() => {
             this.process.bind(this)();
 
@@ -187,24 +178,28 @@ class BigRealTimeCard extends Component {
 
     process()
     {
-        const newData = this.props.getData();
+        const datasetsCopy = this.state.data.datasets.slice(0);
 
-        newData.forEach((d,i) => {
-            this.data.datasets[i].data = updateDataSet(this.data.datasets[i].data,{
+        const data = this.props.getData();
+
+        data.forEach((d,i) => {
+            const dataCopy = datasetsCopy[i].data.slice(0);
+            datasetsCopy[i].data = updateDataSet(dataCopy,{
                 x: new Date(),
                 y: d
             },this.props.maxLength);
 
             if(this.props.getDataLabel) {
-                this.data.datasets[i].label = this.props.getDataLabel(d);
+                datasetsCopy[i].label = this.props.getDataLabel(d);
             }
         });
 
         this.setState({
-            value : newData
+            value : data,
+            data : Object.assign({},{
+                datasets: datasetsCopy
+            })
         });
-
-        this.chart.update();
     }
 
     componentWillUnmount() {
@@ -213,7 +208,5 @@ class BigRealTimeCard extends Component {
         }
     }
 }
-
-BigRealTimeCard.id = 0;
 
 export default BigRealTimeCard;

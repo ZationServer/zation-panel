@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RTInfoCard from "../../components/InfoCard/RTInfoCard";
-import Chart from 'chart.js';
+import {Line} from "react-chartjs-2";
 import CustomTooltips from "../../components/chart/customTooltips";
 import {updateDataSet} from "./RealTimeFunc";
 
@@ -8,9 +8,6 @@ class RealTimeCard extends Component {
 
     constructor(props) {
         super(props);
-
-        this.id = RealTimeCard.id;
-        RealTimeCard.id++;
 
         const firstData = this.props.getData();
 
@@ -84,7 +81,7 @@ class RealTimeCard extends Component {
         d2.setMilliseconds(d1.getMilliseconds()+(this.interval || 1000));
 
 
-        this.data = {
+        const data = {
             datasets: [
                 {
                     label: this.props.getDataLabel ? this.props.getDataLabel(firstData) :
@@ -95,10 +92,10 @@ class RealTimeCard extends Component {
                         x : d1,
                         y : firstData
                     },
-                    {
-                        x : d2,
-                        y : firstData
-                    }]
+                        {
+                            x : d2,
+                            y : firstData
+                        }]
                 },
             ],
         };
@@ -106,6 +103,7 @@ class RealTimeCard extends Component {
         this.state = {
             value : firstData,
             isRunning : true,
+            data : data
         }
     }
 
@@ -115,7 +113,7 @@ class RealTimeCard extends Component {
             <RTInfoCard value={this.getValue.bind(this)()} showTimeControl={true}
                         description={this.getDescription.bind(this)()} onTimeChange={this.timeChange.bind(this)}>
                 <div className="chart-wrapper mx-3" style={{ height: '70px'}}>
-                    <canvas id={"lineChart-"+this.id} height="70"/>
+                    <Line options={this.chartOptions} data={this.state.data} height={70} />
                 </div>
             </RTInfoCard>
         )
@@ -157,13 +155,6 @@ class RealTimeCard extends Component {
 
     componentDidMount() {
 
-        const ctx = document.getElementById("lineChart-"+this.id).getContext('2d');
-        this.chart = new Chart(ctx,{
-            type : 'line',
-            data : this.data,
-            options : this.chartOptions
-        });
-
         const interval = setInterval(() => {
             this.process.bind(this)();
 
@@ -174,22 +165,26 @@ class RealTimeCard extends Component {
 
     process()
     {
-        const newData = this.props.getData();
+        const datasetsCopy = this.state.data.datasets.slice(0);
+        const dataCopy = datasetsCopy[0].data.slice(0);
 
-        this.data.datasets[0].data = updateDataSet(this.data.datasets[0].data,{
+        const data = this.props.getData();
+
+        datasetsCopy[0].data = updateDataSet(dataCopy,{
             x: new Date(),
-            y: newData
+            y: data
         },this.props.maxLength);
 
         if(this.props.getDataLabel) {
-            this.data.datasets[0].label = this.props.getDataLabel(newData);
+            datasetsCopy[0].label = this.props.getDataLabel(data);
         }
 
         this.setState({
-            value : newData,
+            value : data,
+            data : Object.assign({},{
+                datasets: datasetsCopy
+            })
         });
-
-        this.chart.update();
     }
 
     componentWillUnmount() {
@@ -198,7 +193,5 @@ class RealTimeCard extends Component {
         }
     }
 }
-
-RealTimeCard.id = 0;
 
 export default RealTimeCard;

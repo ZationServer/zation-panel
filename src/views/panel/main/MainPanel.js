@@ -12,6 +12,10 @@ import avatar from './../../../assets/image/user.svg';
 import {load} from 'zation-client';
 import Ping from "../ping/Ping";
 import User from "../user/User";
+import Chart from 'chart.js';
+
+Chart.defaults.global.animation.duration = 1000;
+//Chart.defaults.global.animation.easing = 'easeInQuad';
 
 class MainPanel extends Component {
 
