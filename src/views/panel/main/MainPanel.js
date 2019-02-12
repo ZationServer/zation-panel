@@ -21,7 +21,7 @@ class MainPanel extends Component {
         try {
             this.state = {name: load().getTokenVariable('ZATION-PANEL-USER-NAME')};
 
-            DataEngine.getEngine().activateProcessClusterInfo();
+            DataEngine.getEngine().setTaskProcessClusterInfo();
             DataEngine.getEngine().processClusterInfo();
         }
         catch (e) {

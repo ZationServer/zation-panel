@@ -12,22 +12,22 @@ class Dashboard extends Component {
                 <div className="animated fadeIn">
                     <div className="row">
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard getDataLabel={Dashboard.getClientsConnectedDesc} getDescription={Dashboard.getClientsConnectedDesc} maxLength={10} getData={Dashboard.getClientsConnected} every={2300}/>
+                            <RealTimeCard getDataLabel={Dashboard.getClientsConnectedDesc} getDescription={Dashboard.getClientsConnectedDesc} maxLength={20} getData={Dashboard.getClientsConnected} every={2300}/>
                         </div>
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard dataLabel={"Worker"} getDescription={Dashboard.getWorkerDesc} getData={Dashboard.getWorkerOnline} maxLength={10} every={5000} />
+                            <RealTimeCard dataLabel={"Worker"} getDescription={Dashboard.getWorkerDesc} getData={Dashboard.getWorkerOnline} maxLength={20} every={5000} />
                         </div>
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard dataLabel={"Cpu usage"} description="Cpu usage" getData={Dashboard.getCpuUsage} every={2300} maxLength={10} postFix={"%"}/>
+                            <RealTimeCard dataLabel={"Cpu usage"} description="Cpu usage" getData={Dashboard.getCpuUsage} every={2300} maxLength={20} postFix={"%"}/>
                         </div>
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard dataLabel={"Memory usage"} description="Memory usage" getData={Dashboard.getMemoryUsage} every={2500}  maxLength={10} postFix={"mb"} getValue={Dashboard.getMemoryUsagePercent}/>
+                            <RealTimeCard dataLabel={"Memory usage"} description="Memory usage" getData={Dashboard.getMemoryUsage} every={2500}  maxLength={20} postFix={"mb"} getValue={Dashboard.getMemoryUsagePercent}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-12 col-lg-12">
                             <BigRealTimeCard description="Requests in total" label={['WebSocket Requests','HTTP Requests']}
-                                             getValue={(v) => {return v.reduce((a, b) => a + b, 0);}} getData={Dashboard.getRequestData} maxLength={20} every={1000}/>
+                                             getValue={(v) => {return v.reduce((a, b) => a + b, 0);}} getData={Dashboard.getRequestData} maxLength={40} every={1000}/>
                         </div>
                     </div>
                 </div>

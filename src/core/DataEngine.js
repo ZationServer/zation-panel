@@ -85,7 +85,6 @@ export default class DataEngine {
         this.panelAuthUserMap = {};
         this.defaultUserName = '';
 
-        this.processClusterStorage = false;
         this.workerCount = 0;
         this.instanceCount = 0;
 
@@ -107,13 +106,6 @@ export default class DataEngine {
         client.channelReact().onPubPanelOutCh('update-workerStatus',(data => {
             this.update('update-workerStatus',data.id,data.info);
         }));
-    }
-
-    _processClusterInfo()
-    {
-        if(this.processClusterStorage) {
-            this.processClusterInfo();
-        }
     }
 
     processClusterInfo()
@@ -250,16 +242,13 @@ export default class DataEngine {
                 this._updateSystemInfo(idTarget.instance,idTarget.worker,info['systemInfo']);
                 idTarget.worker.clientCount = info["clientCount"];
                 idTarget.worker.user = info['user'];
-                this._processClusterInfo();
                 this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
             }
             else if(event === 'update-workerStatus') {
                 idTarget.worker.httpRequests = info['httpRequests'];
                 idTarget.worker.wsRequests = info['wsRequests'];
-                this._processClusterInfo();
                 this.emitter.emit('statusUpdate',instanceId,workerFullId,idTarget);
             }
-            this.refreshWorkerPing(instanceId,workerFullId);
         }
     }
 
@@ -358,8 +347,10 @@ export default class DataEngine {
         this.emitter.emit('workerPing',id['instanceId'],id['workerFullId']);
     }
 
-    activateProcessClusterInfo() {
-        this.processClusterStorage = true;
+    setTaskProcessClusterInfo() {
+        setInterval(() => {
+            this.processClusterInfo();
+        },1000)
     }
 
     // noinspection JSMethodCanBeStatic
@@ -378,7 +369,6 @@ export default class DataEngine {
             this.workerCount++;
             this.emitter.emit('newWorker',id['workerFullId']);
             this._setWorkerTimeout(workers,id['workerFullId'],id['instanceId']);
-            this._processClusterInfo();
         }
     }
 

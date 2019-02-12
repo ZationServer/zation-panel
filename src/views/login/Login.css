@@ -14,14 +14,14 @@
 
 .logoText {
     color: #3099bb;
-    font-family: "Nexa Bold";
+    font-family: "NexaBold";
     font-size: 1.8rem;
 }
 
 .loginBtn {
     background-color: #3099bb!important;
     color: white!important;
-    font-family: "Nexa Bold"!important;
+    font-family: "NexaBold"!important;
     width: 10em!important;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .input100 {
-    font-family: "Nexa Bold";
+    font-family: "NexaBold";
     font-size: 16px;
     color: #fff;
     line-height: 1.2;
