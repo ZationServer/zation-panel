@@ -31,6 +31,10 @@
     margin-bottom: 1.5rem;
 }
 
+.big-card .chart-wrapper{
+    margin-bottom: 2rem;
+}
+
 .text-white {
     color: #fff !important;
 }
@@ -49,6 +53,11 @@
     background-clip: border-box;
     border: 1px solid #c8ced3;
     border-radius: 0.25rem;
+}
+
+.big-card {
+    height: 23rem;
+    background-color: #343a40!important;
 }
 
 .pb-0, .py-0 {

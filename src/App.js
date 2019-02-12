@@ -14,7 +14,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode : 'panel',
+            mode : 'start',
             errorMessage : ''
         };
     }
@@ -79,7 +79,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-
+        this._isMount = true;
         if(this.state.mode === 'start') {
             (async () => {
                 const client = create(!devMode ? {
@@ -132,6 +132,17 @@ class App extends Component {
             window.location.pathname = '';
         }
     }
+
+    componentWillUnmount() {
+        this._isMount = false;
+    }
+
+    setState(params) {
+        if (this._isMount) {
+            super.setState(params);
+        }
+    }
+
 }
 
 export default App;

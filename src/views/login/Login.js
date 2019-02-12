@@ -124,6 +124,20 @@ class Login extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this._isMount = false;
+    }
+
+    componentDidMount() {
+        this._isMount = true;
+    }
+
+    setState(params) {
+        if (this._isMount) {
+            super.setState(params);
+        }
+    }
+
 }
 
 export default withStyles(styles)(Login);

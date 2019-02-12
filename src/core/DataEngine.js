@@ -23,8 +23,8 @@ export default class DataEngine {
                         defaultUserGroupCount
                         authUserGroups ->
                             userGroup
-                    avgHttpRequests
-                    avgWsRequests
+                    httpRequests
+                    wsRequests
                     cpu
                     memory
             brokerCount
@@ -69,8 +69,8 @@ export default class DataEngine {
         brokerCount
         serverStartedTimestamp
         clientCount
-        avgHttpRequests
-        avgWsRequests
+        httpRequests
+        wsRequests
         debug
         useScUws
         user ->
@@ -128,8 +128,8 @@ export default class DataEngine {
             netOutput = 0,
             brokerCount = 0,
             clientCount = 0,
-            avgHttpRequests = 0,
-            avgWsRequests = 0,
+            httpRequests = 0,
+            wsRequests = 0,
             debug = false,
             useScUws = true,
             defaultUserGroupCount = 0,
@@ -173,8 +173,8 @@ export default class DataEngine {
                         const worker = instance.workers[workerFullId];
 
                         clientCount+=worker.clientCount;
-                        avgHttpRequests+=worker.avgHttpRequests;
-                        avgWsRequests+=worker.avgWsRequests;
+                        httpRequests+=worker.httpRequests;
+                        wsRequests+=worker.wsRequests;
                         defaultUserGroupCount+=worker.user['defaultUserGroupCount'];
                         this._processAuthUserGroup(authUserGroup,worker.user['authUserGroups']);
                     }
@@ -199,8 +199,8 @@ export default class DataEngine {
             brokerCount : brokerCount,
             serverStartedTimestamp : startedTime,
             clientCount : clientCount,
-            avgHttpRequests : avgHttpRequests,
-            avgWsRequests : avgWsRequests,
+            httpRequests : httpRequests,
+            wsRequests : wsRequests,
             debug : debug,
             useScUws : useScUws,
             user : {
@@ -254,8 +254,8 @@ export default class DataEngine {
                 this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
             }
             else if(event === 'update-workerStatus') {
-                idTarget.worker.avgHttpRequests = info['avgHttpRequests'];
-                idTarget.worker.avgWsRequests = info['avgWsRequests'];
+                idTarget.worker.httpRequests = info['httpRequests'];
+                idTarget.worker.wsRequests = info['wsRequests'];
                 this._processClusterInfo();
                 this.emitter.emit('statusUpdate',instanceId,workerFullId,idTarget);
             }
@@ -372,8 +372,8 @@ export default class DataEngine {
             worker.clientCount = info['clientCount'];
             this._updateSystemInfo(instance,worker,info['systemInfo']);
             worker.user = info['user'];
-            worker.avgHttpRequests = info['avgHttpRequests'];
-            worker.avgWsRequests = info['avgWsRequests'];
+            worker.httpRequests = info['httpRequests'];
+            worker.wsRequests = info['wsRequests'];
             workers[id['workerFullId']] = worker;
             this.workerCount++;
             this.emitter.emit('newWorker',id['workerFullId']);

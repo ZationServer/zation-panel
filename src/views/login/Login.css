@@ -92,10 +92,6 @@
     background: #3099bb;
 }
 
-*, ::after, ::before {
-    box-sizing: inherit;
-}
-
 .focus-input100::after {
     font-family: "Font Awesome 5 Free";
     font-weight: bold;
@@ -132,10 +128,6 @@
 
 .input100:focus + .focus-input100::before {
     width: 100%;
-}
-
-*, ::after, ::before {
-    box-sizing: inherit;
 }
 
 input {

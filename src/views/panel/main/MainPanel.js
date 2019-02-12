@@ -10,6 +10,8 @@ import Servers from "../servers/Servers";
 import Button from "react-bootstrap/es/Button";
 import avatar from './../../../assets/image/user.svg';
 import {load} from 'zation-client';
+import Ping from "../ping/Ping";
+import User from "../user/User";
 
 class MainPanel extends Component {
 
@@ -18,6 +20,9 @@ class MainPanel extends Component {
 
         try {
             this.state = {name: load().getTokenVariable('ZATION-PANEL-USER-NAME')};
+
+            DataEngine.getEngine().activateProcessClusterInfo();
+            DataEngine.getEngine().processClusterInfo();
         }
         catch (e) {
             this.state = {name: 'Unknown name'};
@@ -73,6 +78,8 @@ class MainPanel extends Component {
                     <Sidebar/>
                     <main className="main">
                         <Route exact path="/" component={Dashboard}/>
+                        <Route exact path="/ping" component={Ping}/>
+                        <Route exact path="/user" component={User}/>
                         <Route exact path="/server" component={Servers}/>
                     </main>
                 </div>
@@ -81,16 +88,6 @@ class MainPanel extends Component {
     }
 
     componentDidMount() {
-        console.log(DataEngine.getEngine().storage);
-        console.log(DataEngine.getEngine().panelAuthUserMap);
-        console.log(DataEngine.getEngine().defaultUserName);
-        console.log(DataEngine.getEngine().workerCount);
-        console.log(DataEngine.getEngine().instanceCount);
-
-        DataEngine.getEngine().activateProcessClusterInfo();
-        DataEngine.getEngine().processClusterInfo();
-        console.log(DataEngine.getEngine().clusterInfoStorage);
-
         document.getElementsByTagName('body')[0].addEventListener('click',(event) => {
             this.offAccountDropDown(event);
         });
