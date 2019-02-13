@@ -7,7 +7,8 @@ GitHub: LucaCode
 import {load}        from "zation-client";
 const EventEmitter = require('events');
 
-const workerTimeout = 7000;
+const workerCheckTime = 7000;
+const workerTimeout = 5000;
 
 export default class DataEngine {
 
@@ -89,6 +90,7 @@ export default class DataEngine {
         this.instanceCount = 0;
 
         this.emitter = new EventEmitter();
+        this.setWorkerTimeoutChecker();
     }
 
     connect(key = 'default')
@@ -96,9 +98,6 @@ export default class DataEngine {
         const client = load(key);
         client.channelReact().onPubPanelOutCh('firstPong' ,(data => {
             this.firstPong(data.id,data.info);
-        }));
-        client.channelReact().onPubPanelOutCh('ping',(data => {
-            this.workerPing(data.id);
         }));
         client.channelReact().onPubPanelOutCh('update-mainUpdate',(data => {
             this.update('update-mainUpdate',data.id,data.info);
@@ -163,7 +162,6 @@ export default class DataEngine {
                     if(instance.workers.hasOwnProperty(workerFullId))
                     {
                         const worker = instance.workers[workerFullId];
-
                         clientCount+=worker.clientCount;
                         httpRequests+=worker.httpRequests;
                         wsRequests+=worker.wsRequests;
@@ -249,6 +247,7 @@ export default class DataEngine {
                 idTarget.worker.wsRequests = info['wsRequests'];
                 this.emitter.emit('statusUpdate',instanceId,workerFullId,idTarget);
             }
+            this.refreshWorkerPing(idTarget.worker);
         }
     }
 
@@ -332,19 +331,9 @@ export default class DataEngine {
     }
 
 
-    refreshWorkerPing(instanceId,workerFullId)
-    {
-        if(this.storage.hasOwnProperty(instanceId) &&
-            this.storage[instanceId].workers.hasOwnProperty(workerFullId)) {
-            const worker = this.storage[instanceId].workers[workerFullId];
-            clearTimeout(worker.timeout);
-            this._setWorkerTimeout(this.storage[instanceId].workers,workerFullId,instanceId);
-        }
-    }
-
-    workerPing(id) {
-        this.refreshWorkerPing(id['instanceId'],id['workerFullId']);
-        this.emitter.emit('workerPing',id['instanceId'],id['workerFullId']);
+    // noinspection JSMethodCanBeStatic
+    refreshWorkerPing(worker) {
+        worker.timeout = Date().now;
     }
 
     setTaskProcessClusterInfo() {
@@ -368,35 +357,42 @@ export default class DataEngine {
             workers[id['workerFullId']] = worker;
             this.workerCount++;
             this.emitter.emit('newWorker',id['workerFullId']);
-            this._setWorkerTimeout(workers,id['workerFullId'],id['instanceId']);
+            this.refreshWorkerPing(worker);
         }
     }
 
-    _setWorkerTimeout(workers,workerFullId,instanceId)
+    setWorkerTimeoutChecker()
     {
-        workers[workerFullId].timeout = setTimeout(() => {
-            delete workers[workerFullId];
-            this.workerCount--;
-            this.emitter.emit('workerLeft',workerFullId);
-            this._checkInstanceIsDown(instanceId);
-        },workerTimeout);
-    }
-
-    _checkInstanceIsDown(instanceId)
-    {
-        if(this.storage.hasOwnProperty(instanceId)){
-            const workers = this.storage[instanceId].workers;
-            let count = 0;
-            for(let k in workers) {
-                if(workers.hasOwnProperty(k)){
-                    count++;
+        setInterval(() => {
+            for (let instanceId in this.storage) {
+                if (this.storage.hasOwnProperty(instanceId)) {
+                    const workers = this.storage[instanceId].workers;
+                    for (let workerId in workers) {
+                        if (workers.hasOwnProperty(workerId) && ((Date.now() - workers[workerId].timeout) > workerTimeout)) {
+                            delete workers[workerId];
+                            this.workerCount--;
+                            this.emitter.emit('workerLeft', workerId);
+                        }
+                    }
+                    this._checkInstanceIsDown(this.storage[instanceId],instanceId);
                 }
             }
-            if(count === 0) {
-                delete this.storage[instanceId];
-                this.instanceCount--;
-                this.emitter.emit('instanceLeft',instanceId);
+        },workerCheckTime);
+    }
+
+    _checkInstanceIsDown(instance,id)
+    {
+        const workers = instance.workers;
+        let count = 0;
+        for(let k in workers) {
+            if(workers.hasOwnProperty(k)){
+                count++;
             }
+        }
+        if(count === 0) {
+            delete this.storage[id];
+            this.instanceCount--;
+            this.emitter.emit('instanceLeft',id);
         }
     }
 }
