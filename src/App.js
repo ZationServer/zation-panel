@@ -53,7 +53,7 @@ class App extends Component {
             PingEngine.startPing();
 
             this.setState({mode : 'panel'});
-        },3500);
+        },4000);
     }
 
     toAuth() {

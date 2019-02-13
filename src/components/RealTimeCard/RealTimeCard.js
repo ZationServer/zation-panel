@@ -12,6 +12,7 @@ class RealTimeCard extends Component {
         const firstData = this.props.getData();
 
         this.chartOptions = {
+            animation: false,
             spanGaps : true,
             tooltips: {
                 enabled: false,

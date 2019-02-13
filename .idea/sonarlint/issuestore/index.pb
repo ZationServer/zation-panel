@@ -75,3 +75,11 @@ F
 src/core/DataEngine.js,7/7/77b59383207511e97e39657742fc1e696e921375
 [
 +src/components/RealTimeCard/RealTimeCard.js,4/3/4391243590e35f11481275fe7df37d380dbd309e
+I
+src/views/error/Error.css,2/b/2bf3506f1319bc3086a4493863ac54e8eb3e8913
+[
++src/components/RealTimeCard/RealTimeFunc.js,9/a/9aaf2c2d1ad00e583562c019c6ddfa81de8c0f3e
+b
+2src/components/RealTimeCard/RealTimePercentCard.js,5/1/51448eb3eaebdff2636b820c465ec71c13df2565
+c
+3src/components/RealTimeCard/realTimePercentCard.css,e/9/e99d91d42bbd1d7e957098d6f4c3e53baa89ff78

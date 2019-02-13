@@ -10,6 +10,7 @@ class BigRealTimeCard extends Component {
         super(props);
 
         this.chartOptions = {
+            animation: false,
             spanGaps : true,
             tooltips: {
                 enabled: false,
