@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import RTInfoCard from "../../components/InfoCard/RTInfoCard";
+import RTInfoCard from "../../components/infoCard/RTInfoCard";
 import {Line} from "react-chartjs-2";
-import CustomTooltips from "../../components/chart/customTooltips";
+import CustomTooltips from "../../components/chartTools/customTooltips";
 import {updateDataSet} from "./RealTimeFunc";
 
 class RealTimeCard extends Component {
@@ -79,7 +79,7 @@ class RealTimeCard extends Component {
 
         const d1 = new Date();
         const d2 = new Date();
-        d2.setMilliseconds(d1.getMilliseconds()+(this.interval || 1000));
+        d2.setMilliseconds(d1.getMilliseconds()+((this.props.every / 2) || 1000));
 
 
         const data = {
@@ -143,12 +143,12 @@ class RealTimeCard extends Component {
     }
 
     timeChange(state){
-        if(state && this.state.isRunning){
+        if(!state && this.state.isRunning){
             clearInterval(this.state.interval);
             this.setState({isRunning : false});
         }
 
-        if(!state && !this.state.isRunning){
+        if(state && !this.state.isRunning){
             this.process.bind(this)();
             this.componentDidMount.bind(this)();
         }

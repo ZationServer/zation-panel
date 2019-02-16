@@ -13,7 +13,7 @@ class Sidebar extends Component {
                         <li className="nav-item">
                             <NavLink to="/" className="nav-link" ria-current="page" exact={true} activeClassName="active">
                                 <FaTachometerAlt className="nav-icon"/>
-                                Dashboard</NavLink>
+                                Overview</NavLink>
                         </li>
                         <li className="nav-title">Details</li>
                         <li className="nav-item">
@@ -22,9 +22,9 @@ class Sidebar extends Component {
                                 Server</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/user" className="nav-link" ria-current="page" activeClassName="active">
+                            <NavLink to="/clients" className="nav-link" ria-current="page" activeClassName="active">
                                 <FaUser className="nav-icon"/>
-                                User</NavLink>
+                                Clients</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/ping" className="nav-link" ria-current="page" activeClassName="active">
@@ -39,6 +39,7 @@ class Sidebar extends Component {
         )
     }
 
+    // noinspection JSMethodCanBeStatic
     miniSidebar(){
         const body = document.getElementsByTagName('body')[0];
         const sideBar = document.getElementsByClassName('sidebar')[0];

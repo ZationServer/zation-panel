@@ -11,7 +11,7 @@ import Button from "react-bootstrap/es/Button";
 import avatar from './../../../assets/image/user.svg';
 import {load} from 'zation-client';
 import Ping from "../ping/Ping";
-import User from "../user/User";
+import Clients from "../clients/Clients";
 import Chart from 'chart.js';
 
 Chart.defaults.global.animation.duration = 1000;
@@ -38,7 +38,7 @@ class MainPanel extends Component {
             <Router>
                 <div className="App transition-item detail-page sidebar-lg-show sidebar-fixed">
                     <header className="app-header">
-                        <Navbar bg="dark" variant="dark">
+                        <Navbar className={"navbar"} bg="dark" variant="dark">
                             <Button className="navbar-toggler sidebar-toggler d-lg-none mr-auto"
                                     onClick={this.switchSidebar.bind(this)}>
 
@@ -83,7 +83,7 @@ class MainPanel extends Component {
                     <main className="main">
                         <Route exact path="/" component={Dashboard}/>
                         <Route exact path="/ping" component={Ping}/>
-                        <Route exact path="/user" component={User}/>
+                        <Route exact path="/clients" component={Clients}/>
                         <Route exact path="/server" component={Servers}/>
                     </main>
                 </div>
@@ -112,7 +112,7 @@ class MainPanel extends Component {
     offAccountDropDown(event) {
         if(!event.target.classList.contains('account-switch')) {
             const accountDropdown = document.getElementById('account-dropdown-menu');
-            if (accountDropdown.classList.contains('show')) {
+            if (accountDropdown && accountDropdown.classList.contains('show')) {
                 accountDropdown.classList.remove('show');
             }
         }

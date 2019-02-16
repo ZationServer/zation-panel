@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import RTInfoCard from "../../components/InfoCard/RTInfoCard";
+import RTInfoCard from "../../components/infoCard/RTInfoCard";
 import {Line} from "react-chartjs-2";
-import CustomTooltips from "../../components/chart/customTooltips";
+import CustomTooltips from "../../components/chartTools/customTooltips";
 import {updateDataSet} from "./RealTimeFunc";
 
 class BigRealTimeCard extends Component {
@@ -18,7 +18,7 @@ class BigRealTimeCard extends Component {
             },
             maintainAspectRatio: false,
             legend: {
-                display: true,
+                display: (this.props.legend !== undefined) ? this.props.legend : true,
                 labels : {
                     fontColor : '#ffffff'
                 },
@@ -59,6 +59,7 @@ class BigRealTimeCard extends Component {
             },
             elements: {
                 line: {
+                    borderWidth: 1,
                 },
                 point: {
                     radius: 4,
@@ -99,7 +100,7 @@ class BigRealTimeCard extends Component {
     {
         const d1 = new Date();
         const d2 = new Date();
-        d2.setMilliseconds(d1.getMilliseconds()+(this.interval || 1000));
+        d2.setMilliseconds(d1.getMilliseconds()+((this.props.every /2) || 1000));
 
         this.state.value.forEach((value,i) => {
             this.state.data.datasets.push(
@@ -156,12 +157,12 @@ class BigRealTimeCard extends Component {
     }
 
     timeChange(state){
-        if(state && this.state.isRunning){
+        if(!state && this.state.isRunning){
             clearInterval(this.state.interval);
             this.setState({isRunning : false});
         }
 
-        if(!state && !this.state.isRunning){
+        if(state && !this.state.isRunning){
             this.process.bind(this)();
             this.componentDidMount.bind(this)();
         }

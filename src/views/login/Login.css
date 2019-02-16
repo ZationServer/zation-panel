@@ -10,6 +10,7 @@
     height: 15em;
     text-align: center;
     padding-top: 1.2em;
+    min-width: 550px;
 }
 
 .logoText {
@@ -68,6 +69,11 @@
 
 .wrap-input-error {
     border-bottom: 2px solid rgba(255,0,0,0.24)!important;
+}
+
+.wrap-input-error span:before
+{
+    background-color: rgba(255,0,0,0.24)!important;
 }
 
 .wrap-input100 {

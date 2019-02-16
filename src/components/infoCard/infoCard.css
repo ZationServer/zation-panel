@@ -17,12 +17,22 @@
     z-index: 6;
 }
 
-.timeIcon, .timeIcon path, .timeIcon svg{
+.btn-switch-control
+{
+    position: absolute;
+    right: 3.5rem;
+    top: -1.24rem;
+    color: white;
+    transition: all 0.25s ease-in-out;
+    z-index: 6;
+}
+
+.timeIcon, .timeIcon path, .timeIcon svg, .switchIcon, .switchIcon path, .switchIcon svg{
     position: relative;
     z-index: 2;
 }
 
-.btn-time-control:hover
+.btn-time-control:hover, .btn-switch-control:hover
 {
    color: white;
 }
@@ -53,6 +63,10 @@
     background-clip: border-box;
     border: 1px solid #c8ced3;
     border-radius: 0.25rem;
+}
+
+.extra-big-card {
+    height: 28rem!important;
 }
 
 .big-card {

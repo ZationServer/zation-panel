@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RTInfoCard from "../../components/InfoCard/RTInfoCard";
+import RTInfoCard from "../../components/infoCard/RTInfoCard";
 import './realTimePercentCard.css';
 
 class RealTimePercentCard extends Component {
@@ -29,12 +29,12 @@ class RealTimePercentCard extends Component {
     }
 
     timeChange(state){
-        if(state && this.state.isRunning){
+        if(!state && this.state.isRunning){
             clearInterval(this.state.interval);
             this.setState({isRunning : false});
         }
 
-        if(!state && !this.state.isRunning){
+        if(state && !this.state.isRunning){
             this.process.bind(this)();
             this.componentDidMount.bind(this)();
         }

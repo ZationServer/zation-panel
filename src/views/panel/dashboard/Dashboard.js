@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './dashboard.css';
 import DataEngine from "../../../core/DataEngine";
-import RealTimeCard from "../../../components/RealTimeCard/RealTimeCard";
-import BigRealTimeCard from "../../../components/RealTimeCard/BigRealTimeCard";
-import RealTimePercentCard from "../../../components/RealTimeCard/RealTimePercentCard";
+import RealTimeCard from "../../../components/realTimeCardCharts/RealTimeCard";
+import BigRealTimeCard from "../../../components/realTimeCardCharts/BigRealTimeCard";
+import RealTimePercentCard from "../../../components/realTimeCardCharts/RealTimePercentCard";
+import RealTimeNetworkCard from "../../../components/realTimeCardCharts/RealTimeNetworkCard";
 
 class Dashboard extends Component {
 
@@ -16,7 +17,7 @@ class Dashboard extends Component {
                             <RealTimeCard getDataLabel={Dashboard.getClientsConnectedDesc} getDescription={Dashboard.getClientsConnectedDesc} maxLength={10} getData={Dashboard.getClientsConnected} every={2000}/>
                         </div>
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard dataLabel={"Worker"} getDescription={Dashboard.getWorkerDesc} getData={Dashboard.getWorkerOnline} maxLength={10} every={6000} />
+                            <RealTimeCard dataLabel={"Worker"} getDescription={Dashboard.getWorkerDesc} getData={Dashboard.getWorkerOnline} maxLength={10} every={4000} />
                         </div>
                         <div className="col-sm-6 col-lg-3">
                             <RealTimePercentCard description="Cpu usage" getPercent={Dashboard.getCpuUsage} every={1000}/>
@@ -28,7 +29,12 @@ class Dashboard extends Component {
                     <div className="row">
                         <div className="col-sm-12 col-lg-12">
                             <BigRealTimeCard description="Requests in total" label={['WebSocket Requests','HTTP Requests']}
-                                             getValue={(v) => {return v.reduce((a, b) => a + b, 0);}} getData={Dashboard.getRequestData} maxLength={35} every={1000}/>
+                                             getValue={(v) => {return v.reduce((a, b) => a + b, 0);}} getData={Dashboard.getRequestData} maxLength={40} every={1000}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12 col-lg-12">
+                            <RealTimeNetworkCard/>
                         </div>
                     </div>
                 </div>

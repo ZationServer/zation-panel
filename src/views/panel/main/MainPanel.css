@@ -11,16 +11,23 @@
 
 .main {
     flex: 1;
-    min-width: 0;
-    margin-top: 1rem;
+    min-width: 370px;
     z-index: 1000;
     position: relative;
+    margin-top: 3.75em;
+    padding-top: 25px;
 }
 
 @media (min-width: 992px) {
     .sidebar-minimized main{
         margin-left: 3rem!important;
     }
+}
+
+
+.main > .container-fluid {
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
 .profile{
@@ -75,6 +82,13 @@
 
 .navbar-toggler:not(:disabled):not(.disabled) {
     cursor: pointer;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20000;
 }
 
 .app-header .btn {

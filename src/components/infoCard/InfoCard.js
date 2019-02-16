@@ -12,7 +12,7 @@ class InfoCard extends Component {
 
     render() {
         return (
-            <div className={"text-white bg-info card" + (this.props.big ? ' big-card' : '')}>
+            <div className={"text-white bg-info card" + (this.props.big ? ' big-card' : '') + (this.props.extraBig ? ' extra-big-card' : '')}>
                 <div className="pb-0 card-body">
                     <div className="text-value">
                         {this.props.value}

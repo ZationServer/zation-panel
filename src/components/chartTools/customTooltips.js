@@ -6,7 +6,7 @@ function CustomTooltips(tooltipModel) {
             return ((1 + Math.random()) * _multiplier | 0).toString(_hex)
         };
         const _canvasId = `_canvas-${_idMaker() + _idMaker()}`;
-        this._chart.canvas.id = _canvasId
+        this._chart.canvas.id = _canvasId;
         return _canvasId
     };
 

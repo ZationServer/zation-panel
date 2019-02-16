@@ -18,6 +18,7 @@ export default class DataEngine {
         instanceId ->
             workers ->
                 workerFullId ->
+                    id
                     workerStartedTimestamp
                     clientCount
                     user ->
@@ -29,16 +30,27 @@ export default class DataEngine {
                     cpu
                     memory
             brokerCount
+            brokers ->
+                id ->
+                    pid
+                    system ->
+                        cpu
+                        memory
+                brokerStartedTimestamp
+            master ->
+                isLeader
+                pid
+                clusterMode
             hostname
             port
             path
             postKey
             secure
             appName
-            environment
             debug
             useScUws
             serverStartedTimestamp
+            ip
             cpuModel
             cpuCount
             platform
@@ -86,6 +98,8 @@ export default class DataEngine {
         this.panelAuthUserMap = {};
         this.defaultUserName = '';
 
+        this.clusterBrokerList = [];
+
         this.workerCount = 0;
         this.instanceCount = 0;
 
@@ -104,6 +118,9 @@ export default class DataEngine {
         }));
         client.channelReact().onPubPanelOutCh('update-workerStatus',(data => {
             this.update('update-workerStatus',data.id,data.info);
+        }));
+        client.channelReact().onPubPanelOutCh('update-node',(data => {
+            this.update('update-node',data.id,data.info);
         }));
     }
 
@@ -247,6 +264,12 @@ export default class DataEngine {
                 idTarget.worker.wsRequests = info['wsRequests'];
                 this.emitter.emit('statusUpdate',instanceId,workerFullId,idTarget);
             }
+            else if(event === 'update-node') {
+                idTarget.instance.brokers = info['brokers'];
+                idTarget.instance.master = info['master'];
+                this.clusterBrokerList = info['cBrokers'];
+                this.emitter.emit('nodeUpdate',instanceId,workerFullId,idTarget);
+            }
             this.refreshWorkerPing(idTarget.worker);
         }
     }
@@ -295,10 +318,10 @@ export default class DataEngine {
             instance.postKey       = info['postKey'];
             instance.secure        = info['secure'];
             instance.appName       = info['appName'];
-            instance.environment   = info['environment'];
             instance.debug         = info['debug'];
             instance.useScUws      = info['useScUws'];
             instance.serverStartedTimestamp = info['serverStartedTimestamp'];
+            instance.ip            = info['ip'];
             this._updatePanelAuthUserMap(info['panelAuthUserMap']);
             this._updatePanelDefaultName(info['defaultUserName']);
             const generalSystemInfo = info['generalSystemInfo'];
@@ -314,6 +337,12 @@ export default class DataEngine {
         }
         else {
             this._createWorker(this.storage[instanceId],id,info);
+        }
+
+        if(id['workerId'] === 0){
+            this.clusterBrokerList = info['cBrokers'];
+            this.storage[instanceId].brokers = info['brokers'];
+            this.storage[instanceId].master = info['master'];
         }
     }
 
@@ -348,6 +377,7 @@ export default class DataEngine {
         const workers = instance.workers;
         if(!workers.hasOwnProperty(id['workerFullId'])) {
             let worker = {};
+            worker.id = id['workerId'];
             worker.workerStartedTimestamp = info['workerStartedTimestamp'];
             worker.clientCount = info['clientCount'];
             this._updateSystemInfo(instance,worker,info['systemInfo']);

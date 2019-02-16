@@ -1,32 +1,8 @@
 import React, {Component} from 'react';
-import InfoCard from "../../components/InfoCard/InfoCard";
+import InfoCard from "../../components/infoCard/InfoCard";
 import {Bar} from "react-chartjs-2";
-import CustomTooltips from "../../components/chart/customTooltips";
-
-
-const zeroCompensation = {
-    renderZeroCompensation: function (chartInstance, d) {
-
-        const view = d._view;
-        const context = chartInstance.chart.ctx;
-        const startX = view.x - view.width / 2;
-        context.beginPath();
-        context.strokeStyle = '#aaaaaa';
-        context.moveTo(startX, view.y);
-        context.lineTo(startX + view.width, view.y);
-        context.stroke();
-    },
-
-    afterDatasetsDraw: function (chart, easing) {
-        const meta = chart.getDatasetMeta(0);
-        const dataSet = chart.config.data.datasets[0].data;
-        meta.data.forEach((d, index) => {
-            if(dataSet[index] === 0) {
-                this.renderZeroCompensation(chart, d)
-            }
-        })
-    }
-};
+import CustomTooltips from "../../components/chartTools/customTooltips";
+import {zeroCompensation} from "../chartTools/barZeroCompensation";
 
 class BigBarCardInfo extends Component {
 
@@ -35,8 +11,7 @@ class BigBarCardInfo extends Component {
 
 
         this.chartOptions = {
-            responsive:true,
-            scaleBeginAtZero:false,
+            scaleBeginAtZero:true,
             barBeginAtOrigin:true,
             tooltips: {
                 enabled: false,
@@ -46,6 +21,7 @@ class BigBarCardInfo extends Component {
             legend: {
                 display: false,
             },
+
             scales: {
                 xAxes: [
                     {
@@ -54,8 +30,12 @@ class BigBarCardInfo extends Component {
                     }],
                 yAxes: [
                     {
+                        ticks : {
+                            beginAtZero:true,
+                            suggestedMin: 0,
+                            min: 0
+                        },
                         display: true,
-                        beginAtZero:true
                     }],
             },
         };
@@ -87,10 +67,10 @@ class BigBarCardInfo extends Component {
 
     render() {
         return (
-            <InfoCard value={this.props.value} big={true}
+            <InfoCard value={this.props.value} extraBig={true} big={true}
                       description={this.props.description}>
                 <div className="chart-wrapper mx-3" style={{ height: '300px'}}>
-                    <Bar options={this.chartOptions} data={this.buildDataSet.bind(this)()} height={100} plugins={[zeroCompensation]}
+                    <Bar options={this.chartOptions} data={this.buildDataSet.bind(this)()} height={800} plugins={[zeroCompensation]}
                          redraw={this.props.redraw}
                      />
                 </div>

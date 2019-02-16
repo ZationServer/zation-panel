@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import InfoCard from "../../components/InfoCard/InfoCard";
+import InfoCard from "../../components/infoCard/infoCard";
 import {Line} from "react-chartjs-2";
-import CustomTooltips from "../../components/chart/customTooltips";
+import CustomTooltips from "../../components/chartTools/customTooltips";
 
 const chartOptions = {
     spanGaps : true,
