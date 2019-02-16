@@ -32,7 +32,7 @@ class RTInfoCard extends Component {
     render() {
         return (
             <div style={this.props.height ? {height : this.props.height} : {}}
-                 className={"text-white bg-info card" + (this.props.big ? ' big-card' : '')}>
+                 className={"text-white bg-info card" + (this.props.big ? ' big-card' : '') + (this.props.green ? ' cardGreen' : '')}>
                 <div className="pb-0 card-body">
                     <div id="carouselButtons">
                         <button id={this.btnTimeId} type="button" className="btn btn-time-control animated"

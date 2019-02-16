@@ -2,6 +2,9 @@
     border-color: #2eadd3;
 }
 
+.cardGreen.bg-info {
+    border-color: rgba(43, 225, 98,.6)!important;
+}
 
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-dark {
     color: #fff;
