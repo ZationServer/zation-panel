@@ -79,7 +79,12 @@ class RTServerInfoCard extends Component {
             data.platform = instance.platform;
             data.debug = instance.debug ? 'yes' : 'no';
             data.useScUws = instance.useScUws ? 'yes' : 'no';
-            data.driveUsage = instance.drive.usedPercentage + ' %';
+            if(instance.drive){
+                data.driveUsage = instance.drive.usedPercentage + ' %';
+            }
+            else{
+                data.driveUsage = 'Unknown';
+            }
         }
         return data;
     }
