@@ -104,7 +104,7 @@ class App extends Component {
                 try {
                     await client.connect();
 
-                    if(client.isAuthenticated() &&
+                    if( client.getSocket().getAuthToken() !== null &&
                         client.getTokenPanelAccess() &&
                         client.getTokenVariable('ZATION-PANEL-USER-NAME')
                     ) {
@@ -120,6 +120,9 @@ class App extends Component {
                 catch (e) {
                     if(e instanceof ConnectionAbortError) {
                         this.setError('Could not connect to the server.');
+                    }
+                    else {
+                        this.setError('Unknown error occurred');
                     }
                 }
 
