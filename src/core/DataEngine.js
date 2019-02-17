@@ -362,7 +362,7 @@ export default class DataEngine {
 
     // noinspection JSMethodCanBeStatic
     refreshWorkerPing(worker) {
-        worker.timeout = Date().now;
+        worker.timeout = Date.now();
     }
 
     setTaskProcessClusterInfo() {
@@ -384,10 +384,10 @@ export default class DataEngine {
             worker.user = info['user'];
             worker.httpRequests = info['httpRequests'];
             worker.wsRequests = info['wsRequests'];
+            this.refreshWorkerPing(worker);
             workers[id['workerFullId']] = worker;
             this.workerCount++;
             this.emitter.emit('newWorker',id['workerFullId']);
-            this.refreshWorkerPing(worker);
         }
     }
 
@@ -397,14 +397,18 @@ export default class DataEngine {
             for (let instanceId in this.storage) {
                 if (this.storage.hasOwnProperty(instanceId)) {
                     const workers = this.storage[instanceId].workers;
+                    let aWorkerIsDown = false;
                     for (let workerId in workers) {
                         if (workers.hasOwnProperty(workerId) && ((Date.now() - workers[workerId].timeout) > workerTimeout)) {
                             delete workers[workerId];
                             this.workerCount--;
+                            aWorkerIsDown = true;
                             this.emitter.emit('workerLeft', workerId);
                         }
                     }
-                    this._checkInstanceIsDown(this.storage[instanceId],instanceId);
+                    if(aWorkerIsDown){
+                        this._checkInstanceIsDown(this.storage[instanceId],instanceId);
+                    }
                 }
             }
         },workerCheckTime);
