@@ -31,7 +31,7 @@ class RTInfoCard extends Component {
 
     render() {
         return (
-            <div style={this.props.height ? {height : this.props.height} : {}}
+            <div style={this.props.height ? {height : this.props.height} : (this.props.minHeight ? {minHeight : this.props.minHeight} : {})}
                  className={"text-white bg-info card" + (this.props.big ? ' big-card' : '') + (this.props.green ? ' cardGreen' : '')}>
                 <div className="pb-0 card-body">
                     <div id="carouselButtons">

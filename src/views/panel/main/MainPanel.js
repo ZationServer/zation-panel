@@ -6,13 +6,14 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import DataEngine from "../../../core/DataEngine";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
-import Servers from "../servers/Servers";
+import Server from "../servers/Server";
 import Button from "react-bootstrap/es/Button";
 import avatar from './../../../assets/image/user.svg';
 import {load} from 'zation-client';
 import Ping from "../ping/Ping";
 import Clients from "../clients/Clients";
 import Chart from 'chart.js';
+import ServerDetail from "../servers/ServerDetail";
 
 Chart.defaults.global.animation.duration = 1000;
 //Chart.defaults.global.animation.easing = 'easeInQuad';
@@ -84,7 +85,8 @@ class MainPanel extends Component {
                         <Route exact path="/" component={Dashboard}/>
                         <Route exact path="/ping" component={Ping}/>
                         <Route exact path="/clients" component={Clients}/>
-                        <Route exact path="/server" component={Servers}/>
+                        <Route exact path="/server" component={Server}/>
+                        <Route exact path="/server/:id" component={ServerDetail}/>
                     </main>
                 </div>
             </Router>

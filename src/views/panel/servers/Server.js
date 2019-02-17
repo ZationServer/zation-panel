@@ -3,50 +3,64 @@ import BigRealTimeCard from "../../../components/realTimeCardCharts/BigRealTimeC
 import DataEngine from "../../../core/DataEngine";
 import RTTableCard from "../../../components/realTimeCardCharts/RTTableCard";
 import Time from "../../../core/Time";
+import {FaCheck, FaInfoCircle, FaTimes} from 'react-icons/fa';
+import TableProgressRow from "../../../components/chartTools/TableProgressRow";
 
 const serverTableColumns = [
+    {title: 'Leader', field: 'leader', filtering: false, render: rowData => {
+            if(rowData.leader) {
+                return <FaCheck height={20}/>
+            }
+            else{
+                return <FaTimes height={20}/>
+            }
+        }},
     {title: 'Id', field: 'id'},
-    {title: 'Age', field: 'age', },
-    {title: 'Clients', field: 'clientCount'},
+    {title: 'Age', field: 'age', filtering: false},
+    {title: 'Client/s', field: 'clientCount'},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
-            const score = rowData.cpu + '%';
             return (
-                <div style={{width: '100%', backgroundColor: '#999999', height: 20}}>
-                    <div style={{textAlign: 'left', padding: 1, color: 'white', width: score, backgroundColor: 'rgba(43, 225, 98,1.0)', height: 20}}/>
-                </div>
+               <TableProgressRow progress={rowData.cpu + '%'}/>
             );
         }},
     {title: 'Memory Usage', field: 'memory', render: rowData => {
-            const score = rowData.memory + '%';
             return (
-                <div style={{width: '100%', backgroundColor: '#999999', height: 20}}>
-                    <div style={{textAlign: 'left', padding: 1, color: 'white', width: score, backgroundColor: 'rgba(43, 225, 98,1.0)', height: 20}}/>
-                </div>
+                <TableProgressRow progress={rowData.memory + '%'}/>
             );
         }},
     {title: 'Worker', field: 'workerCount', type: 'numeric'},
     {title: 'Broker', field: 'brokerCount', type: 'numeric'},
-    {title: 'Requests', field: 'requestCount', type: 'numeric'},
+    {title: 'Request/s', field: 'requestCount', type: 'numeric'},
 ];
 
-class Servers extends Component {
+class Server extends Component {
     render() {
         return (
             <div className="container-fluid">
                 <div className="animated fadeIn">
                     <div className="row">
                         <div className="col-sm-6 col-lg-6">
-                            <BigRealTimeCard legend={false} description="Cpu usage" getData={Servers.getCpuUsage} maxLength={20}
+                            <BigRealTimeCard legend={false} description="Cpu usage" getData={Server.getCpuUsage} maxLength={20}
                                              every={1000} postFix={"%"} label={["Cpu usage"]}/>
                         </div>
                         <div className="col-sm-6 col-lg-6">
-                            <BigRealTimeCard legend={false} label={"Memory usage"} description="Memory usage" getData={Servers.getMemoryUsage}
-                                             every={2000}  maxLength={10} postFix={"mb"} getValue={Servers.getMemoryUsagePercent}/>
+                            <BigRealTimeCard legend={false} label={"Memory usage"} description="Memory usage" getData={Server.getMemoryUsage}
+                                             every={2000}  maxLength={10} postFix={"mb"} getValue={Server.getMemoryUsagePercent}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-12 col-lg-12">
-                            <RTTableCard columns={serverTableColumns} getData={Servers.getServerTableData} value={"Server"}/>
+                            <RTTableCard actions={[{
+                                    icon: FaInfoCircle,
+                                    tooltip: 'Show more information',
+                                    onClick: (event, rowData) => {this.props.history.push('server/'+rowData.id);},
+                                    iconProps: {
+                                        style:{
+                                            fontSize: 30
+                                        }
+                                    }
+                                }
+                            ]} columns={serverTableColumns} getData={Server.getServerTableData} value={"Server"}/>
                         </div>
                     </div>
                 </div>
@@ -75,6 +89,7 @@ class Servers extends Component {
 
                 let data = {
                     id : instanceId,
+                    leader: instance.master.isLeader,
                     age : Time.processAge(instance.serverStartedTimestamp),
                     workerCount : workerCount,
                     brokerCount : instance.brokerCount,
@@ -109,4 +124,4 @@ class Servers extends Component {
 
 }
 
-export default Servers;
+export default Server;

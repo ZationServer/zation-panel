@@ -36,7 +36,7 @@ export default class DataEngine {
                     system ->
                         cpu
                         memory
-                brokerStartedTimestamp
+                    brokerStartedTimestamp
             master ->
                 isLeader
                 pid

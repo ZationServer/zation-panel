@@ -1,10 +1,16 @@
-.MuiPaper-root-45{
-    top: -8rem !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
+.table-con button:focus {
+    outline: none;
 }
 
-.MuiPaper-root-78 {
-    position: relative;
-    right: 5rem;
+.tableCard .big-card{
+    height : auto !important;
+    min-height: auto !important;
+}
+
+.tableCard .big-card .chart-wrapper {
+    margin-bottom: 0 !important;
+}
+
+.tableCard .chart-wrapper > div > div {
+    overflow-y: hidden;
 }

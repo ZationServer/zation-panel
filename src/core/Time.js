@@ -6,6 +6,10 @@ GitHub: LucaCode
 
 export default class Time {
 
+    static processDate(timestamp){
+        return new Date(timestamp).toUTCString();
+    }
+
     static processAge(timestamp) {
        let timespan = Date.now() - timestamp;
         if(timespan < 1000) {
@@ -21,22 +25,27 @@ export default class Time {
        }
        else if(timespan < 8.64e+7) {
            // under day
-           return parseInt(timespan / 3.6e+6) + ' hours';
+           const res = parseInt(timespan / 3.6e+6);
+           return res + (res === 1 ? ' hour' : ' hours');
        }
        else if(timespan < 6.048e+8) {
            // under week
-           return parseInt(timespan / 8.64e+7) + ' days';
+           const res = parseInt(timespan / 8.64e+7);
+           return res + (res === 1 ? ' day' : ' days');
        }
        else if(timespan < 2.628e+9) {
            // under month
-           return parseInt(timespan / 6.048e+8) + ' weeks';
+           const res = parseInt(timespan / 6.048e+8);
+           return res + (res === 1 ? ' week' : ' weeks');
        }
        else if(timespan < 3.154e+10) {
            // under year
-           return parseInt(timespan / 2.628e+9) + ' months';
+           const res = parseInt(timespan / 2.628e+9);
+           return res + (res === 1 ? ' month' : ' months');
        }
        else {
-           return parseInt(timespan / 3.154e+10) + ' years';
+           const res = parseInt(timespan / 3.154e+10);
+           return res + (res === 1 ? ' year' : ' years');
        }
     }
 }

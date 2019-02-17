@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf39caaa-ef79-4415-be7c-40b6dc0b43be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/Time.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chartTools/tableProgressRow.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/rtServerInfoCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/ObjTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/infoCard/infoCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/infoCard/infoCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/panel/servers/Servers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/servers/Servers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/DataEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/DataEngine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Time.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Time.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/main/MainPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/main/MainPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/ping/Ping.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/ping/Ping.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/ping/ping.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/ping/ping.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/servers/Servers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/servers/Server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,10 +34,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/BigRealTimeCard.js">
+        <entry file="file://$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
+            <state relative-caret-position="1038">
+              <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -39,19 +46,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css">
+        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+            <state relative-caret-position="524">
+              <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/panel/servers/Servers.js">
+        <entry file="file://$PROJECT_DIR$/src/core/ObjTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-59">
-              <caret line="21" column="75" lean-forward="true" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="75" />
+            <state>
+              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/panel/servers/Server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -62,11 +81,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/Time.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="547">
+              <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/rtServerInfoCard.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/panel/ping/ping.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -74,19 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/DataEngine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/PingEngine.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="408">
+              <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -97,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="356">
+              <caret line="74" column="18" lean-forward="true" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -107,34 +133,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/infoCard/BigBarCardInfo.js">
+        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTSwitchBarCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+            <state relative-caret-position="206">
+              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="34" column="116" selection-start-line="34" selection-start-column="116" selection-end-line="34" selection-end-column="116" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/infoCard/infoCard.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -152,7 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#16181b</find>
       <find>border-b</find>
       <find>fa</find>
       <find>class</find>
@@ -182,6 +186,7 @@
       <find>console</find>
       <find>border</find>
       <find>timestamp</find>
+      <find>console.l</find>
     </findStrings>
     <replaceStrings>
       <replace>NexaBold</replace>
@@ -194,18 +199,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/RealTimeCard/bigRealTimeCard.js" />
-        <option value="$PROJECT_DIR$/src/components/InfoCard/BigLineCardInfo.js" />
-        <option value="$PROJECT_DIR$/src/mode.js" />
-        <option value="$PROJECT_DIR$/src/components/RealTimeCard/RealTimeFunc.js" />
-        <option value="$PROJECT_DIR$/src/components/RealTimeCard/RealTimePercentCard.js" />
-        <option value="$PROJECT_DIR$/src/components/RealTimeCard/realTimePercentCard.css" />
-        <option value="$PROJECT_DIR$/src/components/RealTimeCard/BigSvgRealTimeCard.js" />
         <option value="$PROJECT_DIR$/src/components/InfoCard/InfoCard.js" />
         <option value="$PROJECT_DIR$/src/components/InfoCard/BigBarCardInfo.js" />
         <option value="$PROJECT_DIR$/src/components/RealTimeCard/RealTimeCard.js" />
-        <option value="$PROJECT_DIR$/src/views/panel/ping/ping.css" />
-        <option value="$PROJECT_DIR$/src/core/DataEngine.js" />
         <option value="$PROJECT_DIR$/src/components/RealTimeCard/BigRealTimeCard.js" />
         <option value="$PROJECT_DIR$/src/components/sigmaJs/CameraZoom.js" />
         <option value="$PROJECT_DIR$/src/components/RealTimeCard/RealTimeNetworkCard.js" />
@@ -216,11 +212,9 @@
         <option value="$PROJECT_DIR$/src/components/InfoCard/infoCard.css" />
         <option value="$PROJECT_DIR$/src/components/chartTools/barZeroCompensation.js" />
         <option value="$PROJECT_DIR$/src/views/panel/user/User.js" />
-        <option value="$PROJECT_DIR$/src/views/panel/main/MainPanel.js" />
         <option value="$PROJECT_DIR$/src/components/sidebar/Sidebar.js" />
         <option value="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" />
         <option value="$PROJECT_DIR$/src/components/chartTools/customTooltips.js" />
-        <option value="$PROJECT_DIR$/src/views/panel/ping/Ping.js" />
         <option value="$PROJECT_DIR$/src/components/infoCard/BigLineCardInfo.js" />
         <option value="$PROJECT_DIR$/src/components/infoCard/BigBarCardInfo.js" />
         <option value="$PROJECT_DIR$/src/views/panel/main/MainPanel.css" />
@@ -237,13 +231,24 @@
         <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTSwitchBarCard.js" />
         <option value="$PROJECT_DIR$/src/index.scss" />
         <option value="$PROJECT_DIR$/src/assets/libs/googleMaterialIcon.css" />
-        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js" />
         <option value="$PROJECT_DIR$/src/components/infoCard/infoCard.css" />
-        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js" />
         <option value="$PROJECT_DIR$/src/core/Tiime.js" />
         <option value="$PROJECT_DIR$/src/views/panel/servers/Servers.js" />
+        <option value="$PROJECT_DIR$/src/views/panel/main/MainPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js" />
+        <option value="$PROJECT_DIR$/src/core/DataEngine.js" />
+        <option value="$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js" />
+        <option value="$PROJECT_DIR$/src/components/chartTools/tableProgressRow.css" />
+        <option value="$PROJECT_DIR$/src/views/panel/ping/Ping.js" />
+        <option value="$PROJECT_DIR$/src/views/panel/ping/ping.css" />
+        <option value="$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js" />
+        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js" />
+        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css" />
+        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/rtServerInfoCard.css" />
+        <option value="$PROJECT_DIR$/src/core/ObjTool.js" />
+        <option value="$PROJECT_DIR$/src/views/panel/servers/Server.js" />
+        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" />
         <option value="$PROJECT_DIR$/src/core/Time.js" />
       </list>
     </option>
@@ -404,6 +409,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="panel" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zation-panel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zation-panel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="panel" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -490,12 +503,12 @@
       <workItem from="1549761305393" duration="84083000" />
       <workItem from="1550004079979" duration="1008000" />
       <workItem from="1550044059841" duration="5219000" />
-      <workItem from="1550065942942" duration="43333000" />
+      <workItem from="1550065942942" duration="55291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187478000" />
+    <option name="totallyTimeSpent" value="199436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +523,7 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8082192" visible="true" weight="0.24954791" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8082192" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" sideWeight="0.19178082" side_tool="true" weight="0.24834238" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.502693" side_tool="true" weight="0.24947146" />
@@ -525,7 +538,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32959184" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Statistic" order="10" weight="0.32959184" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4978903" visible="true" weight="0.38163266" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4978903" visible="true" weight="0.38163266" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5021097" side_tool="true" weight="0.32857144" />
       <window_info anchor="bottom" id="SonarLint" order="13" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -560,45 +573,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/es/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4174">
-          <caret line="68" column="73" lean-forward="true" selection-start-line="68" selection-start-column="73" selection-end-line="68" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1505">
-          <caret line="96" column="6" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/chart.js/dist/Chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/ping/PingStart.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/react/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="417" column="8" selection-start-line="417" selection-start-column="8" selection-end-line="417" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="27" selection-start-column="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
@@ -610,13 +584,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/RealTimeCard/BigSvgRealTimeCard.js" />
-    <entry file="file://$PROJECT_DIR$/src/views/panel/ping/ping.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/panel/main/MainPanel.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -653,13 +620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -670,37 +630,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/chartTools/customTooltips.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/error/Error.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/ping/Ping.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/main/MainPanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -748,16 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTPieCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/panel/clients/Clients.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1440">
@@ -789,16 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTSwitchBarCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="86" selection-start-line="63" selection-start-column="86" selection-end-line="63" selection-end-column="86" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -853,23 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeFunc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/realTimePercentCard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -897,17 +793,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/infoCard/infoCard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/PingEngine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -921,29 +819,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js">
+    <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="34" column="116" selection-start-line="34" selection-start-column="116" selection-end-line="34" selection-end-column="116" />
+        <state relative-caret-position="353">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/PingEngine.js">
+    <entry file="file://$PROJECT_DIR$/src/components/infoCard/RTInfoCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="46" column="117" lean-forward="true" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeFunc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/panel/main/MainPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="92" column="9" lean-forward="true" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
+          <caret line="140" column="28" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/chartTools/customTooltips.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/chartTools/tableProgressRow.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/panel/ping/Ping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="65" column="22" lean-forward="true" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/rtTableCard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTPieCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTTableCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+        <state relative-caret-position="356">
+          <caret line="74" column="18" lean-forward="true" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTSwitchBarCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1038">
+          <caret line="121" column="9" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -952,28 +949,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/DataEngine.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
+        <state relative-caret-position="408">
+          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/servers/Servers.js">
+    <entry file="file://$PROJECT_DIR$/src/views/panel/ping/ping.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
-          <caret line="21" column="75" lean-forward="true" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="75" />
+        <state relative-caret-position="180">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/panel/servers/Server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="77" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ObjTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/rtServerInfoCard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Time.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        <state relative-caret-position="547">
+          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

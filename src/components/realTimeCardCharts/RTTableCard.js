@@ -11,7 +11,7 @@ const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
             root: {
-                top: '-5rem !important',
+                top: '-1rem !important',
                 boxShadow: 'none !important',
                 backgroundColor: 'transparent !important'
             }
@@ -19,17 +19,28 @@ const theme = createMuiTheme({
         MuiTableCell : {
             root : {
                 color: 'white !important',
-                fontFamily: "NexaBold"
+                fontFamily: "NexaBold",
+                padding: '4px 16px 4px 24px'
             }
         },
         MuiTableSortLabel : {
             root : {
                 '&:hover' : {
                     color: 'rgba(43, 225, 98,1.0) !important'
+                },
+                '&:focus' : {
+                    color: 'rgba(255, 225, 255,1.0) !important'
                 }
             },
             active : {
                 color: 'rgba(43, 225, 98,1.0) !important'
+            }
+        },
+        MuiIconButton : {
+            label : {
+                '&:focus' : {
+                    outline : 'none'
+                }
             }
         }
     }
@@ -41,16 +52,18 @@ class RTTableCard extends Component {
         super(props);
 
         this.state = {
+            isRunning : true,
             data : this.props.getData()
         };
     }
 
     render() {
         return (
-            <RTInfoCard value={this.props.value} big={true} height={'29rem'} green={true}>
-                <div className="chart-wrapper mx-3" style={{ height: '300px'}}>
+            <div className={"tableCard"}>
+            <RTInfoCard value={this.props.value} big={true} minHeight={'29rem'} green={true} onTimeChange={this.timeChange.bind(this)}>
+                <div className="chart-wrapper mx-3 table-con">
                     <MuiThemeProvider theme={theme}>
-                    <MaterialTable columns={this.props.columns} data={this.state.data} title={""}
+                    <MaterialTable actions={this.props.actions} columns={this.props.columns} data={this.state.data} title={""}
                         options={{
                             paging: false,
                             toolbar: false
@@ -59,7 +72,20 @@ class RTTableCard extends Component {
                     </MuiThemeProvider>
                 </div>
             </RTInfoCard>
+            </div>
         )
+    }
+
+    timeChange(state){
+        if(!state && this.state.isRunning){
+            clearInterval(this.state.interval);
+            this.setState({isRunning : false});
+        }
+
+        if(state && !this.state.isRunning){
+            this.process.bind(this)();
+            this.componentDidMount.bind(this)();
+        }
     }
 
     componentDidMount() {

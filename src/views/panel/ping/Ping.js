@@ -58,7 +58,7 @@ class Ping extends Component {
                                         redraw={true}
                         />
                     </div>
-                    <div className={'btnContainer'}>
+                    <div className={'btnContainer pingBtn-co'}>
                         <Fab variant="extended" aria-label="Delete" onClick={this.refresh.bind(this)} className={'btn loginBtn '+classes.fab}>
                             {!this.state.btnLoad ? "Refresh" : <ClipLoader color={'white'}/>}
                         </Fab>
