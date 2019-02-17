@@ -43,7 +43,7 @@ class RTServerInfoCard extends Component {
                                     <p><span id="blue-f">{`Hostname    :`}</span>&#32;{data.hostname}</p>
                                     <p><span id="blue-f">{`Port        :`}</span>&#32;{data.port}</p>
                                     <p><span id="blue-f">{`Path        :`}</span>&#32;{data.path}</p>
-                                    <p><span id="blue-f">{`PostKey     :`}</span>&#32;{data.postKey}</p>
+                                    <p><span id="blue-f">{`Post Key     :`}</span>&#32;{data.postKey}</p>
                                     <p><span id="blue-f">{`App Name    :`}</span>&#32;{data.appName}</p>
                                     <p><span id="blue-f">{`Secure      :`}</span>&#32;{data.secure}</p>
                                     <p><span id="blue-f">{`Debug       :`}</span>&#32;{data.debug}</p>

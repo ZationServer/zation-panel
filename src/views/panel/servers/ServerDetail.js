@@ -70,7 +70,7 @@ class ServerDetail extends Component {
                                           getData={this.getClientsConnected.bind(this)} every={2000}/>
                         </div>
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard dataLabel={ServerDetail.getRequestsDesc}
+                            <RealTimeCard getDataLabel={ServerDetail.getRequestsDesc}
                                           getDescription={ServerDetail.getRequestsDesc}
                                           getData={this.getRequest.bind(this)} maxLength={20} every={4000} />
                         </div>
