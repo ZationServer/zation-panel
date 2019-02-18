@@ -1,23 +1,13 @@
 import React, {Component} from 'react';
 import RTInfoCard from "../../components/infoCard/RTInfoCard";
 import DataEngine from "../../core/DataEngine";
-import {Sigma, RandomizeNodePositions, RelativeSize, NOverlap} from 'react-sigma';
-import {CameraZoom} from "../sigmaJs/CameraZoom";
+import './realTimeNetworkCard.css';
 
-const settings = {
-    drawEdges: true,
-    clone: false,
-    defaultNodeColor: '#3099bb',
-    defaultLabelColor:'#ffffff',
-    labelThreshold:0,
-    minNodeSize : 10,
-    maxNodeSize : 15,
-    minEdgeSize : 1,
-    maxEdgeSize : 3,
-    fontStyle : "NexaBold",
-    labelSize: "proportional",
-    webglOversamplingRatio : 4,
-};
+import cytoscape from'cytoscape';
+import euler from 'cytoscape-euler';
+import nodeHtmlLabel from 'cytoscape-node-html-label';
+nodeHtmlLabel(cytoscape);
+cytoscape.use(euler);
 
 class RealTimeNetworkCard extends Component {
 
@@ -27,10 +17,12 @@ class RealTimeNetworkCard extends Component {
         this.id = RealTimeNetworkCard.id;
         RealTimeNetworkCard.id++;
 
+
         this.state = {
             data: this._processData(),
             isRunning: true,
         };
+
     }
 
     _processData() {
@@ -51,9 +43,12 @@ class RealTimeNetworkCard extends Component {
             showClusterBrokers = true;
             clusterBrokersList.forEach((v, id) => {
                 nodes.push({
-                    id: nodeId,
-                    label: 'Cluster-Broker ' + id,
-                    size : 2
+                    data : {
+                        id: nodeId,
+                        label: 'Cluster-Broker ' + id,
+                    },
+                    group: "nodes",
+                    classes: '11'
                 });
                 clusterBrokers.push(nodeId);
             });
@@ -63,10 +58,12 @@ class RealTimeNetworkCard extends Component {
         for (let instanceId in instances) {
             if (instances.hasOwnProperty(instanceId)) {
                 nodes.push({
-                    id: nodeId,
-                    label: 'Master ' + masterId,
-                    size : 3,
-                    color : '#2be162'
+                    data : {
+                        id: nodeId,
+                        label: 'Master ' + masterId,
+                    },
+                    group: "nodes",
+                    classes: '11 master'
                 });
 
                 const instance = instances[instanceId];
@@ -77,15 +74,20 @@ class RealTimeNetworkCard extends Component {
                     nodeId++;
                     if (workers.hasOwnProperty(workerFullId)) {
                         nodes.push({
-                            id: nodeId,
-                            label: 'Worker ' + workers[workerFullId].id,
-                            size : 2
-                        });
+                            data : {
+                                id: nodeId,
+                                label: 'Worker ' + workers[workerFullId].id,
+                            },
+                            group: "nodes",
+                            classes: '11'
+                        },);
                         edges.push({
-                            id : edgeId,
-                            source: nodeId,
-                            target: nodeMasterId,
-                            size : 2
+                            data : {
+                                id : 'e'+edgeId,
+                                source: nodeId,
+                                target: nodeMasterId,
+                            },
+                            group: "edges"
                         });
                         edgeId++;
                     }
@@ -105,25 +107,32 @@ class RealTimeNetworkCard extends Component {
                     if (brokers.hasOwnProperty(brokerId)) {
                         nodeId++;
                         nodes.push({
-                            id: nodeId,
-                            label: 'Broker ' + brokerId,
-                            size : 2
+                            data : {
+                                id: nodeId,
+                                label: 'Broker ' + brokerId,
+                            },
+                            group: "nodes",
+                            classes: '11'
                         });
                         edges.push({
-                            id : edgeId,
-                            source: nodeId,
-                            target: nodeMasterId,
-                            size : 2
+                            data : {
+                                id : 'e'+edgeId,
+                                source: nodeId,
+                                target: nodeMasterId,
+                            },
+                            group: "edges"
                         });
                         edgeId++;
 
                         if (showClusterBrokers) {
                             for(let i = 0; i < clusterBrokers.length; i++) {
                                 edges.push({
-                                    id : edgeId,
-                                    source: nodeId,
-                                    target: clusterBrokers[i],
-                                    size : 2
+                                    data : {
+                                        id : 'e'+edgeId,
+                                        source: nodeId,
+                                        target: clusterBrokers[i]
+                                    },
+                                    group: "edges"
                                 });
                                 edgeId++;
                             }
@@ -143,19 +152,14 @@ class RealTimeNetworkCard extends Component {
     update() {
         this.setState({
             data: this._processData()
-        });
+        },() => {this.resetCy();});
     }
 
     render() {
         return (
             <RTInfoCard value={'Network'} showTimeControl={true} onTimeChange={this.timeChange.bind(this)} big={true} height={'35rem'}>
                 <div className="chart-wrapper mx-3" style={{height: '15rem'}}>
-                    <Sigma style={{height : '30.5rem', top : '-14.5rem',position : 'relative'}} graph={this.state.data} settings={settings}>
-                        <RelativeSize initialSize={5}/>
-                        <RandomizeNodePositions/>
-                        <NOverlap gridSize={13} maxIterations={100} nodeMargin={18}/>
-                        <CameraZoom/>
-                    </Sigma>
+                    <div id={"cy-"+this.id} style={{height : '30.5rem', top : '-14.5rem',position : 'relative'}}/>
                 </div>
             </RTInfoCard>
         )
@@ -173,7 +177,64 @@ class RealTimeNetworkCard extends Component {
         }
     }
 
+    resetCy() {
+        /*
+        algorithm
+        for checked old and new dataset
+        all nodes must removed to []
+        all nodes must added to []
+
+        ids muss be unique for every process
+
+         */
+        this.cy.elements(this.state.data);
+    }
+
     componentDidMount() {
+
+        this.cy = cytoscape({
+            container: document.getElementById('cy-'+this.id),
+            layout: {
+                name: 'euler',
+                randomize: true,
+                animate: false
+                // some more options here...
+            },
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': '#3099bb',
+                    }
+                },
+                {
+                    selector: '.master',
+                    style: {
+                        'background-color': '#2be162',
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'line-color': '#26292d',
+                        'opacity': 1
+                    }
+                }
+            ],
+            elements : this.state.data
+        });
+
+        this.cy.nodeHtmlLabel([{
+            query: '.11',
+            valign: "top",
+            halign: "center",
+            valignBox: "top",
+            halignBox: "center",
+            tpl: function(data) {
+                return '<p class="cy-title__p1">' + data.label + '</p>';
+            }
+        }]);
+
 
         const interval = setInterval(() => {
             this.process.bind(this)();
@@ -181,8 +242,6 @@ class RealTimeNetworkCard extends Component {
         }, this.props.every || 5000);
 
         this.setState({interval: interval, isRunning: true});
-
-        this.update();
     }
 
     process() {
