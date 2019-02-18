@@ -10,8 +10,11 @@ export default class Time {
         return new Date(timestamp).toUTCString();
     }
 
-    static processAge(timestamp) {
-       let timespan = Date.now() - timestamp;
+    static processTimeSpan(timestamp) {
+        return Date.now() - timestamp;
+    }
+
+    static processAge(timespan) {
         if(timespan < 1000) {
            return '1 sec';
        }

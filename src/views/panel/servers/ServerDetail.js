@@ -17,7 +17,9 @@ const workerTableColumns = [
             }
         }},
     {title: 'Id', field: 'id'},
-    {title: 'Age', field: 'age', filtering: false},
+    {title: 'Age', field: 'age', filtering: false,render: rowData => {
+            return (Time.processAge(rowData.age));
+        }},
     {title: 'Client/s', field: 'clientCount'},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
             return (
@@ -34,7 +36,9 @@ const workerTableColumns = [
 
 const brokerTableColumns = [
     {title: 'Id', field: 'id'},
-    {title: 'Age', field: 'age', filtering: false},
+    {title: 'Age', field: 'age', filtering: false,render: rowData => {
+            return (Time.processAge(rowData.age));
+        }},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
             return (
                 <TableProgressRow progress={rowData.cpu + '%'}/>
@@ -113,7 +117,7 @@ class ServerDetail extends Component {
                     const broker = brokers[bId];
                     dataset.push({
                         id : bId,
-                        age : Time.processAge(broker.brokerStartedTimestamp),
+                        age : Time.processTimeSpan(broker.brokerStartedTimestamp),
                         cpu : broker.system.cpu,
                         memory : Number((broker.system.memory * 100) / instance.memory.totalMemMb).toFixed(1),
                     });
@@ -135,7 +139,7 @@ class ServerDetail extends Component {
                    dataset.push({
                        id : worker.id,
                        leader : worker.id === 0,
-                       age : Time.processAge(worker.workerStartedTimestamp),
+                       age : Time.processTimeSpan(worker.workerStartedTimestamp),
                        clientCount : worker.clientCount,
                        cpu : worker.cpu,
                        memory : Number((worker.memory * 100) / instance.memory.totalMemMb).toFixed(1),

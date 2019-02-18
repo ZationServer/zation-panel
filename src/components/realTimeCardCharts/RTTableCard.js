@@ -29,7 +29,7 @@ const theme = createMuiTheme({
                     color: 'rgba(43, 225, 98,1.0) !important'
                 },
                 '&:focus' : {
-                    color: 'rgba(255, 225, 255,1.0) !important'
+                    color: 'rgba(43, 225, 98,1.0) !important'
                 }
             },
             active : {

@@ -16,7 +16,9 @@ const serverTableColumns = [
             }
         }},
     {title: 'Id', field: 'id'},
-    {title: 'Age', field: 'age', filtering: false},
+    {title: 'Age', field: 'age', filtering: false, render: rowData => {
+        return (Time.processAge(rowData.age));
+        }},
     {title: 'Client/s', field: 'clientCount'},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
             return (
@@ -90,7 +92,7 @@ class Server extends Component {
                 let data = {
                     id : instanceId,
                     leader: instance.master.isLeader,
-                    age : Time.processAge(instance.serverStartedTimestamp),
+                    age : Time.processTimeSpan(instance.serverStartedTimestamp),
                     workerCount : workerCount,
                     brokerCount : instance.brokerCount,
                     requestCount : reqCount,
