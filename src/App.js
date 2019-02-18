@@ -86,6 +86,8 @@ class App extends Component {
                 const client = create(!devMode ? {
                     hostname : window.location.hostname,
                     port :  parseInt(window.location.port),
+                    secure : (window.location.protocol === 'https:'),
+                    rejectUnauthorized : false,
                     debug : false
                 } : {});
                 save(client);
