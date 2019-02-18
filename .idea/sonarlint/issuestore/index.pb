@@ -127,3 +127,5 @@ Q
 !src/views/panel/servers/Server.js,a/f/af88680d76b3ecda6039d8c26a5eb2fce82ecca6
 D
 src/core/PathTool.js,2/f/2f4dd2f44e6b843b45d933d8978c6b459619ed52
+D
+public/manifest.json,4/2/42e89cd2213b9d5dfae4f63522702c623170d792
