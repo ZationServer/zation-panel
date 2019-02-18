@@ -120,7 +120,7 @@ class ServerDetail extends Component {
                         id : bId,
                         age : Time.processTimeSpan(broker.brokerStartedTimestamp),
                         started : broker.brokerStartedTimestamp,
-                        cpu : broker.system.cpu,
+                        cpu : Number(broker.system.cpu).toFixed(1),
                         memory : Number((broker.system.memory * 100) / instance.memory.totalMemMb).toFixed(1),
                     });
                 }
@@ -144,7 +144,7 @@ class ServerDetail extends Component {
                        age : Time.processTimeSpan(worker.workerStartedTimestamp),
                        started : worker.workerStartedTimestamp,
                        clientCount : worker.clientCount,
-                       cpu : worker.cpu,
+                       cpu :  Number(worker.cpu).toFixed(1),
                        memory : Number((worker.memory * 100) / instance.memory.totalMemMb).toFixed(1),
                        requestCount : (worker.httpRequests + worker.wsRequests)
                    });

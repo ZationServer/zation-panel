@@ -98,7 +98,7 @@ class Server extends Component {
                     workerCount : workerCount,
                     brokerCount : instance.brokerCount,
                     requestCount : reqCount,
-                    cpu : instance.cpu,
+                    cpu : Number(instance.cpu).toFixed(1),
                     clientCount : clientCount,
                     memory : '?'
                 };
