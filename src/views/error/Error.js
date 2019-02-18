@@ -4,6 +4,7 @@ import './Error.css';
 import Fab from "@material-ui/core/es/Fab/Fab";
 import {Refresh, Warning} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
+import PathTool from "../../core/PathTool";
 
 const styles = theme => ({
     fab: {
@@ -34,8 +35,9 @@ class Error extends Component
         );
     }
 
+    // noinspection JSMethodCanBeStatic
     reload() {
-        document.location.reload(true)
+        window.location.pathname = PathTool.mainPath;
     }
 }
 

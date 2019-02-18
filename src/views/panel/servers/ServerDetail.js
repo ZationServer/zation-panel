@@ -6,6 +6,7 @@ import Time from "../../../core/Time";
 import {FaCheck, FaTimes} from "react-icons/fa";
 import TableProgressRow from "../../../components/chartTools/TableProgressRow";
 import RTServerInfoCard from "../../../components/realTimeCardCharts/RTServerInfoCard";
+import TableAgeRow from "../../../components/chartTools/TableAgeRow";
 
 const workerTableColumns = [
     {title: 'Leader', field: 'leader', filtering: false, render: rowData => {
@@ -18,7 +19,7 @@ const workerTableColumns = [
         }},
     {title: 'Id', field: 'id'},
     {title: 'Age', field: 'age', filtering: false,render: rowData => {
-            return (Time.processAge(rowData.age));
+            return <TableAgeRow rowData={rowData}/>
         }},
     {title: 'Client/s', field: 'clientCount'},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
@@ -37,7 +38,7 @@ const workerTableColumns = [
 const brokerTableColumns = [
     {title: 'Id', field: 'id'},
     {title: 'Age', field: 'age', filtering: false,render: rowData => {
-            return (Time.processAge(rowData.age));
+            return <TableAgeRow rowData={rowData}/>
         }},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
             return (
@@ -118,6 +119,7 @@ class ServerDetail extends Component {
                     dataset.push({
                         id : bId,
                         age : Time.processTimeSpan(broker.brokerStartedTimestamp),
+                        started : broker.brokerStartedTimestamp,
                         cpu : broker.system.cpu,
                         memory : Number((broker.system.memory * 100) / instance.memory.totalMemMb).toFixed(1),
                     });
@@ -140,6 +142,7 @@ class ServerDetail extends Component {
                        id : worker.id,
                        leader : worker.id === 0,
                        age : Time.processTimeSpan(worker.workerStartedTimestamp),
+                       started : worker.workerStartedTimestamp,
                        clientCount : worker.clientCount,
                        cpu : worker.cpu,
                        memory : Number((worker.memory * 100) / instance.memory.totalMemMb).toFixed(1),

@@ -5,6 +5,7 @@ import RTTableCard from "../../../components/realTimeCardCharts/RTTableCard";
 import Time from "../../../core/Time";
 import {FaCheck, FaInfoCircle, FaTimes} from 'react-icons/fa';
 import TableProgressRow from "../../../components/chartTools/TableProgressRow";
+import TableAgeRow from "../../../components/chartTools/TableAgeRow";
 
 const serverTableColumns = [
     {title: 'Leader', field: 'leader', filtering: false, render: rowData => {
@@ -17,7 +18,7 @@ const serverTableColumns = [
         }},
     {title: 'Id', field: 'id'},
     {title: 'Age', field: 'age', filtering: false, render: rowData => {
-        return (Time.processAge(rowData.age));
+        return <TableAgeRow rowData={rowData}/>
         }},
     {title: 'Client/s', field: 'clientCount'},
     {title: 'Cpu Usage', field: 'cpu', render: rowData => {
@@ -93,6 +94,7 @@ class Server extends Component {
                     id : instanceId,
                     leader: instance.master.isLeader,
                     age : Time.processTimeSpan(instance.serverStartedTimestamp),
+                    started : instance.serverStartedTimestamp,
                     workerCount : workerCount,
                     brokerCount : instance.brokerCount,
                     requestCount : reqCount,
