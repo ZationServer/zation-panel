@@ -34,7 +34,7 @@ class Dashboard extends Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-12 col-lg-12">
-                            <RealTimeNetworkCard every={2000}/>
+                            <RealTimeNetworkCard every={5000}/>
                         </div>
                     </div>
                 </div>

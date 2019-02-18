@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cf39caaa-ef79-4415-be7c-40b6dc0b43be" name="Default Changelist" comment="R">
       <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="416">
-              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+              <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -75,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+            <state relative-caret-position="-2906">
+              <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -222,12 +224,12 @@
         <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/core/DataEngine.js" />
-        <option value="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" />
         <option value="$PROJECT_DIR$/src/components/sigmaJs/SimgaUpdater.js" />
         <option value="$PROJECT_DIR$/src/components/sigmaJs/SigmaUpdater.js" />
-        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css" />
         <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" />
+        <option value="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" />
       </list>
     </option>
   </component>
@@ -485,7 +487,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218701000" />
+    <option name="totallyTimeSpent" value="221226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -498,7 +500,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8082192" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" sideWeight="0.19178082" side_tool="true" weight="0.24834238" />
@@ -899,16 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
@@ -923,13 +914,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/sigmaJs/SigmaUpdater.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/realTimePercentCard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -954,10 +938,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/realTimeNetworkCard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+        <state relative-caret-position="-2906">
+          <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

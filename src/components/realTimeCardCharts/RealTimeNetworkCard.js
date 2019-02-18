@@ -9,6 +9,12 @@ import nodeHtmlLabel from 'cytoscape-node-html-label';
 nodeHtmlLabel(cytoscape);
 cytoscape.use(euler);
 
+const layoutOptions = {
+    name: 'euler',
+    randomize: true,
+    animate: true
+};
+
 class RealTimeNetworkCard extends Component {
 
     constructor(props) {
@@ -17,12 +23,78 @@ class RealTimeNetworkCard extends Component {
         this.id = RealTimeNetworkCard.id;
         RealTimeNetworkCard.id++;
 
+        this.currentData = this._processData();
 
         this.state = {
-            data: this._processData(),
             isRunning: true,
         };
 
+    }
+
+    process() {
+        const ids = this._datasetIds(this.currentData);
+        this.currentData = this._processData();
+        this._runBuildCommands(this._buildCommands(ids,this.currentData));
+    }
+
+    _buildCommands(ids,newData){
+        const elements = newData.edges.concat(newData.nodes);
+        const addNodes = [];
+        const addEdges = [];
+
+        elements.forEach((e) => {
+            const id = e.data.id;
+            if(ids.indexOf(id) !== -1) {
+                const index = ids.indexOf(id);
+                ids.splice(index, 1);
+            }
+            else{
+                if(e.group === "nodes"){
+                    addNodes.push(e);
+                }
+                else{
+                    addEdges.push(e);
+                }
+            }
+        });
+        return {removeIds : ids,addNodes : addNodes, addEdges : addEdges};
+    }
+
+    _runBuildCommands(commands)
+    {
+        this.cy.startBatch();
+
+        let changes = false;
+
+        commands.removeIds.forEach((id) => {
+            this.cy.remove(this.cy.getElementById(id));
+            changes = true;
+        });
+
+        commands.addNodes.forEach((e) => {
+            this.cy.add(e);
+            changes = true;
+        });
+
+        commands.addEdges.forEach((e) => {
+            this.cy.add(e);
+            changes = true;
+        });
+
+        if(changes){
+            this.cy.layout(layoutOptions).run();
+        }
+
+        this.cy.endBatch();
+    }
+
+    _datasetIds(data){
+        const ids = [];
+        const elements = data.edges.concat(data.nodes);
+        elements.forEach((e) => {
+            ids.push(e.data.id);
+        });
+        return ids;
     }
 
     _processData() {
@@ -143,12 +215,6 @@ class RealTimeNetworkCard extends Component {
         }
     }
 
-    update() {
-        this.setState({
-            data: this._processData()
-        },() => {this.resetCy();});
-    }
-
     render() {
         return (
             <RTInfoCard value={'Network'} showTimeControl={true} onTimeChange={this.timeChange.bind(this)} big={true} height={'35rem'}>
@@ -167,34 +233,14 @@ class RealTimeNetworkCard extends Component {
 
         if(state && !this.state.isRunning){
             this.process.bind(this)();
-            this.componentDidMount.bind(this)();
+            this.setInterval.bind(this)();
         }
     }
 
-    resetCy() {
-        /*
-        algorithm
-        for checked old and new dataset
-        all nodes must removed to []
-        all nodes must added to []
-
-        ids muss be unique for every process
-
-        use cypo add/remove and batch (not update the diagram every remove or add)
-         */
-        this.cy.elements(this.state.data);
-    }
-
     componentDidMount() {
-
         this.cy = cytoscape({
             container: document.getElementById('cy-'+this.id),
-            layout: {
-                name: 'euler',
-                randomize: true,
-                animate: false
-                // some more options here...
-            },
+            layout : layoutOptions,
             style: [
                 {
                     selector: 'node',
@@ -216,7 +262,7 @@ class RealTimeNetworkCard extends Component {
                     }
                 }
             ],
-            elements : this.state.data
+            elements : this.currentData
         });
 
         this.cy.nodeHtmlLabel([{
@@ -230,17 +276,16 @@ class RealTimeNetworkCard extends Component {
             }
         }]);
 
+        this.setInterval();
+    }
 
+    setInterval(){
         const interval = setInterval(() => {
             this.process.bind(this)();
 
         }, this.props.every || 5000);
 
         this.setState({interval: interval, isRunning: true});
-    }
-
-    process() {
-        this.update();
     }
 
     componentWillUnmount() {
