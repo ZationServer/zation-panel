@@ -32,8 +32,6 @@ class RealTimeNetworkCard extends Component {
         const nodes = [];
 
         let masterId = 1;
-        let nodeId = 0;
-        let edgeId = 0;
 
         const clusterBrokersList = DataEngine.getEngine().clusterBrokerList;
         let showClusterBrokers = false;
@@ -42,6 +40,7 @@ class RealTimeNetworkCard extends Component {
         if (Array.isArray(clusterBrokersList)) {
             showClusterBrokers = true;
             clusterBrokersList.forEach((v, id) => {
+                const nodeId = 'cBroker'+v+id;
                 nodes.push({
                     data : {
                         id: nodeId,
@@ -52,14 +51,14 @@ class RealTimeNetworkCard extends Component {
                 });
                 clusterBrokers.push(nodeId);
             });
-            nodeId++;
         }
 
         for (let instanceId in instances) {
             if (instances.hasOwnProperty(instanceId)) {
+                const nodeMasterId = instanceId+'-master';
                 nodes.push({
                     data : {
-                        id: nodeId,
+                        id: nodeMasterId,
                         label: 'Master ' + masterId,
                     },
                     group: "nodes",
@@ -68,14 +67,13 @@ class RealTimeNetworkCard extends Component {
 
                 const instance = instances[instanceId];
                 const workers = instance.workers;
-                const nodeMasterId = nodeId;
 
                 for (let workerFullId in workers) {
-                    nodeId++;
                     if (workers.hasOwnProperty(workerFullId)) {
+                        const workerNodeId = instanceId+'-worker-'+workerFullId;
                         nodes.push({
                             data : {
-                                id: nodeId,
+                                id: workerNodeId,
                                 label: 'Worker ' + workers[workerFullId].id,
                             },
                             group: "nodes",
@@ -83,13 +81,12 @@ class RealTimeNetworkCard extends Component {
                         },);
                         edges.push({
                             data : {
-                                id : 'e'+edgeId,
-                                source: nodeId,
-                                target: nodeMasterId,
+                                id : nodeMasterId+workerNodeId,
+                                source: nodeMasterId,
+                                target: workerNodeId,
                             },
                             group: "edges"
                         });
-                        edgeId++;
                     }
                 }
 
@@ -105,10 +102,10 @@ class RealTimeNetworkCard extends Component {
 
                 for (let brokerId in brokers) {
                     if (brokers.hasOwnProperty(brokerId)) {
-                        nodeId++;
+                        const brokerNodeId = instanceId+'-broker-'+brokerId;
                         nodes.push({
                             data : {
-                                id: nodeId,
+                                id: brokerNodeId,
                                 label: 'Broker ' + brokerId,
                             },
                             group: "nodes",
@@ -116,30 +113,27 @@ class RealTimeNetworkCard extends Component {
                         });
                         edges.push({
                             data : {
-                                id : 'e'+edgeId,
-                                source: nodeId,
-                                target: nodeMasterId,
+                                id : nodeMasterId+brokerNodeId,
+                                source: nodeMasterId,
+                                target: brokerNodeId,
                             },
                             group: "edges"
                         });
-                        edgeId++;
 
                         if (showClusterBrokers) {
                             for(let i = 0; i < clusterBrokers.length; i++) {
                                 edges.push({
                                     data : {
-                                        id : 'e'+edgeId,
-                                        source: nodeId,
+                                        id : brokerNodeId+clusterBrokers[i],
+                                        source: brokerNodeId,
                                         target: clusterBrokers[i]
                                     },
                                     group: "edges"
                                 });
-                                edgeId++;
                             }
                         }
                     }
                 }
-                nodeId++;
                 masterId++;
             }
         }
@@ -186,6 +180,7 @@ class RealTimeNetworkCard extends Component {
 
         ids muss be unique for every process
 
+        use cypo add/remove and batch (not update the diagram every remove or add)
          */
         this.cy.elements(this.state.data);
     }
