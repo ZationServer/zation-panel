@@ -257,12 +257,9 @@ export default class DataEngine {
                 this._updateSystemInfo(idTarget.instance,idTarget.worker,info['systemInfo']);
                 idTarget.worker.clientCount = info["clientCount"];
                 idTarget.worker.user = info['user'];
-                this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
-            }
-            else if(event === 'update-workerStatus') {
                 idTarget.worker.httpRequests = info['httpRequests'];
                 idTarget.worker.wsRequests = info['wsRequests'];
-                this.emitter.emit('statusUpdate',instanceId,workerFullId,idTarget);
+                this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
             }
             else if(event === 'update-node') {
                 idTarget.instance.brokers = info['brokers'];
