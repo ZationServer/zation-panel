@@ -8,6 +8,7 @@ import MainPanel from "./views/panel/main/MainPanel";
 import Error from "./views/error/Error";
 import DataEngine from "./core/DataEngine";
 import PingEngine from "./core/PingEngine";
+import PathTool from "./core/PathTool";
 
 class App extends Component {
 
@@ -131,8 +132,16 @@ class App extends Component {
     }
 
     componentWillMount() {
-        if(devMode && window.location.pathname !== '/') {
-            window.location.pathname = '';
+        if(devMode){
+            if(window.location.pathname !== '/') {
+                window.location.pathname = '';
+            }
+        }
+        else {
+            if(PathTool.isNotMainPath(window.location.pathname)) {
+                window.location.pathname = PathTool.getMainPath(window.location.pathname);
+            }
+            PathTool.mainPath = PathTool.getMainPath(window.location.pathname);
         }
     }
 

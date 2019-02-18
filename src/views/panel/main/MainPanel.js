@@ -14,6 +14,8 @@ import Ping from "../ping/Ping";
 import Clients from "../clients/Clients";
 import Chart from 'chart.js';
 import ServerDetail from "../servers/ServerDetail";
+import {devMode} from "../../../mode";
+import PathTool from "../../../core/PathTool";
 
 Chart.defaults.global.animation.duration = 1000;
 //Chart.defaults.global.animation.easing = 'easeInQuad';
@@ -82,11 +84,11 @@ class MainPanel extends Component {
                     </header>
                     <Sidebar/>
                     <main className="main">
-                        <Route exact path="/" component={Dashboard}/>
-                        <Route exact path="/ping" component={Ping}/>
-                        <Route exact path="/clients" component={Clients}/>
-                        <Route exact path="/server" component={Server}/>
-                        <Route exact path="/server/:id" component={ServerDetail}/>
+                        <Route exact path={PathTool.mainPath+"/"} component={Dashboard}/>
+                        <Route exact path={PathTool.mainPath+"/ping"} component={Ping}/>
+                        <Route exact path={PathTool.mainPath+"/clients"} component={Clients}/>
+                        <Route exact path={PathTool.mainPath+"/server"} component={Server}/>
+                        <Route exact path={PathTool.mainPath+"/server/:id"} component={ServerDetail}/>
                     </main>
                 </div>
             </Router>
@@ -127,7 +129,13 @@ class MainPanel extends Component {
             await client.deauthenticate();
         }
         catch (e) {}
-        window.location.pathname = '';
+        if(devMode){
+            window.location.pathname = '';
+        }
+        else{
+            window.location.pathname = PathTool.getMainPath(window.location.pathname);
+        }
+
     }
 
 }

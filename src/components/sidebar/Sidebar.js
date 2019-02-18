@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './sidebar.css';
 import { FaTachometerAlt, FaServer, FaUser, FaStopwatch} from 'react-icons/fa';
 import { NavLink } from "react-router-dom";
-
+import PathTool from "../../core/PathTool";
 
 class Sidebar extends Component {
     render() {
@@ -11,23 +11,23 @@ class Sidebar extends Component {
                 <div className="scrollbar-container sidebar-nav ps ps-container ps--active-y">
                     <ul className="nav">
                         <li className="nav-item">
-                            <NavLink to="/" className="nav-link" ria-current="page" exact={true} activeClassName="active">
+                            <NavLink to={PathTool.mainPath+"/"} className="nav-link" ria-current="page" exact={true} activeClassName="active">
                                 <FaTachometerAlt className="nav-icon"/>
                                 Overview</NavLink>
                         </li>
                         <li className="nav-title">Details</li>
                         <li className="nav-item">
-                            <NavLink to="/server" className="nav-link" ria-current="page" activeClassName="active">
+                            <NavLink to={PathTool.mainPath+"/server"} className="nav-link" ria-current="page" activeClassName="active">
                                 <FaServer className="nav-icon"/>
                                 Server</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/clients" className="nav-link" ria-current="page" activeClassName="active">
+                            <NavLink to={PathTool.mainPath+"/clients"} className="nav-link" ria-current="page" activeClassName="active">
                                 <FaUser className="nav-icon"/>
                                 Clients</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/ping" className="nav-link" ria-current="page" activeClassName="active">
+                            <NavLink to={PathTool.mainPath+"/ping"} className="nav-link" ria-current="page" activeClassName="active">
                                 <FaStopwatch className="nav-icon"/>
                                 Ping</NavLink>
                         </li>
