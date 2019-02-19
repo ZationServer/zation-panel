@@ -276,6 +276,8 @@ class RealTimeNetworkCard extends Component {
             }
         }]);
 
+        this.cy.layout(layoutOptions).run();
+
         this.setInterval();
     }
 

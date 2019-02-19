@@ -159,7 +159,7 @@ class ServerDetail extends Component {
     }
 
     getMemoryUsage() {
-        return Number(DataEngine.getEngine().storage[this.id].memory.usedMemMb).toFixed(1);
+        return Number(DataEngine.getEngine().storage[this.id].memory.usedMemMb).toFixed(0);
     }
 
     getCpuUsage() {

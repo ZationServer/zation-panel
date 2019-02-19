@@ -118,7 +118,7 @@ class Server extends Component {
     }
 
     static getMemoryUsage() {
-        return [Number(DataEngine.getEngine().clusterInfoStorage.memory.usedMemMb).toFixed(1)];
+        return [Number(DataEngine.getEngine().clusterInfoStorage.memory.usedMemMb).toFixed(0)];
     }
 
     static getMemoryUsagePercent(current)

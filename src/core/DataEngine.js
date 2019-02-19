@@ -71,9 +71,6 @@ export default class DataEngine {
         memory ->
             totalMemMb
             usedMemMb
-        drive ->
-            totalGb
-            usedGb
         brokerCount
         serverStartedTimestamp
         clientCount
@@ -126,8 +123,6 @@ export default class DataEngine {
             cpuFullUsage = 0,
             totalMemory = 0,
             usedMemory = 0,
-            usedDrive = 0,
-            totalDrive = 0,
             brokerCount = 0,
             clientCount = 0,
             httpRequests = 0,
@@ -151,10 +146,6 @@ export default class DataEngine {
                 if(instance.memory) {
                     totalMemory+=instance.memory['totalMemMb'];
                     usedMemory+=instance.memory['usedMemMb'];
-                }
-                if(instance.drive) {
-                    totalDrive+=instance.drive['totalGb'];
-                    usedDrive+=instance.drive['usedGb'];
                 }
                 brokerCount+=instance.brokerCount;
 
@@ -186,10 +177,6 @@ export default class DataEngine {
             memory : {
                 totalMemMb : totalMemory,
                 usedMemMb : usedMemory
-            },
-            drive : {
-                totalGb : totalDrive,
-                usedGb : usedDrive
             },
             brokerCount : brokerCount,
             serverStartedTimestamp : startedTime,
