@@ -115,7 +115,8 @@ class Clients extends Component {
 
         const user = dataEngine.clusterInfoStorage.user;
 
-        Clients._addGroup(data,user.defaultUserGroupCount,dataEngine.defaultUserName,'#3099bb');
+        Clients._addGroup(data,user.defaultUserGroupCount,dataEngine.defaultUserName,'#F4AB00');
+        Clients._addGroup(data,user.panelUserCount,'Panel User','#3099bb');
 
         const auth = user.authUserGroups;
 

@@ -22,6 +22,7 @@ export default class DataEngine {
                     workerStartedTimestamp
                     clientCount
                     user ->
+                        panelUserCount
                         defaultUserGroupCount
                         authUserGroups ->
                             userGroup
@@ -62,9 +63,6 @@ export default class DataEngine {
             memory ->
                 totalMemMb
                 usedMemMb
-            net ->
-                inputMb
-                outputMb
             cpu
          */
         this.storage = {};
@@ -76,9 +74,6 @@ export default class DataEngine {
         drive ->
             totalGb
             usedGb
-        net ->
-            inputMb
-            outputMb
         brokerCount
         serverStartedTimestamp
         clientCount
@@ -88,6 +83,7 @@ export default class DataEngine {
         useScUws
         user ->
             defaultUserGroupCount
+            panelUserCount
             authUserGroups ->
                 userGroup
          */
@@ -132,8 +128,6 @@ export default class DataEngine {
             usedMemory = 0,
             usedDrive = 0,
             totalDrive = 0,
-            netInput = 0,
-            netOutput = 0,
             brokerCount = 0,
             clientCount = 0,
             httpRequests = 0,
@@ -141,6 +135,7 @@ export default class DataEngine {
             debug = false,
             useScUws = true,
             defaultUserGroupCount = 0,
+            panelUserCount = 0,
             authUserGroup = {};
 
         for(let instanceId in this.storage) {
@@ -161,10 +156,6 @@ export default class DataEngine {
                     totalDrive+=instance.drive['totalGb'];
                     usedDrive+=instance.drive['usedGb'];
                 }
-                if(instance.net) {
-                    netInput+=instance.net['inputMb'];
-                    netOutput+=instance.net['outputMb'];
-                }
                 brokerCount+=instance.brokerCount;
 
                 if(instance.debug) {
@@ -183,6 +174,7 @@ export default class DataEngine {
                         httpRequests+=worker.httpRequests;
                         wsRequests+=worker.wsRequests;
                         defaultUserGroupCount+=worker.user['defaultUserGroupCount'];
+                        panelUserCount+=worker.user['panelUserCount'];
                         this._processAuthUserGroup(authUserGroup,worker.user['authUserGroups']);
                     }
                 }
@@ -199,10 +191,6 @@ export default class DataEngine {
                 totalGb : totalDrive,
                 usedGb : usedDrive
             },
-            net : {
-                inputMb : netInput,
-                outputMb : netOutput
-            },
             brokerCount : brokerCount,
             serverStartedTimestamp : startedTime,
             clientCount : clientCount,
@@ -211,6 +199,7 @@ export default class DataEngine {
             debug : debug,
             useScUws : useScUws,
             user : {
+                panelUserCount : panelUserCount,
                 defaultUserGroupCount : defaultUserGroupCount,
                 authUserGroups : authUserGroup
             }
@@ -349,7 +338,6 @@ export default class DataEngine {
         const instanceInfo = info['instance'];
         instance.drive = instanceInfo['drive'];
         instance.memory = instanceInfo['memory'];
-        instance.net = instanceInfo['net'];
         instance.cpu = instanceInfo['cpu'];
         const pidInfo = info['pid'];
         worker.cpu = pidInfo['cpu'];
