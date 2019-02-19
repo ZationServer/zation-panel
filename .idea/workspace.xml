@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf39caaa-ef79-4415-be7c-40b6dc0b43be" name="Default Changelist" comment="R">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/DataEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/DataEngine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/panel/servers/Server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/servers/Server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,6 +21,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/panel/servers/Server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="461">
@@ -40,6 +42,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mode.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/panel/servers/ServerDetail.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="343">
@@ -52,13 +63,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-93">
-              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -68,18 +76,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeCard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-993">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -106,18 +102,6 @@
               <caret line="279" selection-start-line="279" selection-end-line="279" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/PathTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" selection-end-line="20" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -242,9 +226,6 @@
         <option value="$PROJECT_DIR$/src/components/chartTools/tableProgressRow.css" />
         <option value="$PROJECT_DIR$/src/components/chartTools/tableAgeRow.css" />
         <option value="$PROJECT_DIR$/src/views/panel/clients/Clients.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/mode.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/core/ByteTools.js" />
         <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RTServerInfoCard.js" />
         <option value="$PROJECT_DIR$/src/core/DataEngine.js" />
@@ -253,6 +234,9 @@
         <option value="$PROJECT_DIR$/src/components/chartTools/TableProgressRow.js" />
         <option value="$PROJECT_DIR$/src/components/realTimeCardCharts/RealTimeNetworkCard.js" />
         <option value="$PROJECT_DIR$/src/views/panel/dashboard/Dashboard.js" />
+        <option value="$PROJECT_DIR$/src/mode.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -419,12 +403,12 @@
       <workItem from="1550513719099" duration="1865000" />
       <workItem from="1550520756103" duration="340000" />
       <workItem from="1550574318579" duration="3170000" />
-      <workItem from="1550593426491" duration="4927000" />
+      <workItem from="1550593426491" duration="5218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236657000" />
+    <option name="totallyTimeSpent" value="236948000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -438,7 +422,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8082192" visible="true" weight="0.27365884" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8082192" visible="true" weight="0.27365884" />
       <window_info id="Structure" order="1" sideWeight="0.19178082" side_tool="true" weight="0.24834238" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.502693" side_tool="true" weight="0.24947146" />
@@ -453,7 +437,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32959184" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Statistic" order="10" weight="0.32959184" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4930681" visible="true" weight="0.37448978" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4930681" visible="true" weight="0.37448978" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5069319" side_tool="true" visible="true" weight="0.37448978" />
       <window_info anchor="bottom" id="SonarLint" order="13" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -746,13 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/panel/clients/Clients.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -780,22 +757,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/index.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/PathTool.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -904,6 +867,27 @@
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
