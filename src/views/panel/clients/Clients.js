@@ -147,7 +147,8 @@ class Clients extends Component {
     }
 
     static getPieUserGroupsValue() {
-        return ((Object.keys(DataEngine.getEngine().clusterInfoStorage.user.authUserGroups).length) +1);
+        //add guests and panel
+        return ((Object.keys(DataEngine.getEngine().clusterInfoStorage.user.authUserGroups).length) +2);
     }
 
     static getClientsConnectedDesc(v) {
