@@ -11,7 +11,10 @@ export default class PingEngine {
     static startPing(intervalMs = 4000,key = 'default') {
         PingEngine.interval = setInterval(async () => {
             try {
-                await load(key).pubPanelInCh('ping',{});
+                const client = load(key);
+                if(client.isAuthenticated()) {
+                    await client.pubPanelInCh('ping',{});
+                }
             }
             catch (e) {}
         },intervalMs);
