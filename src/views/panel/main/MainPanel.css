@@ -64,7 +64,12 @@
         left: 50%;
         margin-left: -77.5px;
     }
+
+    .logoCo {
+        padding-top: 0.5rem!important;
+    }
 }
+
     .navbar-brand {
         display: -ms-inline-flexbox;
         display: inline-flex;

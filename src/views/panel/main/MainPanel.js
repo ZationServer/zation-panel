@@ -48,7 +48,7 @@ class MainPanel extends Component {
                             <span className="navbar-toggler-icon">
                             </span>
                             </Button>
-                            <Navbar.Brand href="#home" className="sm-auto">
+                            <Navbar.Brand href="#home" className="sm-auto logoCo">
                                 <img
                                     alt=""
                                     src={logo}
