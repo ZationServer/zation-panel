@@ -89,7 +89,7 @@ class App extends Component {
                     secure : (window.location.protocol === 'https:'),
                     rejectUnauthorized : false,
                     debug : false
-                } : {});
+                } : {port : 3001,debug : true});
                 save(client);
 
                 client.eventReact().onDisconnect(() => {
@@ -108,7 +108,7 @@ class App extends Component {
                     await client.connect();
 
                     if( client.getSocket().getAuthToken() !== null &&
-                        client.getTokenPanelAccess() &&
+                        client.getPlainToken().zationPanelAccess &&
                         client.getTokenVariable('ZATION-PANEL-USER-NAME')
                     ) {
                         (async () => {

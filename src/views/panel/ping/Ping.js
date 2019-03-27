@@ -71,7 +71,6 @@ class Ping extends Component {
     refresh() {
         this.setState({btnLoad : true});
         this.process.bind(this)();
-
     }
 
     componentDidMount() {

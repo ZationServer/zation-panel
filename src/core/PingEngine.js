@@ -12,7 +12,7 @@ export default class PingEngine {
         PingEngine.interval = setInterval(async () => {
             try {
                 const client = load(key);
-                if(client.isAuthenticated()) {
+                if(client.getPlainToken().zationPanelAccess) {
                     await client.pubPanelInCh('ping',{});
                 }
             }
