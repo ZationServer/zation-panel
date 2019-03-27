@@ -1,6 +1,6 @@
 {
   "name": "zation-panel",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Zation Panel",
   "license": "MIT",
   "main": "dist/index.js",
