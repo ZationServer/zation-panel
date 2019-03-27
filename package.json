@@ -1,6 +1,6 @@
 {
   "name": "zation-panel",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Zation Panel",
   "license": "MIT",
   "main": "dist/index.js",
@@ -42,7 +42,7 @@
     "react-spinners": "0.5.1",
     "react-view-switch": "0.1.4",
     "styled-components": "4.1.3",
-    "zation-client": "0.5.7",
+    "zation-client": "0.7.1",
     "cytoscape": "3.4.1",
     "cytoscape-euler": "1.2.1",
     "cytoscape-node-html-label": "1.1.3"
