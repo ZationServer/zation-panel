@@ -79,6 +79,7 @@ export default class DataEngine {
         wsRequests
         debug
         useScUws
+        stateServerActive
         user ->
             defaultUserGroupCount
             panelUserCount
@@ -129,7 +130,8 @@ export default class DataEngine {
             useScUws = true,
             defaultUserGroupCount = 0,
             panelUserCount = 0,
-            authUserGroup = {};
+            authUserGroup = {},
+            stateServerActive = false;
 
         for(let instanceId in this.storage) {
             if(this.storage.hasOwnProperty(instanceId)) {
@@ -153,6 +155,10 @@ export default class DataEngine {
 
                 if(!instance.useScUws){
                     useScUws = false;
+                }
+
+                if(instance.master && instance.master['stateServerConnected']){
+                    stateServerActive = true;
                 }
 
                 for(let workerFullId in instance.workers) {
@@ -183,6 +189,7 @@ export default class DataEngine {
             wsRequests : wsRequests,
             debug : debug,
             useScUws : useScUws,
+            stateServerActive : stateServerActive,
             user : {
                 panelUserCount : panelUserCount,
                 defaultUserGroupCount : defaultUserGroupCount,
@@ -282,6 +289,7 @@ export default class DataEngine {
         const instanceId = id['instanceId'];
         if(!this.storage.hasOwnProperty(instanceId)) {
             let instance = {};
+            instance.master        = {};
             instance.brokerCount   = info['brokerCount'];
             instance.hostname      = info['hostname'];
             instance.port          = info['port'];

@@ -107,6 +107,7 @@ class RealTimeNetworkCard extends Component {
 
         const clusterBrokersList = DataEngine.getEngine().clusterBrokerList;
         let showClusterBrokers = false;
+        let showClusterState = false;
         const clusterBrokers = [];
 
         if (Array.isArray(clusterBrokersList)) {
@@ -125,20 +126,47 @@ class RealTimeNetworkCard extends Component {
             });
         }
 
+        if(DataEngine.getEngine().clusterInfoStorage.stateServerActive) {
+            showClusterState = true;
+            nodes.push({
+                data : {
+                    id: 'cState',
+                    label: 'Cluster-State',
+                },
+                group: "nodes",
+                classes: '11'
+            });
+        }
+
         for (let instanceId in instances) {
             if (instances.hasOwnProperty(instanceId)) {
+
+                const instance = instances[instanceId];
+                const workers = instance.workers;
                 const nodeMasterId = instanceId+'-master';
+
+                const masterClass = instance.master['isLeader'] ? 'masterLeader' : 'master';
+
                 nodes.push({
                     data : {
                         id: nodeMasterId,
                         label: 'Master ' + masterId,
                     },
                     group: "nodes",
-                    classes: '11 master'
+                    classes: '11 '+masterClass
                 });
 
-                const instance = instances[instanceId];
-                const workers = instance.workers;
+                if(showClusterState && instance.master['stateServerConnected']) {
+                    edges.push({
+                        data : {
+                            id : nodeMasterId+'cluster-state',
+                            source: nodeMasterId,
+                            target: 'cState',
+                        },
+                        group: "edges",
+                        classes: 'lightEdge'
+                    });
+                }
 
                 for (let workerFullId in workers) {
                     if (workers.hasOwnProperty(workerFullId)) {
@@ -255,16 +283,30 @@ class RealTimeNetworkCard extends Component {
                     }
                 },
                 {
+                    selector: '.masterLeader',
+                    style: {
+                        'background-color': '#ffff00',
+                    }
+                },
+                {
                     selector: 'edge',
                     style: {
                         'line-color': '#26292d',
                         'opacity': 1
+                    }
+                },
+                {
+                    selector: '.lightEdge',
+                    style: {
+                        'line-color': '#26292d',
+                        'opacity': 0.5
                     }
                 }
             ],
             elements : this.currentData
         });
 
+        // noinspection JSUnresolvedFunction
         this.cy.nodeHtmlLabel([{
             query: '.11',
             valign: "top",
@@ -272,6 +314,7 @@ class RealTimeNetworkCard extends Component {
             valignBox: "top",
             halignBox: "center",
             tpl: function(data) {
+                // noinspection CheckTagEmptyBody
                 return '<p class="cy-title__p1">' + data.label + '</p>';
             }
         }]);
