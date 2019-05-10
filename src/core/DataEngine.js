@@ -42,6 +42,7 @@ export default class DataEngine {
                 isLeader
                 pid
                 clusterMode
+                stateServerConnected
             hostname
             port
             path
@@ -106,14 +107,11 @@ export default class DataEngine {
         client.channelReact().onPubPanelOutCh('firstPong' ,(data => {
             this.firstPong(data.id,data.info);
         }));
-        client.channelReact().onPubPanelOutCh('update-mainUpdate',(data => {
-            this.update('update-mainUpdate',data.id,data.info);
+        client.channelReact().onPubPanelOutCh('up',(data => {
+            this.update('up',data.id,data.info);
         }));
-        client.channelReact().onPubPanelOutCh('update-workerStatus',(data => {
-            this.update('update-workerStatus',data.id,data.info);
-        }));
-        client.channelReact().onPubPanelOutCh('update-node',(data => {
-            this.update('update-node',data.id,data.info);
+        client.channelReact().onPubPanelOutCh('up-l',(data => {
+            this.update('up-l',data.id,data.info);
         }));
     }
 
@@ -229,7 +227,7 @@ export default class DataEngine {
         if(this._checkWorkerExists(instanceId,workerFullId))
         {
             const idTarget = this._getIdTarget(instanceId,workerFullId);
-            if(event === 'update-mainUpdate') {
+            if(event === 'up') {
                 this._updateSystemInfo(idTarget.instance,idTarget.worker,info['systemInfo']);
                 idTarget.worker.clientCount = info["clientCount"];
                 idTarget.worker.user = info['user'];
@@ -237,7 +235,7 @@ export default class DataEngine {
                 idTarget.worker.wsRequests = info['wsRequests'];
                 this.emitter.emit('mainUpdate',instanceId,workerFullId,idTarget);
             }
-            else if(event === 'update-node') {
+            else if(event === 'up-l') {
                 idTarget.instance.brokers = info['brokers'];
                 idTarget.instance.master = info['master'];
                 this.clusterBrokerList = info['cBrokers'];
