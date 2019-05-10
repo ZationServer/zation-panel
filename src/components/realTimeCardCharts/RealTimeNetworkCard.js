@@ -134,7 +134,7 @@ class RealTimeNetworkCard extends Component {
                     label: 'Cluster-State',
                 },
                 group: "nodes",
-                classes: '11'
+                classes: '11 state'
             });
         }
 
@@ -283,9 +283,15 @@ class RealTimeNetworkCard extends Component {
                     }
                 },
                 {
+                    selector: '.state',
+                    style: {
+                        'background-color': '#3c5cda',
+                    }
+                },
+                {
                     selector: '.masterLeader',
                     style: {
-                        'background-color': '#ffff00',
+                        'background-color': '#edfd2d',
                     }
                 },
                 {
