@@ -47,14 +47,14 @@ class App extends Component {
 
         await client.pubPanelInCh('firstPing',{});
 
-        //wait 3500 ms for worker can respond
+        //wait 3000 ms for worker can respond
         setTimeout(() => {
 
             //create ping interval (worker know that panel is still in use)
             PingEngine.startPing();
 
             this.setState({mode : 'panel'});
-        },4000);
+        },3000);
     }
 
     toAuth() {
