@@ -47,8 +47,8 @@ class Dashboard extends Component {
             DataEngine.getEngine().clusterInfoStorage.httpRequests];
     }
 
-    static getWorkerDesc() {
-        return "Worker online (" + DataEngine.getEngine().instanceCount + " Server)"
+    static getWorkerDesc(v) {
+        return `Worker${(v > 1 || v === 0) ? 's' : ''} online (` + DataEngine.getEngine().instanceCount + " Server)"
     }
 
     static getClientsConnectedDesc(v) {
@@ -75,7 +75,6 @@ class Dashboard extends Component {
     static getWorkerOnline() {
         return DataEngine.getEngine().workerCount;
     }
-
 }
 
 export default Dashboard;
