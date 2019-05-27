@@ -11,8 +11,10 @@ cytoscape.use(euler);
 
 const layoutOptions = {
     name: 'euler',
-    randomize: true,
-    animate: true
+    animate: 'end',
+    randomize : true,
+    pull: 0.000001,
+    theta: 0.5
 };
 
 class RealTimeNetworkCard extends Component {
@@ -324,9 +326,6 @@ class RealTimeNetworkCard extends Component {
                 return '<p class="cy-title__p1">' + data.label + '</p>';
             }
         }]);
-
-        this.cy.layout(layoutOptions).run();
-
         this.setInterval();
     }
 
