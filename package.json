@@ -42,7 +42,7 @@
     "react-spinners": "0.5.1",
     "react-view-switch": "0.1.4",
     "styled-components": "4.1.3",
-    "zation-client": "0.8.1",
+    "zation-client": "0.8.2",
     "cytoscape": "3.6.2",
     "cytoscape-euler": "1.2.1",
     "cytoscape-node-html-label": "1.1.3"
