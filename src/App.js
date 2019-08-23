@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {create, save, load} from "zation-client";
+import {create, save, load, ConnectionAbortError} from "zation-client";
 import {devMode} from "./mode";
-import {ConnectionAbortError} from "zation-client/dist/lib/helper/error/connectionAbortError";
 import Loading from "./views/loading/Loading";
 import Login from "./views/login/Login";
 import MainPanel from "./views/panel/main/MainPanel";
