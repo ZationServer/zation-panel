@@ -107,7 +107,7 @@ class App extends Component {
                     await client.connect();
 
                     if( client.getSocket().getAuthToken() !== null &&
-                        client.getPlainToken().zationPanelAccess &&
+                        client.getPlainToken().panelAccess &&
                         client.getTokenVariable('ZATION-PANEL-USER-NAME')
                     ) {
                         (async () => {
