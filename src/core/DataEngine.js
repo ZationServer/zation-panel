@@ -50,7 +50,7 @@ export default class DataEngine {
             secure
             appName
             debug
-            useScUws
+            wsEngine
             serverStartedTimestamp
             ip
             cpuModel
@@ -78,7 +78,6 @@ export default class DataEngine {
         httpRequests
         wsRequests
         debug
-        useScUws
         stateServerActive
         user ->
             defaultUserGroupCount
@@ -127,7 +126,6 @@ export default class DataEngine {
             httpRequests = 0,
             wsRequests = 0,
             debug = false,
-            useScUws = true,
             defaultUserGroupCount = 0,
             panelUserCount = 0,
             authUserGroup = {},
@@ -151,10 +149,6 @@ export default class DataEngine {
 
                 if(instance.debug) {
                     debug = true;
-                }
-
-                if(!instance.useScUws){
-                    useScUws = false;
                 }
 
                 if(instance.master && instance.master['stateServerConnected']){
@@ -188,7 +182,6 @@ export default class DataEngine {
             httpRequests : httpRequests,
             wsRequests : wsRequests,
             debug : debug,
-            useScUws : useScUws,
             stateServerActive : stateServerActive,
             user : {
                 panelUserCount : panelUserCount,
@@ -298,7 +291,7 @@ export default class DataEngine {
             instance.secure        = info['secure'];
             instance.appName       = info['appName'];
             instance.debug         = info['debug'];
-            instance.useScUws      = info['useScUws'];
+            instance.wsEngine      = info['wsEngine'];
             instance.serverStartedTimestamp = info['serverStartedTimestamp'];
             instance.ip            = info['ip'];
             this._updatePanelAuthUserMap(info['panelAuthUserMap']);

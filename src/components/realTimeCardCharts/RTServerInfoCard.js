@@ -47,7 +47,7 @@ class RTServerInfoCard extends Component {
                                     <p><span id="blue-f">{`App Name    :`}</span>&#32;{data.appName}</p>
                                     <p><span id="blue-f">{`Secure      :`}</span>&#32;{data.secure}</p>
                                     <p><span id="blue-f">{`Debug       :`}</span>&#32;{data.debug}</p>
-                                    <p><span id="blue-f">{`Use ScUws   :`}</span>&#32;{data.useScUws}</p>
+                                    <p><span id="blue-f">{`WsEngine    :`}</span>&#32;{data.wsEngine}</p>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ class RTServerInfoCard extends Component {
             data.appName = instance.appName;
             data.platform = instance.platform;
             data.debug = instance.debug ? 'yes' : 'no';
-            data.useScUws = instance.useScUws ? 'yes' : 'no';
+            data.wsEngine = instance.wsEngine;
             if(instance.drive){
                 data.driveUsage = instance.drive.usedPercentage + ' %';
             }
