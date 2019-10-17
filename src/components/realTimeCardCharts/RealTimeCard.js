@@ -102,9 +102,9 @@ class RealTimeCard extends Component {
         };
 
         this.state = {
-            value : firstData,
-            isRunning : true,
-            data : data
+            currentData : firstData,
+            running : true,
+            chartData : data
         }
     }
 
@@ -114,7 +114,7 @@ class RealTimeCard extends Component {
             <RTInfoCard value={this.getValue.bind(this)()} showTimeControl={true}
                         description={this.getDescription.bind(this)()} onTimeChange={this.timeChange.bind(this)}>
                 <div className="chart-wrapper mx-3" style={{ height: '70px'}}>
-                    <Line options={this.chartOptions} data={this.state.data} height={70} />
+                    <Line options={this.chartOptions} data={this.state.chartData} height={70} />
                 </div>
             </RTInfoCard>
         )
@@ -126,7 +126,7 @@ class RealTimeCard extends Component {
             return this.props.description;
         }
         if(this.props.getDescription){
-            return this.props.getDescription(this.state.value);
+            return this.props.getDescription(this.state.currentData);
         }
         else {
             return '';
@@ -135,22 +135,30 @@ class RealTimeCard extends Component {
 
     getValue() {
         if(this.props.getValue){
-            return this.props.getValue(this.state.value);
+            return this.props.getValue(this.state.currentData);
         }
         else {
-            return this.props.postFix ? this.state.value + " " + this.props.postFix : this.state.value;
+            return this.props.postFix ? this.state.currentData + " " + this.props.postFix : this.state.currentData;
         }
     }
 
     timeChange(state){
-        if(!state && this.state.isRunning){
-            clearInterval(this.state.interval);
-            this.setState({isRunning : false});
+        if(!state && this.state.running){
+            this.setState({running : false},
+                () => this.tmpNewData = false);
         }
 
-        if(state && !this.state.isRunning){
-            this.process.bind(this)();
-            this.componentDidMount.bind(this)();
+        if(state && !this.state.running){
+            if(this.tmpNewData){
+                this.setState({
+                    currentData : this.tmpCurrentData,
+                    chartData : this.tmpChartData
+                })
+            }
+            else {
+                this.process.bind(this)();
+            }
+            this.setState({running : true});
         }
     }
 
@@ -161,12 +169,12 @@ class RealTimeCard extends Component {
 
         },this.props.every || 1000);
 
-        this.setState({interval : interval,isRunning : true})
+        this.setState({interval : interval,running : true});
     }
 
     process()
     {
-        const datasetsCopy = this.state.data.datasets.slice(0);
+        const datasetsCopy = this.state.chartData.datasets.slice(0);
         const dataCopy = datasetsCopy[0].data.slice(0);
 
         const data = this.props.getData();
@@ -180,12 +188,21 @@ class RealTimeCard extends Component {
             datasetsCopy[0].label = this.props.getDataLabel(data);
         }
 
-        this.setState({
-            value : data,
-            data : Object.assign({},{
-                datasets: datasetsCopy
-            })
+        const chartData = Object.assign({},{
+            datasets: datasetsCopy
         });
+
+        if(this.state.running){
+            this.setState({
+                currentData : data,
+                chartData : chartData
+            });
+        }
+        else {
+            this.tmpCurrentData = data;
+            this.tmpChartData = chartData;
+            this.tmpNewData = true;
+        }
     }
 
     componentWillUnmount() {
