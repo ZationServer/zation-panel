@@ -27,27 +27,31 @@ class RTServerInfoCard extends Component {
                     <div className="chart-wrapper mx-3 table-con">
                         <div className={"container-fluid"}>
                             <div className={"row"}>
-                                <div className="col-sm-6 col-lg-6">
-                                    <p><span id="blue-f">{`Id          :`}</span>&#32;{data.id}</p>
-                                    <p><span id="blue-f">{`Started     :`}</span>&#32;{data.startedTime}</p>
-                                    <p><span id="blue-f">{`Leader      :`}</span>&#32;{data.leader}</p>
-                                    <p><span id="blue-f">{`Worker      :`}</span>&#32;{data.worker}</p>
-                                    <p><span id="blue-f">{`Broker      :`}</span>&#32;{data.broker}</p>
-                                    <p><span id="blue-f">{`Platform    :`}</span>&#32;{data.platform}</p>
-                                    <p><span id="blue-f">{`OOS         :`}</span>&#32;{data.oos}</p>
-                                    <p><span id="blue-f">{`CPU         :`}</span>&#32;{data.cpu}</p>
-                                    <p><span id="blue-f">{`Drive Usage :`}</span>&#32;{data.driveUsage}</p>
+                                <div className="col-sm-6 col-lg-6 font1">
+                                    <p><span id="blue-f">{`Instance id    :`}</span>&#32;{data.id}</p>
+                                    <p><span id="blue-f">{`Zation Server Version :`}</span>&#32;{data.zationServerVersion}</p>
+                                    <p><span id="blue-f">{`Node Version   :`}</span>&#32;{data.nodeVersion}</p>
+                                    <p><span id="blue-f">{`Platform       :`}</span>&#32;{data.platform}</p>
+                                    <p><span id="blue-f">{`OOS            :`}</span>&#32;{data.oos}</p>
+                                    <p><span id="blue-f">{`CPU            :`}</span>&#32;{data.cpu}</p>
+                                    <p><span id="blue-f">{`License        :`}</span>&#32;{data.license}</p>
+                                    <p><span id="blue-f">{`License Type   :`}</span>&#32;{data.licenseType}</p>
+                                    <p><span id="blue-f">{`Leader         :`}</span>&#32;{data.leader}</p>
+                                    <p><span id="blue-f">{`Worker         :`}</span>&#32;{data.worker}</p>
+                                    <p><span id="blue-f">{`Broker         :`}</span>&#32;{data.broker}</p>
                                 </div>
-                                <div className="col-sm-6 col-lg-6">
-                                    <p><span id="blue-f">{`Ip Address  :`}</span>&#32;{data.ip}</p>
-                                    <p><span id="blue-f">{`Hostname    :`}</span>&#32;{data.hostname}</p>
-                                    <p><span id="blue-f">{`Port        :`}</span>&#32;{data.port}</p>
-                                    <p><span id="blue-f">{`Path        :`}</span>&#32;{data.path}</p>
-                                    <p><span id="blue-f">{`Post Key    :`}</span>&#32;{data.postKey}</p>
-                                    <p><span id="blue-f">{`App Name    :`}</span>&#32;{data.appName}</p>
-                                    <p><span id="blue-f">{`Secure      :`}</span>&#32;{data.secure}</p>
-                                    <p><span id="blue-f">{`Debug       :`}</span>&#32;{data.debug}</p>
-                                    <p><span id="blue-f">{`WsEngine    :`}</span>&#32;{data.wsEngine}</p>
+                                <div className="col-sm-6 col-lg-6 font1">
+                                    <p><span id="blue-f">{`Started        :`}</span>&#32;{data.startedTime}</p>
+                                    <p><span id="blue-f">{`IP Address     :`}</span>&#32;{data.ip}</p>
+                                    <p><span id="blue-f">{`Hostname       :`}</span>&#32;{data.hostname}</p>
+                                    <p><span id="blue-f">{`Port           :`}</span>&#32;{data.port}</p>
+                                    <p><span id="blue-f">{`Path           :`}</span>&#32;{data.path}</p>
+                                    <p><span id="blue-f">{`Post Key       :`}</span>&#32;{data.postKey}</p>
+                                    <p><span id="blue-f">{`App Name       :`}</span>&#32;{data.appName}</p>
+                                    <p><span id="blue-f">{`Secure         :`}</span>&#32;{data.secure}</p>
+                                    <p><span id="blue-f">{`Debug          :`}</span>&#32;{data.debug}</p>
+                                    <p><span id="blue-f">{`WsEngine       :`}</span>&#32;{data.wsEngine}</p>
+                                    <p><span id="blue-f">{`Drive Usage    :`}</span>&#32;{data.driveUsage}</p>
                                 </div>
                             </div>
                         </div>
@@ -79,11 +83,25 @@ class RTServerInfoCard extends Component {
             data.platform = instance.platform;
             data.debug = instance.debug ? 'yes' : 'no';
             data.wsEngine = instance.wsEngine;
+            data.nodeVersion = instance.nodeVersion;
+            data.zationServerVersion = instance.zationServerVersion;
             if(instance.drive){
                 data.driveUsage = instance.drive.usedPercentage + ' %';
             }
             else{
                 data.driveUsage = 'Unknown';
+            }
+
+            const license = instance.license;
+
+            if(license){
+                data.license = `Licensed to ${license.n} (${license.l}) (Id: ${license.i})`;
+                data.licenseType = `${license.t} License (${license.mi === -1 ? 'Unlimited instances' : 
+                    `Max ${license.mi} instance${license.mi > 1 ? 's' : ''}`})`;
+            }
+            else {
+                data.license = 'No license (only for testing)';
+                data.licenseType = '/';
             }
         }
         return data;

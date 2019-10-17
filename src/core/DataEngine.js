@@ -51,6 +51,9 @@ export default class DataEngine {
             appName
             debug
             wsEngine
+            nodeVersion
+            zationServerVersion
+            license
             serverStartedTimestamp
             ip
             cpuModel
@@ -292,7 +295,10 @@ export default class DataEngine {
             instance.appName       = info['appName'];
             instance.debug         = info['debug'];
             instance.wsEngine      = info['wsEngine'];
+            instance.nodeVersion   = info['nodeVersion'];
+            instance.license       = info['license'];
             instance.serverStartedTimestamp = info['serverStartedTimestamp'];
+            instance.zationServerVersion    = info['zationServerVersion'];
             instance.ip            = info['ip'];
             this._updatePanelAuthUserMap(info['panelAuthUserMap']);
             this._updatePanelDefaultName(info['defaultUserName']);
