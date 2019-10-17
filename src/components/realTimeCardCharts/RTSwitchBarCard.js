@@ -54,17 +54,21 @@ class RTSwitchBarCard extends Component {
         this.state = {
             isRunning : true,
             data : this.props.getData(this.switchDefault),
-            switch : this.switchDefault
+            switch : this.switchDefault,
+            switchTooltip : this.getSwitchTooltip(this.switchDefault)
         };
     }
 
     render() {
+        const {switchTooltip,data} = this.state;
         return (
             <RTInfoCard value={this.getValue.bind(this)()} big={true} switch={true} switchDefault={this.switchDefault}
-                        onSwitchChange={this.switchChange.bind(this)} height={'29rem'}
+                        onSwitchChange={this.switchChange.bind(this)}
+                        switchTooltip={switchTooltip}
+                        height={'29rem'}
                         description={this.getDescription.bind(this)()} onTimeChange={this.timeChange.bind(this)}>
                 <div className="chart-wrapper mx-3" style={{ height: '320px'}}>
-                    <Bar options={this.chartOptions} data={this.state.data} height={500} plugins={[zeroCompensation]}
+                    <Bar options={this.chartOptions} data={data} height={500} plugins={[zeroCompensation]}
                          redraw={this.props.redraw}
                     />
                 </div>
@@ -110,8 +114,12 @@ class RTSwitchBarCard extends Component {
     }
 
     switchChange(state){
-        this.setState({switch : state});
+        this.setState({switch : state,switchTooltip : this.getSwitchTooltip(state)});
         this.process();
+    }
+
+    getSwitchTooltip(state) {
+       return state ? 'On worker' : 'On server';
     }
 
     componentDidMount() {

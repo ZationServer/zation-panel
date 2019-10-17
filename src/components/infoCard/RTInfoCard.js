@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './infoCard.css'
+import Tooltip from '@material-ui/core/Tooltip';
 import {FaPlay, FaPause, FaArrowsAltH} from 'react-icons/fa';
 
 const pulse = (id) => {
@@ -35,6 +36,7 @@ class RTInfoCard extends Component {
                  className={"text-white bg-info card" + (this.props.big ? ' big-card' : '') + (this.props.green ? ' cardGreen' : '')}>
                 <div className="pb-0 card-body">
                     <div id="carouselButtons">
+                        <Tooltip title={this.state.play ? 'Pause' : 'Play'} aria-label={this.state.play ? 'Pause' : 'Play'}>
                         <button id={this.btnTimeId} type="button" className="btn btn-time-control animated"
                                 onClick={this.changeTime.bind(this)}>
                             {
@@ -42,12 +44,15 @@ class RTInfoCard extends Component {
                                     <FaPlay height={20} width={20} className="timeIcon"/>
                             }
                         </button>
+                        </Tooltip>
                         {
                             this.props.switch?
+                                <Tooltip title={this.props.switchTooltip} aria-label={this.props.switchTooltip}>
                                 <button id={this.btnSwitchId} type="button" className="btn btn-switch-control animated"
                                 onClick={this.btnSwitch.bind(this)}>
                                     <FaArrowsAltH height={30} width={30} className="switchIcon"/>
-                                </button> : undefined
+                                </button>
+                                </Tooltip>: undefined
                         }
                     </div>
                     <div className="text-value">
