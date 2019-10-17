@@ -7,7 +7,7 @@ GitHub: LucaCode
 export default class Time {
 
     static processDate(timestamp){
-        return new Date(timestamp).toUTCString();
+        return (new Date(timestamp)).toLocaleString('en-GB',{dateStyle : 'full',timeStyle : 'long'});
     }
 
     static processTimeSpan(timestamp) {
