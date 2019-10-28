@@ -32,7 +32,7 @@ class RTServerInfoCard extends Component {
                                     <p><span id="blue-f">{`Zation Server Version :`}</span>&#32;{data.zationServerVersion}</p>
                                     <p><span id="blue-f">{`Node Version   :`}</span>&#32;{data.nodeVersion}</p>
                                     <p><span id="blue-f">{`Platform       :`}</span>&#32;{data.platform}</p>
-                                    <p><span id="blue-f">{`OOS            :`}</span>&#32;{data.oos}</p>
+                                    <p><span id="blue-f">{`OS             :`}</span>&#32;{data.oos}</p>
                                     <p><span id="blue-f">{`CPU            :`}</span>&#32;{data.cpu}</p>
                                     <p><span id="blue-f">{`License        :`}</span>&#32;{data.license}</p>
                                     <p><span id="blue-f">{`License Type   :`}</span>&#32;{data.licenseType}</p>
