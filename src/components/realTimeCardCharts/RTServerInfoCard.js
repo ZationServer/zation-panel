@@ -95,7 +95,7 @@ class RTServerInfoCard extends Component {
             const license = instance.license;
 
             if(license){
-                data.license = `Licensed to ${license.n} (${license.l}) (Id: ${license.i})`;
+                data.license = `Licensed to ${license.h} (${license.l}) (Id: ${license.i})`;
                 data.licenseType = `${license.t} License (${license.mi === -1 ? 'Unlimited instances' : 
                     `Max ${license.mi} instance${license.mi > 1 ? 's' : ''}`})`;
             }
