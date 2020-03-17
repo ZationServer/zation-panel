@@ -14,7 +14,7 @@ class Dashboard extends Component {
                 <div className="animated fadeIn">
                     <div className="row">
                         <div className="col-sm-6 col-lg-3">
-                            <RealTimeCard getDataLabel={Dashboard.getClientsConnectedDesc} getDescription={Dashboard.getClientsConnectedDesc} maxLength={10} getData={Dashboard.getClientsConnected} every={2000}/>
+                            <RealTimeCard getDataLabel={Dashboard.getClientsConnectedDesc} getDescription={Dashboard.getClientsConnectedDesc} maxLength={10} getData={Dashboard.getClientsConnected} every={1000}/>
                         </div>
                         <div className="col-sm-6 col-lg-3">
                             <RealTimeCard dataLabel={"Worker"} getDescription={Dashboard.getWorkerDesc} getData={Dashboard.getWorkerOnline} maxLength={10} every={4000} />
