@@ -85,20 +85,20 @@ class Ping extends Component {
             const client = load();
 
             const label = [];
-            const data = [];
+            const rawData = [];
 
             for(let i = 1; i < 21; i++) {
                 label.push("Ping " + i);
-                data.push(await client.ping());
+                rawData.push(await client.ping());
             }
 
-            const sum = data.reduce(function(a, b) { return a + b; });
+            const sum = rawData.reduce(function(a, b) { return a + b; });
 
             this.setState({
                 label : label,
-                avg : Number(sum / data.length).toFixed(2),
+                avg : Number(sum / rawData.length).toFixed(2),
                 mode : 'result',
-                data : data,
+                data : rawData.map((time) => time.toFixed(3)),
                 btnLoad : false
             });
 
