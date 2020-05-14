@@ -13,7 +13,7 @@ export default class PingEngine {
             try {
                 const client = load(key);
                 if(client.getPlainToken().panelAccess) {
-                    await client.pubPanelInCh('ping',{});
+                    await client.transmit('#panel').send();
                 }
             }
             catch (e) {}

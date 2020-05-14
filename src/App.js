@@ -39,12 +39,13 @@ class App extends Component {
 
         const client = load();
 
-        await client.subPanelOutCh();
+        const panelCh = client.channel('#panel');
+        await panelCh.subscribe();
 
         //connect to dataEngine and create
-        DataEngine.getEngine().connect();
+        DataEngine.getEngine().connect(panelCh);
 
-        await client.pubPanelInCh('firstPing',{});
+        await client.transmit('#panel',true).send();
 
         //wait 3000 ms for worker can respond
         setTimeout(() => {
@@ -106,7 +107,7 @@ class App extends Component {
                 try {
                     await client.connect();
 
-                    if( client.getSocket().getAuthToken() !== null &&
+                    if( client.getSignToken() !== null &&
                         client.getPlainToken().panelAccess &&
                         client.getTokenVariable('ZATION-PANEL-USER-NAME')
                     ) {

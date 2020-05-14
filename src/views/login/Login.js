@@ -101,9 +101,7 @@ class Login extends Component {
 
             const client = load();
 
-            await client.request()
-                .systemController(true)
-                .controller('zation/panel/auth')
+            await client.request('#panel/auth')
                 .data({username : username, password : password})
                 .onSuccessful(() => {
                     document.getElementById('login-co').classList.add('fadeOut');

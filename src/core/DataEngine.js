@@ -46,7 +46,6 @@ export default class DataEngine {
             hostname
             port
             path
-            postKey
             secure
             appName
             debug
@@ -104,17 +103,16 @@ export default class DataEngine {
         this.setWorkerTimeoutChecker();
     }
 
-    connect(key = 'default')
+    connect(channel)
     {
-        const client = load(key);
-        client.channelReact().onPubPanelOutCh('firstPong' ,(data => {
-            this.firstPong(data.id,data.info);
+        channel.onPublish('firstPong' ,(data => {
+            this.firstPong(data[0],data[1]);
         }));
-        client.channelReact().onPubPanelOutCh('up',(data => {
-            this.update('up',data.id,data.info);
+        channel.onPublish('up',(data => {
+            this.update('up',data[0],data[1]);
         }));
-        client.channelReact().onPubPanelOutCh('up-l',(data => {
-            this.update('up-l',data.id,data.info);
+        channel.onPublish('up-l',(data => {
+            this.update('up-l',data[0],data[1]);
         }));
     }
 
@@ -290,7 +288,6 @@ export default class DataEngine {
             instance.hostname      = info['hostname'];
             instance.port          = info['port'];
             instance.path          = info['path'];
-            instance.postKey       = info['postKey'];
             instance.secure        = info['secure'];
             instance.appName       = info['appName'];
             instance.debug         = info['debug'];
