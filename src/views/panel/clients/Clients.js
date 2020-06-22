@@ -147,10 +147,8 @@ class Clients extends Component {
     }
 
     static formatUserGroupName(value) {
-        if(typeof value === 'string'){
-            return value.charAt(0).toUpperCase() + value.slice(1)
-        }
-        return 'Unknown';
+        if(typeof value !== 'string') return 'Unknown';
+        return value.replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase())
     }
 
     static getPieUserGroupsValue() {
