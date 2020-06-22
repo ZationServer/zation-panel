@@ -1,6 +1,6 @@
 {
   "name": "zation-panel",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Zation Panel",
   "license": "SEE LICENSE IN <README.md>",
   "main": "dist/index.js",
