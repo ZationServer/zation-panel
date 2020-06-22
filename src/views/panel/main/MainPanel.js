@@ -9,7 +9,7 @@ import Dashboard from "../dashboard/Dashboard";
 import Server from "../servers/Server";
 import Button from "react-bootstrap/es/Button";
 import avatar from './../../../assets/image/user.svg';
-import {load} from 'zation-client';
+import {client} from 'zation-client';
 import Ping from "../ping/Ping";
 import Clients from "../clients/Clients";
 import Chart from 'chart.js';
@@ -26,7 +26,8 @@ class MainPanel extends Component {
         super(props);
 
         try {
-            this.state = {name: load().getTokenVariable('ZATION-PANEL-USER-NAME')};
+            const payload = client.tokenPayload;
+            this.state = {name: payload != null ? payload['ZATION-PANEL-USER-NAME'] : 'Unknown'};
 
             DataEngine.getEngine().setTaskProcessClusterInfo();
             DataEngine.getEngine().processClusterInfo();
@@ -125,7 +126,6 @@ class MainPanel extends Component {
     // noinspection JSMethodCanBeStatic
     async logout() {
         try{
-            const client = load();
             await client.deauthenticate();
         }
         catch (e) {}

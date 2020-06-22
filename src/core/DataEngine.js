@@ -4,7 +4,6 @@ GitHub: LucaCode
 ©Copyright by Luca Scaringella
  */
 
-import {load}        from "zation-client";
 const EventEmitter = require('events');
 
 const workerCheckTime = 7000;

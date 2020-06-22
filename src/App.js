@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {create, save, load, ConnectionAbortError} from "zation-client";
+import {create, client, ConnectionAbortError} from "zation-client";
 import {devMode} from "./mode";
 import Loading from "./views/loading/Loading";
 import Login from "./views/login/Login";
@@ -36,8 +36,6 @@ class App extends Component {
 
     async loadPanel() {
         this.setState({mode : 'loadPanel'});
-
-        const client = load();
 
         const panelCh = client.channel('#panel');
         await panelCh.subscribe();
@@ -89,8 +87,7 @@ class App extends Component {
                     secure : (window.location.protocol === 'https:'),
                     rejectUnauthorized : false,
                     debug : false
-                } : {port : 3001,debug : true});
-                save(client);
+                } : {port : 3001,debug : true},true);
 
                 client.eventReact().onDisconnect(() => {
                     setTimeout(()=> {
@@ -107,9 +104,9 @@ class App extends Component {
                 try {
                     await client.connect();
 
-                    if( client.getSignToken() !== null &&
-                        client.getPlainToken().panelAccess &&
-                        client.getTokenVariable('ZATION-PANEL-USER-NAME')
+                    const payload = client.tokenPayload;
+                    if( client.hasPanelAccess() &&
+                        payload != null && payload['ZATION-PANEL-USER-NAME'] != null
                     ) {
                         (async () => {
                             await this.loadPanel();

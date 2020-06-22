@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import RCenter from "react-center";
 import {ClipLoader, ScaleLoader} from "react-spinners";
 import BigBarCardInfo from "../../../components/infoCard/BigBarCardInfo";
-import {load} from 'zation-client';
+import {client} from 'zation-client';
 import Fab from "@material-ui/core/es/Fab/Fab";
 import {withStyles} from "@material-ui/core";
 import './ping.css';
@@ -82,8 +82,6 @@ class Ping extends Component {
 
     process(){
         (async () => {
-            const client = load();
-
             const label = [];
             const rawData = [];
 

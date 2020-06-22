@@ -4,7 +4,7 @@ import RCenter from "react-center";
 import './Login.css'
 import Logo from './../../assets/image/zation-logo.svg'
 import Fab from "@material-ui/core/es/Fab/Fab";
-import {load} from "zation-client";
+import {client} from "zation-client";
 import {ClipLoader} from 'react-spinners';
 
 const styles = theme => ({
@@ -96,10 +96,7 @@ class Login extends Component {
         }
 
         if(isOk){
-
             this.setState({loading : true});
-
-            const client = load();
 
             await client.request('#panel/auth')
                 .data({username : username, password : password})
