@@ -139,11 +139,18 @@ class Clients extends Component {
 
     static _addGroup(data,count,label,color)
     {
-        data.labels.push(label);
+        data.labels.push(Clients.formatUserGroupName(label));
         const dataset = data.datasets[0];
         dataset.data.push(count);
         dataset.backgroundColor.push(color);
         dataset.hoverBackgroundColor.push(color);
+    }
+
+    static formatUserGroupName(value) {
+        if(typeof value === 'string'){
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+        return 'Unknown';
     }
 
     static getPieUserGroupsValue() {
