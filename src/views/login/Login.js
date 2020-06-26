@@ -97,25 +97,28 @@ class Login extends Component {
 
         if(isOk){
             this.setState({loading : true});
-
-            await client.request('#panel/auth')
-                .data({username : username, password : password})
-                .onSuccessful(() => {
-                    document.getElementById('login-co').classList.add('fadeOut');
-                    setTimeout(async () => {
-                        await this.props.app.loadPanel();
-                    },500);
-                })
-                .onError(() => {
-                    this.setState({error : true});
-                    shake('username-co');
-                    shake('password-co');
-                })
-                .send();
-
-            setTimeout(() => {
-                this.setState({loading : false});
-            },500);
+            try {
+                await client.request('#panel/auth')
+                    .data({username : username, password : password})
+                    .onSuccessful(() => {
+                        document.getElementById('login-co').classList.add('fadeOut');
+                        setTimeout(async () => {
+                            this.setState({loading: false});
+                            await this.props.app.loadPanel();
+                        },500);
+                    })
+                    .onError(() => {
+                        this.setState({error : true, loading: false});
+                        shake('username-co');
+                        shake('password-co');
+                    })
+                    .send();
+            }
+            catch(_) {
+                this.setState({error : true, loading: false});
+                shake('username-co');
+                shake('password-co');
+            }
         }
     }
 
