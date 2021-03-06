@@ -7,7 +7,7 @@ import DataEngine from "../../../core/DataEngine";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
 import Server from "../servers/Server";
-import Button from "react-bootstrap/es/Button";
+import Button from "react-bootstrap/Button";
 import avatar from './../../../assets/image/user.svg';
 import {client} from 'zation-client';
 import Ping from "../ping/Ping";
