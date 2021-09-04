@@ -13,7 +13,7 @@ The panel component of the Zation framework
 
 ## License
 
-While Zation source code is publicly available, Zation **is not free**.  
+While portions of the Zation source code is publicly available, Zation **is not free**.  
 Except for the repositories of the ZationServer organization that contain an MIT license.   
 These repositories are free to use with the conditions of the MIT license.   
 
