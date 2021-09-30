@@ -25,7 +25,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "./",
+  "homepage": "/zation/assets/panel/",
   "browserslist": [
     ">0.2%",
     "not dead",
