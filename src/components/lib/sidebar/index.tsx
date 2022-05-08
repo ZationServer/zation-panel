@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
             <div className="scrollbar-container sidebar-nav ps ps-container ps--active-y">
                 <ul className="nav">
                     <li className="nav-item">
-                        <NavLink to={ROOT_PANEL_PATH} ria-current="page" end className={navLinkClassNamesDetermine}>
+                        <NavLink to={"/"} ria-current="page" end className={navLinkClassNamesDetermine}>
                             <GridContent className="nav-item-content">
                                 <FaTachometerAlt className="nav-item-icon"/>
                                 <Typography className={"nav-item-title"}>Overview</Typography>
@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
                     </li>
                     <li className="nav-title">Details</li>
                     <li className="nav-item">
-                        <NavLink to={ROOT_PANEL_PATH + "servers"} ria-current="page" className={navLinkClassNamesDetermine}>
+                        <NavLink to={"/servers"} ria-current="page" className={navLinkClassNamesDetermine}>
                             <GridContent className="nav-item-content">
                                 <FaServer className="nav-item-icon"/>
                                 <Typography className={"nav-item-title"}>Servers</Typography>
@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to={ROOT_PANEL_PATH + "clients"} ria-current="page" className={navLinkClassNamesDetermine}>
+                        <NavLink to={"/clients"} ria-current="page" className={navLinkClassNamesDetermine}>
                             <GridContent className="nav-item-content">
                                 <FaUser className="nav-item-icon"/>
                                 <Typography className={"nav-item-title"}>Clients</Typography>
@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to={ROOT_PANEL_PATH + "liveLogs"} ria-current="page" className={navLinkClassNamesDetermine}>
+                        <NavLink to={"/liveLogs"} ria-current="page" className={navLinkClassNamesDetermine}>
                             <GridContent className="nav-item-content">
                                 <RiFileList2Line className="nav-item-icon"/>
                                 <Typography className={"nav-item-title"}>Live logs</Typography>
