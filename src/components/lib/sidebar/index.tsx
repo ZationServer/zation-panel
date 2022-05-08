@@ -1,9 +1,8 @@
 import React, {useRef} from 'react';
 import './index.css';
-import { FaTachometerAlt, FaServer, FaUser, FaStopwatch} from 'react-icons/fa';
+import { FaTachometerAlt, FaServer, FaUser} from 'react-icons/fa';
 import { RiFileList2Line } from 'react-icons/ri';
 import { NavLink } from "react-router-dom";
-import {ROOT_PANEL_PATH} from "../../../lib/utils/constants";
 import GridContent from "../../utils/horizontalContent";
 import {Typography} from "@mui/material";
 
