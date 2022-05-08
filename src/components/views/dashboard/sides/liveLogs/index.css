@@ -1,0 +1,26 @@
+.MuiTypography-root.live-logs-header {
+    color: white;
+    font-family: NexaBold;
+    font-size: 1.5rem;
+}
+
+.MuiDivider-root.live-log-divider {
+    border-color: white;
+    margin-bottom: 0.5rem;
+}
+
+.live-log-root {
+    padding-bottom: 0.5rem !important;
+    height: 100%;
+}
+
+.live-log-list {
+    margin-top: 0.5rem !important;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.live-log-list::-webkit-scrollbar {
+    display: none;
+}
