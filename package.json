@@ -34,7 +34,7 @@
     "cytoscape-euler": "1.2.2",
     "cytoscape-node-html-label": "1.2.2",
     "unique-names-generator": "4.7.1",
-    "zation-client": "3.0.0-dev.19"
+    "zation-client": "3.0.0-dev.20"
   },
   "scripts": {
     "start": "react-scripts start",
