@@ -1,0 +1,28 @@
+.progress-wrapper {
+    margin-top: 0.7rem;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #2f353a;
+    transition: width .6s ease;
+}
+
+.progress {
+    display: -ms-flexbox;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .65625rem;
+    background-color: #f0f3f5;
+    border-radius: .25rem;
+    margin-top: 1.8rem;
+}
