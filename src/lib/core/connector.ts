@@ -1,11 +1,12 @@
-import ClusterSummaryInformation from "../definitions/clusterInformation";
+import ClusterSummary from "../definitions/clusterSummary";
 import {Channel, Client} from "zation-client";
 import {APIDefinition, PanelChannelPublishes} from "../definitions/apiDefinition";
 import EventEmitter from "emitix";
 import {Writable} from "../utils/typeUtils";
 import LogMessage from "../definitions/logMessage";
 import {
-    BrokerInformation, ProcessedBrokerInformation,
+    BrokerInformation,
+    ProcessedBrokerInformation,
     ProcessedServerInformation,
     ProcessedStateInformation,
     ProcessedWorkerInformation,
@@ -14,8 +15,10 @@ import {
     WorkerInformation
 } from "../definitions/serverInformation";
 import HeartbeatTicker from "./heartbeatTicker";
-import { generateServerName } from "../utils/serverNameGenerator";
+import {generateServerName} from "../utils/serverNameGenerator";
 import LatencyChecker from "./latencyChecker";
+import ServersTypeGroupSummary from "../definitions/serverTypeGroupSummary";
+import {calcStandardDeviation} from "../utils/math";
 
 export default class Connector extends EventEmitter.Protected<{
     serverJoin: [string],
@@ -24,21 +27,16 @@ export default class Connector extends EventEmitter.Protected<{
     logsUpdate: []
 }>() {
 
-    static DEFAULT_CLUSTER_SUMMARY: ClusterSummaryInformation = {
+    static DEFAULT_CLUSTER_SUMMARY: ClusterSummary = {
         resourceUsage: 0,
         cpuUsage: 0,
         memoryUsage: 0,
-        internalClientCount: 0,
-        externalClientCount: 0,
+        clientCount: 0,
         atLeastOneDebug: false,
         httpMessageCount: 0,
         wsMessageCount: 0,
         transmitMessageCount: 0,
         invokeMessageCount: 0,
-        incomingHttpMessageCount: 0,
-        incomingWsMessageCount: 0,
-        incomingInvokeMessageCount: 0,
-        incomingTransmitMessageCount: 0,
         launchedTimestamp: -1,
         memory: {totalMemMb: 0,usedMemMb: 0},
         users: {
@@ -46,6 +44,18 @@ export default class Connector extends EventEmitter.Protected<{
             defaultUserGroupCount: 0,
             panelUserCount: 0
         }
+    }
+
+    static DEFAULT_SEVER_TYPE_GROUP_SUMMARY: ServersTypeGroupSummary = {
+        clientCount: 0,
+        clientDistribution: 0,
+        memory: {totalMemMb: 0, usedMemMb: 0},
+        cpuUsage: 0,
+        memoryUsage: 0,
+        httpMessageCount: 0,
+        wsMessageCount: 0,
+        invokeMessageCount: 0,
+        transmitMessageCount: 0,
     }
 
     constructor(private readonly serverTimeout = 5000) {
@@ -63,7 +73,10 @@ export default class Connector extends EventEmitter.Protected<{
     readonly brokers: Readonly<Record<string,ProcessedBrokerInformation>> = {};
     readonly brokerCount: number = 0;
 
-    readonly clusterSummary: ClusterSummaryInformation = {...Connector.DEFAULT_CLUSTER_SUMMARY};
+    readonly clusterSummary: ClusterSummary = {...Connector.DEFAULT_CLUSTER_SUMMARY};
+    readonly workersSummary: ServersTypeGroupSummary = {...Connector.DEFAULT_SEVER_TYPE_GROUP_SUMMARY};
+    readonly brokersSummary: ServersTypeGroupSummary = {...Connector.DEFAULT_SEVER_TYPE_GROUP_SUMMARY};
+
     readonly panelAuthUserMap: Record<string,string> = {};
     readonly defaultUserGroupName: string = "Guest";
     readonly logs: LogMessage[] = [];
@@ -135,7 +148,7 @@ export default class Connector extends EventEmitter.Protected<{
             (this as Writable<Connector>).serverCount++;
         }
 
-        this._updateClusterSummary();
+        this._updateSummaries();
         this.emit('statsUpdate');
     }
 
@@ -153,7 +166,7 @@ export default class Connector extends EventEmitter.Protected<{
         Object.assign(this.servers[id],info);
         this.serversLastActivity[id] = Date.now();
 
-        this._updateClusterSummary();
+        this._updateSummaries();
         this.emit('statsUpdate');
     }
 
@@ -192,6 +205,61 @@ export default class Connector extends EventEmitter.Protected<{
         },this.serverTimeout + 2000);
     }
 
+    private _updateSummaries() {
+        (this as Writable<Connector>).workersSummary = this._createServerTypeGroupSummary(ServerType.Worker);
+        (this as Writable<Connector>).brokersSummary = this._createServerTypeGroupSummary(ServerType.Broker);
+        this._updateClusterSummary();
+    }
+
+    private _createServerTypeGroupSummary(type: ServerType): ServersTypeGroupSummary {
+        let cpuUsageSum = 0,
+            totalMemorySum = 0,
+            usedMemorySum = 0,
+            clientCountSum = 0,
+            clientCounts: number[] = [],
+            httpMessageCountSum = 0,
+            wsMessageCountSum = 0,
+            transmitMessageCountSum = 0,
+            invokeMessageCountSum = 0;
+
+        const checkedMachines: string[] = [];
+        for(const id in this.servers) {
+            if (!this.servers.hasOwnProperty(id)) continue;
+            const server = this.servers[id];
+            if(server.type !== type) continue;
+
+            clientCounts.push(server.clientCount);
+            clientCountSum += server.clientCount;
+            httpMessageCountSum += server.httpMessageCount;
+            wsMessageCountSum += server.wsMessageCount;
+            transmitMessageCountSum += server.transmitMessageCount;
+            invokeMessageCountSum += server.invokeMessageCount;
+
+            if(checkedMachines.indexOf(server.machineId) === -1) {
+                checkedMachines.push(server.machineId);
+                const serverResourceUsage = server.resourceUsage.machine;
+                cpuUsageSum += serverResourceUsage.cpu;
+                totalMemorySum += serverResourceUsage.memory.totalMemMb;
+                usedMemorySum += serverResourceUsage.memory.usedMemMb;
+            }
+        }
+
+        const cpuUsage = cpuUsageSum / checkedMachines.length;
+        const memoryUsage = usedMemorySum / totalMemorySum  * 100;
+
+        return {
+            cpuUsage: cpuUsage,
+            memory: {totalMemMb: totalMemorySum,usedMemMb: usedMemorySum},
+            memoryUsage: memoryUsage,
+            clientCount: clientCountSum,
+            clientDistribution: calcStandardDeviation(clientCounts),
+            httpMessageCount: httpMessageCountSum,
+            wsMessageCount: wsMessageCountSum,
+            transmitMessageCount: transmitMessageCountSum,
+            invokeMessageCount: invokeMessageCountSum,
+        };
+    }
+
     private _updateClusterSummary() {
         if(this.serverCount <= 0)
             return (this as Writable<Connector>).clusterSummary =
@@ -201,16 +269,11 @@ export default class Connector extends EventEmitter.Protected<{
             cpuUsageSum = 0,
             totalMemorySum = 0,
             usedMemorySum = 0,
-            internalClientCountSum = 0,
-            externalClientCountSum = 0,
+            clientCountSum = 0,
             httpMessageCountSum = 0,
             wsMessageCountSum = 0,
             transmitMessageCountSum = 0,
             invokeMessageCountSum = 0,
-            incomingHttpMessageCountSum = 0,
-            incomingWsMessageCountSum = 0,
-            incomingTransmitMessageCountSum = 0,
-            incomingInvokeMessageCountSum = 0,
             atLeastOneDebug = false,
             defaultUserGroupCountSum = 0,
             panelUserCountSum = 0,
@@ -231,18 +294,13 @@ export default class Connector extends EventEmitter.Protected<{
                 usedMemorySum += serverResourceUsage.memory.usedMemMb;
             }
 
+            clientCountSum += server.clientCount;
             httpMessageCountSum += server.httpMessageCount;
             wsMessageCountSum += server.wsMessageCount;
             transmitMessageCountSum += server.transmitMessageCount;
             invokeMessageCountSum += server.invokeMessageCount;
 
             if(server.type === ServerType.Worker) {
-                incomingHttpMessageCountSum += server.httpMessageCount;
-                incomingWsMessageCountSum += server.wsMessageCount;
-                incomingTransmitMessageCountSum += server.transmitMessageCount;
-                incomingInvokeMessageCountSum += server.invokeMessageCount;
-
-                externalClientCountSum += server.clientCount;
                 atLeastOneDebug = atLeastOneDebug || server.debug;
                 defaultUserGroupCountSum += server.users.defaultUserGroupCount;
                 panelUserCountSum += server.users.panelUserCount;
@@ -254,7 +312,6 @@ export default class Connector extends EventEmitter.Protected<{
                     else authUserGroupsCountsSum[group] = authUserGroupsCounts[group];
                 }
             }
-            else internalClientCountSum += server.clientCount;
         }
 
         const cpuUsage = cpuUsageSum / checkedMachines.length;
@@ -263,20 +320,15 @@ export default class Connector extends EventEmitter.Protected<{
 
         (this as Writable<Connector>).clusterSummary = {
             launchedTimestamp,
-            cpuUsage,
+            cpuUsage: cpuUsage,
             memory: {totalMemMb: totalMemorySum,usedMemMb: usedMemorySum},
-            memoryUsage,
-            resourceUsage,
-            internalClientCount: internalClientCountSum,
-            externalClientCount: externalClientCountSum,
+            memoryUsage: memoryUsage,
+            resourceUsage: resourceUsage,
+            clientCount: clientCountSum,
             httpMessageCount: httpMessageCountSum,
             wsMessageCount: wsMessageCountSum,
             transmitMessageCount: transmitMessageCountSum,
             invokeMessageCount: invokeMessageCountSum,
-            incomingHttpMessageCount: incomingHttpMessageCountSum,
-            incomingWsMessageCount: incomingWsMessageCountSum,
-            incomingInvokeMessageCount: incomingInvokeMessageCountSum,
-            incomingTransmitMessageCount: incomingTransmitMessageCountSum,
             atLeastOneDebug,
             users: {
                 defaultUserGroupCount: defaultUserGroupCountSum,
