@@ -3,8 +3,6 @@ import useClient from "./lib/hooks/useClient";
 import {ConnectAbortError, TimeoutError} from "zation-client";
 import useConnector from './lib/hooks/useConnector';
 import {wait} from "./lib/utils/wait";
-import {useComponentWillMount} from "./lib/hooks/useComponentWillMount";
-import {DEV, ROOT_PANEL_PATH} from "./lib/utils/constants";
 import {Loading} from "./components/views/loading";
 import ErrorView from "./components/views/error";
 import Login from "./components/views/login";
@@ -24,11 +22,6 @@ function App() {
     const stateRef = useRef<AppState>();
     const [error,setError] = useState<Error | null>(null);
     stateRef.current = state;
-
-    useComponentWillMount(() => {
-        if(DEV && window.location.pathname !== '/') window.location.pathname = "";
-        else if(window.location.pathname !== ROOT_PANEL_PATH) window.location.pathname = ROOT_PANEL_PATH;
-    });
 
     const loadPanel = async () => {
         setState(AppState.Loading);
