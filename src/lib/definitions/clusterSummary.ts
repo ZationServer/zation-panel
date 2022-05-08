@@ -1,21 +1,16 @@
 import UsersInformation from "./usersInformation";
 
-export default interface ClusterInformation {
-    cpuUsage: number,
+export default interface ClusterSummary {
     memory: {totalMemMb: number, usedMemMb: number},
+    cpuUsage: number,
     memoryUsage: number,
     resourceUsage: number,
     launchedTimestamp: number,
-    internalClientCount: number,
-    externalClientCount: number,
+    clientCount: number,
     httpMessageCount: number,
     wsMessageCount: number,
     invokeMessageCount: number,
     transmitMessageCount: number,
-    incomingHttpMessageCount: number,
-    incomingWsMessageCount: number,
-    incomingInvokeMessageCount: number,
-    incomingTransmitMessageCount: number,
     atLeastOneDebug: boolean,
     users: UsersInformation
 }
