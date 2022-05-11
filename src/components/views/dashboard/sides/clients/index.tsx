@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React from 'react';
 import {Grid} from "@mui/material";
 import ClientsCountStats from "../../../../lib/stats/placeableStats/externalClientsCountStats";

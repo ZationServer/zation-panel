@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React, { useEffect } from "react";
 import useConnector from "../../../../../lib/hooks/useConnector";
 import RTLineChartCard from "../../core/rtLineChartCard";

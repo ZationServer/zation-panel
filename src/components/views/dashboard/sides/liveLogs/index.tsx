@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Divider, Grid, Stack, Tooltip, Typography} from "@mui/material";
 import useConnector from "../../../../../lib/hooks/useConnector";

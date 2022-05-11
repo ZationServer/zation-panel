@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 @media (min-width: 992px) {
     html:not([dir="rtl"]) .sidebar-lg-show .sidebar, html:not([dir="rtl"]) .sidebar-show .sidebar {
         margin-left: 0;

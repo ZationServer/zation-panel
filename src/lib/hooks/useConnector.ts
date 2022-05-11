@@ -1,6 +1,11 @@
-import React, {useEffect} from "react";
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+import React from "react";
 import Connector from "../core/connector";
-import { useForceUpdate } from "./useForceReload";
 
 export const ConnectorContext = React.createContext<Connector | null>(null);
 

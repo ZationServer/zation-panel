@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React, {useEffect, useRef} from "react";
 import {ChartOptions, ChartData, Chart} from 'chart.js';
 import {Line} from "react-chartjs-2";

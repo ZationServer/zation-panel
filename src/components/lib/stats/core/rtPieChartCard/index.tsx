@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React, {useEffect, useState} from "react";
 import {ChartOptions, ChartData} from 'chart.js';
 import {Pie} from "react-chartjs-2";

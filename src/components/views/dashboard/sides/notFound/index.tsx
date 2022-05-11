@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React from 'react';
 import Center from "../../../../utils/center";
 import {ReactComponent as NotFoundImg} from './../../../../../assets/image/notFound.svg';

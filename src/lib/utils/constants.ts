@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 export const DEV = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const PATH = window.location.pathname;

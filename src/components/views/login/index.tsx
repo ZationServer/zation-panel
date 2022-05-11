@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import React, {KeyboardEventHandler, useRef, useState} from 'react';
 import './index.css'
 import {ReactComponent as Logo} from '../../../assets/image/zationLogoWithBackground.svg'
