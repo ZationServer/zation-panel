@@ -20,6 +20,7 @@ const ExternalClientsCountStats: React.FC<{
         description={processLabel}
         maxLength={maxLength}
         fetchValue={() => connector.workersSummary.clientCount}
+        valueInfoTooltip={"Only external clients connected to the worker servers"}
         interval={interval}
         grace={10}
         mini={mini}
