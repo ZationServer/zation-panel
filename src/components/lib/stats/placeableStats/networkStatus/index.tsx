@@ -292,6 +292,12 @@ const NetworkStatus: React.FC<{
             cy.layout(LAYOUT_OPTIONS).run();
         });
         cyRef.current = cy;
+        const resizeListener = () => {
+            cy.resize();
+            cy.fit();
+        };
+        window.addEventListener('resize', resizeListener);
+        return () => window.removeEventListener('resize', resizeListener);
     },[containerRef]);
 
     useEffect(() => {
