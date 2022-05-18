@@ -70,6 +70,8 @@ Copyright(c) Ing. Luca Gian Scaringella
 
 #dashboard {
     height: 100%;
+    overflow-x: hidden;
+    min-width: 390px;
 }
 
 .main {
@@ -94,4 +96,8 @@ Copyright(c) Ing. Luca Gian Scaringella
 
 .main > .container-fluid > div {
     padding-bottom: 1.5rem;
+}
+
+.navbar {
+    min-width: 390px;
 }
