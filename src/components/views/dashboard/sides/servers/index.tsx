@@ -8,6 +8,7 @@ import React from 'react';
 import {Grid} from "@mui/material";
 import MemoryUsageStats from "../../../../lib/stats/placeableStats/memoryUsageStats";
 import CpuUsageStats from "../../../../lib/stats/placeableStats/cpuUsageStats";
+import ServersTable from "../../../../lib/stats/placeableStats/serversTable";
 
 const Servers: React.FC = () => {
 
@@ -20,6 +21,9 @@ const Servers: React.FC = () => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
                         <MemoryUsageStats/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ServersTable/>
                     </Grid>
                 </Grid>
             </div>
