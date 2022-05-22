@@ -250,8 +250,10 @@ export default class Connector extends EventEmitter.Protected<{
             }
         }
 
-        const cpuUsage = cpuUsageSum / checkedMachines.length;
-        const memoryUsage = usedMemorySum / totalMemorySum  * 100;
+        const cpuUsage = checkedMachines.length === 0 ? 0 :
+            (cpuUsageSum / checkedMachines.length);
+        const memoryUsage = totalMemorySum === 0 ? 0 :
+            (usedMemorySum / totalMemorySum  * 100);
 
         return {
             cpuUsage: cpuUsage,
@@ -320,8 +322,10 @@ export default class Connector extends EventEmitter.Protected<{
             }
         }
 
-        const cpuUsage = cpuUsageSum / checkedMachines.length;
-        const memoryUsage = usedMemorySum / totalMemorySum  * 100;
+        const cpuUsage = checkedMachines.length === 0 ? 0 :
+            (cpuUsageSum / checkedMachines.length);
+        const memoryUsage = totalMemorySum === 0 ? 0 :
+            (usedMemorySum / totalMemorySum * 100);
         const resourceUsage = (cpuUsage + memoryUsage) / 2;
 
         (this as Writable<Connector>).clusterSummary = {
