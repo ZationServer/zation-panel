@@ -12,6 +12,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import './assets/libs/animate.css';
 import './assets/libs/all.min.css';
+import './assets/libs/materialIcons.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import {ClientContext} from "./lib/hooks/useClient";
