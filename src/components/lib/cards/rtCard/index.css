@@ -47,6 +47,10 @@ Copyright(c) Ing. Luca Gian Scaringella
     background-color: var(--paper-dark-bg-color) !important;
 }
 
+.card.big-card.flexible-big-height {
+    height: auto;
+}
+
 .card-body {
     flex: 1 1 auto;
     display: flex;

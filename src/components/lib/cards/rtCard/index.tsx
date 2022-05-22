@@ -18,6 +18,7 @@ const RTCard: React.ForwardRefRenderFunction<RTCardHandle,{
     value?: any,
     description?: string,
     big?: boolean,
+    flexibleHeight?: boolean,
     green?: boolean,
     children: any,
     valueInfoTooltip?: string
@@ -25,6 +26,7 @@ const RTCard: React.ForwardRefRenderFunction<RTCardHandle,{
           onRunningStateChange,
           className = "", value = "", description = "",
                         big, green,
+                        flexibleHeight,
           children, valueInfoTooltip
       },ref) => {
 
@@ -53,7 +55,7 @@ const RTCard: React.ForwardRefRenderFunction<RTCardHandle,{
 
     return (
         <div
-            className={[className,'text-white card bg-info realTimeCard',(big ? 'big-card' : ''),(green ? 'cardGreen' : '')].join(" ")}>
+            className={[className,'text-white card bg-info realTimeCard',(big ? 'big-card' : ''),(flexibleHeight ? 'flexible-big-height' : ''),(green ? 'cardGreen' : '')].join(" ")}>
             <div className="pb-0 card-body">
                 <Grid container>
                     <Grid item xs={12}>
