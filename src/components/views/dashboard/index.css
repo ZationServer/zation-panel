@@ -101,3 +101,14 @@ Copyright(c) Ing. Luca Gian Scaringella
 .navbar {
     min-width: 390px;
 }
+
+.nav-btn-box {
+    flex-grow: 1;
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .nav-btn-box {
+        display: flex;
+    }
+}
