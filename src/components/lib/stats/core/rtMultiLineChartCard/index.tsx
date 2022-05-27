@@ -12,6 +12,7 @@ import {capitalizeFirstLetter} from "../../../../../lib/utils/string";
 
 const RTMultiLineChartCard: React.FC<{
     valueTitle?: string | ((value: any) => string)
+    valueInfoTooltip?: string,
     unit?: string;
     interval: number;
     fetchValues: () => any[];
@@ -25,7 +26,7 @@ const RTMultiLineChartCard: React.FC<{
     lineBorderColors?: string[];
     lineBackgroundColors?: string[];
     suggestedMax?: number;
-}> = ({valueTitle, unit, grace,
+}> = ({valueTitle,valueInfoTooltip, unit, grace,
                                   labels = [],
                                   lineBorderColors = [],
                                   lineBackgroundColors = [],
@@ -169,7 +170,8 @@ const RTMultiLineChartCard: React.FC<{
     },[interval]);
 
     return (
-        <RTCard ref={rtCardRef} value={processValueTitle(activeMergedValues)} big description={capitalizeFirstLetter(desc)}
+        <RTCard ref={rtCardRef} value={processValueTitle(activeMergedValues)} big valueInfoTooltip={valueInfoTooltip}
+                description={capitalizeFirstLetter(desc)}
                 onRunningStateChange={state => state && update(true)}>
             <div className="chart-wrapper">
                 <Line ref={chartRef} options={chartOptions} data={initData} height={70}/>
