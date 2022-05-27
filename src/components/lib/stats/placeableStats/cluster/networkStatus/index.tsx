@@ -13,15 +13,15 @@ import cytoscape from 'cytoscape';
 import useConnector from "../../../../../../lib/hooks/useConnector";
 import {deepEqual} from "queric";
 require('cytoscape-node-html-label')(cytoscape);
-cytoscape.use(require('cytoscape-euler'));
+cytoscape.use(require('cytoscape-fcose'));
 
 const LAYOUT_OPTIONS = {
-    name: 'euler',
-    randomize : true,
-    pull: 0.000001,
-    theta: 0.5,
-    fit: true,
-    padding: 100
+    name: 'fcose',
+    animationDuration: 300,
+    animationEasing: 'ease-in-out',
+    nodeSeparation: 200,
+    nodeRepulsion: () => 8500,
+    idealEdgeLength: () => 80
 };
 
 const STYLES = [
