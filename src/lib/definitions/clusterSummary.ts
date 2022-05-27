@@ -10,7 +10,7 @@ export default interface ClusterSummary {
     memory: {totalMemMb: number, usedMemMb: number},
     cpuUsage: number,
     memoryUsage: number,
-    resourceUsage: number,
+    workload: number,
     launchedTimestamp: number,
     clientCount: number,
     httpMessageCount: number,
@@ -18,5 +18,6 @@ export default interface ClusterSummary {
     invokeMessageCount: number,
     transmitMessageCount: number,
     atLeastOneDebug: boolean,
+    atLeastOneWithoutLicense: boolean,
     users: UsersInformation
 }

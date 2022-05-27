@@ -34,11 +34,12 @@ export default class Connector extends EventEmitter.Protected<{
 }>() {
 
     static DEFAULT_CLUSTER_SUMMARY: ClusterSummary = {
-        resourceUsage: 0,
+        workload: 0,
         cpuUsage: 0,
         memoryUsage: 0,
         clientCount: 0,
         atLeastOneDebug: false,
+        atLeastOneWithoutLicense: false,
         httpMessageCount: 0,
         wsMessageCount: 0,
         transmitMessageCount: 0,
@@ -53,6 +54,7 @@ export default class Connector extends EventEmitter.Protected<{
     }
 
     static DEFAULT_SEVER_TYPE_GROUP_SUMMARY: ServersTypeGroupSummary = {
+        workload: 0,
         clientCount: 0,
         clientDistribution: 0,
         memory: {totalMemMb: 0, usedMemMb: 0},
@@ -256,6 +258,7 @@ export default class Connector extends EventEmitter.Protected<{
             (usedMemorySum / totalMemorySum  * 100);
 
         return {
+            workload: (cpuUsage + memoryUsage) / 2,
             cpuUsage: cpuUsage,
             memory: {totalMemMb: totalMemorySum,usedMemMb: usedMemorySum},
             memoryUsage: memoryUsage,
@@ -283,6 +286,7 @@ export default class Connector extends EventEmitter.Protected<{
             transmitMessageCountSum = 0,
             invokeMessageCountSum = 0,
             atLeastOneDebug = false,
+            atLeastOneWithoutLicense = false,
             defaultUserGroupCountSum = 0,
             panelUserCountSum = 0,
             authUserGroupsCountsSum: Record<string,number> = {}
@@ -310,6 +314,7 @@ export default class Connector extends EventEmitter.Protected<{
 
             if(server.type === ServerType.Worker) {
                 atLeastOneDebug = atLeastOneDebug || server.debug;
+                atLeastOneWithoutLicense = atLeastOneWithoutLicense || server.license == null;
                 defaultUserGroupCountSum += server.users.defaultUserGroupCount;
                 panelUserCountSum += server.users.panelUserCount;
                 const authUserGroupsCounts = server.users.authUserGroupsCounts;
@@ -326,20 +331,21 @@ export default class Connector extends EventEmitter.Protected<{
             (cpuUsageSum / checkedMachines.length);
         const memoryUsage = totalMemorySum === 0 ? 0 :
             (usedMemorySum / totalMemorySum * 100);
-        const resourceUsage = (cpuUsage + memoryUsage) / 2;
+        const workload = (cpuUsage + memoryUsage) / 2;
 
         (this as Writable<Connector>).clusterSummary = {
             launchedTimestamp,
             cpuUsage: cpuUsage,
             memory: {totalMemMb: totalMemorySum,usedMemMb: usedMemorySum},
             memoryUsage: memoryUsage,
-            resourceUsage: resourceUsage,
+            workload: workload,
             clientCount: clientCountSum,
             httpMessageCount: httpMessageCountSum,
             wsMessageCount: wsMessageCountSum,
             transmitMessageCount: transmitMessageCountSum,
             invokeMessageCount: invokeMessageCountSum,
             atLeastOneDebug,
+            atLeastOneWithoutLicense,
             users: {
                 defaultUserGroupCount: defaultUserGroupCountSum,
                 panelUserCount: panelUserCountSum,

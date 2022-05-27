@@ -31,6 +31,7 @@ export interface StaticWorkerInformation extends BasicStaticServerInformation {
     readonly type: ServerType.Worker,
     hostname: string,
     appName: string,
+    tags: [string,string?][],
     debug: boolean,
     scaling: boolean,
     license?: LicenseInformation,

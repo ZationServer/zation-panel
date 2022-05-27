@@ -5,6 +5,7 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 export default interface ServersTypeGroupSummary {
+    workload: number,
     clientCount: number,
     clientDistribution: number,
     memory: {totalMemMb: number, usedMemMb: number},
