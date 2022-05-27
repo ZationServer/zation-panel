@@ -45,7 +45,7 @@ const AddServerRecommendationAlert: React.FC<{
 
     if (!renderWarning) return null;
     return (<Grid item xs={12}>
-        <Alert severity="warning">{`High ${type} workload. Please consider adding more ${type}s.`}</Alert>
+        <Alert severity="warning">{`High ${type} workload. Please consider adding more ${type}s on other machines to distribute the workload.`}</Alert>
     </Grid>)
 };
 
