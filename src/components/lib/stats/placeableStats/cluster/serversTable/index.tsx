@@ -53,6 +53,7 @@ const ServersTable: React.FC<{
                 {
                     title: "Name",
                     field: "name",
+                    cellStyle: { whiteSpace: 'nowrap' },
                     render: row =>
                         `${row.name}` +
                         (row.leader ? " 👑" : ""),
