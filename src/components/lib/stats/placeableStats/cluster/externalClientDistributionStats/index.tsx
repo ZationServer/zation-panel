@@ -16,10 +16,11 @@ const ExternalClientDistributionStats: React.FC<{
     maxLength?: number,
 }> = ({interval = 1000,maxLength = 10,bar,mini}) => {
     const connector = useConnector();
+    const fetchValue = () => Math.round(connector.workersSummary.clientDistribution * 100) / 100;
     if(!bar) return <RTLineChartCard
         description="Clients distribution"
         maxLength={maxLength}
-        fetchValue={() => connector.workersSummary.clientDistribution}
+        fetchValue={fetchValue}
         interval={interval}
         grace={0}
         mini={mini}
@@ -27,7 +28,7 @@ const ExternalClientDistributionStats: React.FC<{
     />
     else return <RTPercentageBarCard
         description={"Clients distribution"}
-        fetchPercent={() => connector.workersSummary.clientDistribution}
+        fetchPercent={fetchValue}
         interval={interval}
     />
 };
