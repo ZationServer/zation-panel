@@ -5,8 +5,8 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTMultiLineChartCard from "../../core/rtMultiLineChartCard";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTMultiLineChartCard from "../../../core/rtMultiLineChartCard";
 
 const MessageCountStats: React.FC<{
     interval?: number,

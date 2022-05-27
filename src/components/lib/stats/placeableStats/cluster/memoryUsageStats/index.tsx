@@ -5,16 +5,20 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTMultiLineChartCard from "../../core/rtMultiLineChartCard";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTMultiLineChartCard from "../../../core/rtMultiLineChartCard";
 
 const MemoryUsageStats: React.FC<{
     interval?: number,
     maxLength?: number,
 }> = ({interval = 1000,maxLength = 10}) => {
     const connector = useConnector();
-    const processValueTitle = () => Number((connector.clusterSummary.memory.usedMemMb /
-        connector.clusterSummary.memory.totalMemMb) * 100).toFixed(1) + ' %';
+    const processValueTitle = () => {
+        const memory = connector.clusterSummary.memory;
+        if(memory.totalMemMb <= 0) return (0 + " %");
+        return Number((memory.usedMemMb / memory.totalMemMb) * 100)
+            .toFixed(1) + ' %';
+    }
     return <RTMultiLineChartCard
         unit={"%"}
         valueTitle={processValueTitle}
@@ -26,7 +30,9 @@ const MemoryUsageStats: React.FC<{
             let stateMemoryUsage: string | number = 0;
             if(connector.state) {
                 const memory = connector.state.resourceUsage.machine.memory;
-                stateMemoryUsage = Number((memory.usedMemMb / memory.totalMemMb) * 100).toFixed(0);
+                if(memory.totalMemMb > 0)
+                    stateMemoryUsage = Number((memory.usedMemMb / memory.totalMemMb) * 100)
+                        .toFixed(0);
             }
             return [
                 connector.workersSummary.memoryUsage.toFixed(0),

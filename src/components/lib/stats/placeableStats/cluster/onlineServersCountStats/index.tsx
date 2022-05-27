@@ -5,8 +5,8 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTLineChartCard from "../../core/rtLineChartCard";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTLineChartCard from "../../../core/rtLineChartCard";
 
 const OnlineServersCountStats: React.FC<{
     interval?: number,

@@ -5,19 +5,18 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React, {useEffect} from "react";
-import RTCard, {RTCardHandle} from "../../../cards/rtCard";
+import RTCard, {RTCardHandle} from "../../../../cards/rtCard";
 import classes from "./index.module.css";
 import {useNavigate} from "react-router-dom";
 
 import cytoscape from 'cytoscape';
-import useConnector from "../../../../../lib/hooks/useConnector";
+import useConnector from "../../../../../../lib/hooks/useConnector";
 import {deepEqual} from "queric";
 require('cytoscape-node-html-label')(cytoscape);
 cytoscape.use(require('cytoscape-euler'));
 
 const LAYOUT_OPTIONS = {
     name: 'euler',
-    animate: 'end',
     randomize : true,
     pull: 0.000001,
     theta: 0.5,
@@ -230,8 +229,8 @@ const NetworkStatus: React.FC<{
             modified = true;
         });
 
-        if(modified) cy.layout(LAYOUT_OPTIONS).run();
         cy.endBatch();
+        if(modified) cy.layout(LAYOUT_OPTIONS).run();
     };
 
     const update = (force?: boolean) => {

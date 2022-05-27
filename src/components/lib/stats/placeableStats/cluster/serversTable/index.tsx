@@ -7,10 +7,10 @@ Copyright(c) Ing. Luca Gian Scaringella
 import React from "react";
 import {
     WorkerInformation,
-} from "../../../../../lib/definitions/serverInformation";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import {formatServerType} from "../../../../../lib/utils/serverType";
-import RTTableCard from "../../core/rtTableCard";
+} from "../../../../../../lib/definitions/serverInformation";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import {formatServerType} from "../../../../../../lib/utils/serverType";
+import RTTableCard from "../../../core/rtTableCard";
 import AgeColumn from "./tableColumns/ageColumn";
 import ProgressColumn from "./tableColumns/progressColumn";
 import {useNavigate} from "react-router-dom";
@@ -23,7 +23,8 @@ const ServersTable: React.FC<{
 
     const fetchTableData = () => Object.values(connector.servers).map(server => {
         const machine = server.resourceUsage.machine;
-        const memoryUsage = machine.memory.usedMemMb / machine.memory.totalMemMb * 100;
+        const memoryUsage = machine.memory.totalMemMb <= 0 ? 0 :
+            (machine.memory.usedMemMb / machine.memory.totalMemMb * 100);
         return {
             id: server.id,
             name: server.name,
@@ -32,7 +33,7 @@ const ServersTable: React.FC<{
             launchedTimestamp: server.launchedTimestamp,
             clientCount: server.clientCount,
             requestCount: server.wsMessageCount + server.httpMessageCount,
-            resourceUsage: (machine.cpu + memoryUsage) / 2
+            workload: (machine.cpu + memoryUsage) / 2
         };
     });
 
@@ -70,11 +71,11 @@ const ServersTable: React.FC<{
                     field: "requestCount",
                 },
                 {
-                    title: "Resource Usage",
-                    field: "resourceUsageSummary",
+                    title: "Workload",
+                    field: "workload",
                     render: row => (
                         <ProgressColumn
-                            percent={row.resourceUsage}
+                            percent={row.workload}
                         />
                     ),
                 },

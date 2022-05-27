@@ -5,9 +5,9 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTPercentageBarCard from "../../core/rtPercentageBarCard";
-import RTMultiLineChartCard from "../../core/rtMultiLineChartCard";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTPercentageBarCard from "../../../core/rtPercentageBarCard";
+import RTMultiLineChartCard from "../../../core/rtMultiLineChartCard";
 
 const CpuUsageStats: React.FC<{
     interval?: number,

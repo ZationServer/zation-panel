@@ -5,9 +5,9 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTPieChartCard from "../../core/rtPieChartCard";
-import {capitalizeFirstLetter} from "../../../../../lib/utils/string";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTPieChartCard from "../../../core/rtPieChartCard";
+import {capitalizeFirstLetter} from "../../../../../../lib/utils/string";
 
 const UserGroupsStats: React.FC<{
     interval?: number,

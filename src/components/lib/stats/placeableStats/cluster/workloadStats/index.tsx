@@ -5,11 +5,11 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import useConnector from "../../../../../lib/hooks/useConnector";
-import RTPercentageBarCard from "../../core/rtPercentageBarCard";
-import RTLineChartCard from "../../core/rtLineChartCard";
+import useConnector from "../../../../../../lib/hooks/useConnector";
+import RTPercentageBarCard from "../../../core/rtPercentageBarCard";
+import RTLineChartCard from "../../../core/rtLineChartCard";
 
-const ResourceUsageStats: React.FC<{
+const WorkloadStats: React.FC<{
     interval?: number,
     bar?: boolean,
     mini?: boolean,
@@ -19,20 +19,19 @@ const ResourceUsageStats: React.FC<{
     if(!bar) return <RTLineChartCard
         unit={"%"}
         valueTitle={v => v + ' %'}
-        dataLabel="used"
-        description="Resource usage"
+        description="Workload"
         maxLength={maxLength}
-        fetchValue={() => connector.clusterSummary.resourceUsage}
+        fetchValue={() => connector.clusterSummary.workload}
         interval={interval}
         grace={0}
         mini={mini}
         suggestedMax={100}
     />
     else return <RTPercentageBarCard
-        description={"Resource usage"}
-        fetchPercent={() => connector.clusterSummary.resourceUsage}
+        description={"Workload"}
+        fetchPercent={() => connector.clusterSummary.workload}
         interval={interval}
     />
 };
 
-export default ResourceUsageStats;
+export default WorkloadStats;
