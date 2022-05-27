@@ -6,9 +6,9 @@ Copyright(c) Ing. Luca Gian Scaringella
 
 import React from 'react';
 import {Grid} from "@mui/material";
-import ClientsCountStats from "../../../../lib/stats/placeableStats/externalClientsCountStats";
-import UserGroupsStats from "../../../../lib/stats/placeableStats/userGroupsStats";
-import ExternalClientDistributionStats from "../../../../lib/stats/placeableStats/externalClientDistribution";
+import ClientsCountStats from "../../../../lib/stats/placeableStats/cluster/externalClientsCountStats";
+import UserGroupsStats from "../../../../lib/stats/placeableStats/cluster/userGroupsStats";
+import ExternalClientDistributionStats from "../../../../lib/stats/placeableStats/cluster/externalClientDistributionStats";
 
 const Clients: React.FC = () => {
 
