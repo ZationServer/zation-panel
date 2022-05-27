@@ -1,0 +1,158 @@
+.serverGraphicsContainer {
+    position: relative;
+    height: 19.5rem;
+    min-width: 487px;
+}
+
+.serverBackground {
+    position: absolute;
+    top: -7.7rem;
+    height: 35rem;
+}
+
+.server {
+    position: absolute;
+    width: 15rem;
+    top: 2rem;
+    left: 5rem;
+}
+
+.serverMobile {
+    height: 5rem;
+    width: 5rem;
+    padding-right: 1rem;
+}
+
+.crown {
+    position: absolute;
+    width: 3rem;
+    top: 3.72em;
+    left: 6rem;
+}
+
+.rootDivider {
+    height: 0.2rem;
+    background-color: var(--primary-color)
+}
+
+.rootDividerLight {
+    height: 0.1rem;
+    opacity: 0.7;
+    background-color: var(--primary-color)
+}
+
+.tagsContainer {
+    padding: 1rem 1.5rem;
+}
+
+div.serverNameContainer {
+    margin-bottom: 0.6rem;
+}
+
+hr.infoDivider {
+    height: 0.05rem;
+    background-color: var(--primary-color);
+    width: 20rem;
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+div.infoContainer {
+    position: relative;
+    padding-top: 5.6rem;
+    padding-left: 15vw;
+    flex-grow: 10;
+    text-align: left;
+}
+
+div.infoContainer p {
+    font-family: NexaBold;
+    color: white;
+    font-size: 1.4rem;
+    display: inline;
+}
+
+div.infoContainer .serverTypeTypography {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+div.infoContainer .detailInfoTypography {
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+div.rootContainer {
+    top: -2rem;
+    position: relative;
+}
+
+.operatingSystemIcon {
+    position: relative;
+    top: -0.4rem;
+    width: 1.6rem;
+}
+
+.zationIcon {
+    position: relative;
+    top: -0.37rem;
+    width: 2.4rem;
+    margin-left: -0.3rem;
+    margin-right: -0.25rem;
+}
+
+@media (max-width:1260px)  {
+    .serverGraphicsContainer {
+        height: 16.3rem;
+    }
+    .serverBackground {
+        width: 30rem;
+    }
+    .server {
+        width: 12rem;
+        top: 1.5rem;
+        left: 5rem;
+    }
+    .crown {
+        width: 2.5rem;
+        top: 4.8rem;
+        left: 6rem;
+    }
+    div.infoContainer {
+        padding-top: 6.7rem;
+        padding-left: 3rem;
+    }
+    div.infoContainer p {
+        font-size: 1rem;
+    }
+    div.rootContainer {
+        top: -3rem;
+    }
+    div.infoContainer .serverTypeTypography {
+        font-size: 0.75rem;
+    }
+    hr.infoDivider {
+        width: 12rem;
+    }
+    div.infoContainer .detailInfoTypography {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 800px) {
+    div.infoContainer {
+        padding-top: 2rem;
+        padding-left: 0;
+        padding-bottom: 2rem;
+        text-align: left;
+        flex-grow: unset;
+    }
+    div.rootContainer {
+        justify-content: center;
+        align-items: center;
+    }
+    div.rootContainer {
+        top: 0;
+    }
+}
