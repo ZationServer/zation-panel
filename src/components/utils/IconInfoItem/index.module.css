@@ -1,0 +1,23 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+.iconContainer svg {
+    min-width: 1.8rem;
+}
+
+.textContainer {
+    font-family: NexaBold;
+    color: white;
+}
+
+.title {
+    font-size: 0.8rem;
+}
+
+.subTitle {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
