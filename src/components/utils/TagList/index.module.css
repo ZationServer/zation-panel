@@ -1,0 +1,17 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+div.chip {
+    color: white;
+    background-color: var(--paper-dark-bg-color);
+    font-family: 'NexaLight';
+    border-color: var(--primary-color);
+    border-width: 0.1rem;
+}
+
+div.chip span {
+    padding: 12px;
+}
