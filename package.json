@@ -37,7 +37,7 @@
     "unique-names-generator": "4.7.1",
     "web-vitals": "^2.1.2",
     "is-ip": "^4.0.0",
-    "zation-client": "3.0.0-dev.30"
+    "zation-client": "3.0.0-dev.31"
   },
   "scripts": {
     "start": "react-scripts start",
