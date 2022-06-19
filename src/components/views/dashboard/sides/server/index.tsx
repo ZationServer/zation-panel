@@ -39,25 +39,25 @@ const Server: React.FC = () => {
     return (
         <div className={`container-fluid ` + classes.rootContainer}>
             <div className={`animated fadeIn`}>
-                <Grid container direction="column">
+                <Grid container>
                     <Grid item xs={12}>
                         <ServerDetails id={id} interval={1000}/>
                     </Grid>
                     <Grid item xs={12}>
                         <Grid container spacing={4} className={classes.chartsContainer}>
-                            <Grid item sm={12} md={6}>
+                            <Grid item xs={12} md={6}>
                                 <WorkloadStats serverId={id}/>
                             </Grid>
-                            <Grid item sm={12} md={6}>
+                            <Grid item xs={12} md={6}>
                                 <StorageUsageStats serverId={id}/>
                             </Grid>
                             <Grid item xs={12}>
                                 <MessagesCountStats serverId={id}/>
                             </Grid>
-                            <Grid item xs={worker ? 6 : 12}>
+                            <Grid item xs={12} md={worker ? 6 : 12}>
                                 <ClientsCountStats serverId={id}/>
                             </Grid>
-                            {worker ? <Grid item xs={6}>
+                            {worker ? <Grid item xs={12} md={6}>
                                 <WorkerClientCountClusterRelationStats serverId={id}/>
                             </Grid> : null}
                         </Grid>
