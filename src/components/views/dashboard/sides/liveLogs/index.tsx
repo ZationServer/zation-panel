@@ -24,7 +24,7 @@ const LiveLogs: React.FC = () => {
 
     const toggleRunning = useCallback((state?: boolean) => {
         const newState = state != null ? state : !running;
-        if (newState == running) return;
+        if (newState === running) return;
         reAddClassName(toggleRunningBtn.current, 'pulse');
         setRunning(newState);
     }, [toggleRunningBtn, running]);

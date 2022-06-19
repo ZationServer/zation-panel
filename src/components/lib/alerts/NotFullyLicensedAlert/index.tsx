@@ -18,7 +18,7 @@ const NotFullyLicensedAlert: React.FC<{
     useEffect(() => {
         const intervalTicker = setInterval(() => forceUpdate(), interval);
         return () => clearInterval(intervalTicker);
-    }, [interval]);
+    }, [interval,forceUpdate]);
 
     if (!connector.clusterSummary.atLeastOneWithoutLicense) return null;
     return (<Grid item xs={12}>

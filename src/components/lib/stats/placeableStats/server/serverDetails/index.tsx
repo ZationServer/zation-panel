@@ -35,7 +35,7 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
     useEffect(() => {
         const intervalTicker = setInterval(() => forceUpdate(), interval);
         return () => clearInterval(intervalTicker);
-    }, [interval]);
+    }, [interval,forceUpdate]);
 
     const hostname = (server as WorkerInformation).hostname;
     const ip = server.ip;

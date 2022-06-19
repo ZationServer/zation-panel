@@ -28,7 +28,7 @@ const AddServerRecommendationAlert: React.FC<{
     useEffect(() => {
         const intervalTicker = setInterval(() => forceUpdate(), interval);
         return () => clearInterval(intervalTicker);
-    }, [interval]);
+    }, [interval,forceUpdate]);
 
     let renderWarning = false;
     let workload: number = 0;

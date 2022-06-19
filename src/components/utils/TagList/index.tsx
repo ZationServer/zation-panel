@@ -5,7 +5,7 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React from "react";
-import {Chip, Grid, Stack} from "@mui/material";
+import {Chip, Grid} from "@mui/material";
 import classes from "./index.module.css";
 
 const TagList: React.FC<{ tags: [string, string?][], className?: string }> =

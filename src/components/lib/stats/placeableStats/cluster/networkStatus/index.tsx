@@ -4,7 +4,7 @@ GitHub: LucaCode
 Copyright(c) Ing. Luca Gian Scaringella
  */
 
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import RTCard, {RTCardHandle} from "../../../../cards/rtCard";
 import classes from "./index.module.css";
 import {useNavigate} from "react-router-dom";
@@ -90,7 +90,7 @@ const NetworkStatus: React.FC<{
 
     const navigate = useNavigate();
 
-    const buildStructure = () => {
+    const buildStructure = useCallback(() => {
         const edges: cytoscape.EdgeDefinition[] = [];
         const nodes: cytoscape.NodeDefinition[] = [];
 
@@ -184,14 +184,14 @@ const NetworkStatus: React.FC<{
             }
         }
         return {nodes,edges};
-    };
+    },[connector]);
 
     const parseElementIds = (structure: cytoscape.ElementsDefinition) => {
         const elements = [...structure.nodes,...structure.edges];
         return elements.map(element => element.data.id);
     }
 
-    const updateNetwork = (currentStructure: cytoscape.ElementsDefinition,newStructure: cytoscape.ElementsDefinition) => {
+    const updateNetwork = useCallback((currentStructure: cytoscape.ElementsDefinition,newStructure: cytoscape.ElementsDefinition) => {
         const cy = cyRef.current;
         if(!cy) return;
 
@@ -231,9 +231,9 @@ const NetworkStatus: React.FC<{
 
         cy.endBatch();
         if(modified) cy.layout(LAYOUT_OPTIONS).run();
-    };
+    },[]);
 
-    const update = (force?: boolean) => {
+    const update = useCallback((force?: boolean) => {
         if(!force && !rtCardRef.current!.isRunning()) return;
         const currentStructure = structureRef.current;
         if(!currentStructure) return;
@@ -242,7 +242,7 @@ const NetworkStatus: React.FC<{
         structureRef.current = newStructure;
 
         updateNetwork(currentStructure,newStructure);
-    }
+    },[updateNetwork,buildStructure]);
 
     useEffect(() => {
         if(!containerRef.current) return;
@@ -297,12 +297,12 @@ const NetworkStatus: React.FC<{
         };
         window.addEventListener('resize', resizeListener);
         return () => window.removeEventListener('resize', resizeListener);
-    },[containerRef]);
+    },[containerRef,buildStructure,navigate]);
 
     useEffect(() => {
         const intervalTicker = setInterval(() => update(),interval);
         return () => clearInterval(intervalTicker);
-    },[interval]);
+    },[interval,update]);
 
     return (
         <RTCard ref={rtCardRef} value={"Network"} big className={classes.card}

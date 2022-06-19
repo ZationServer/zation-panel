@@ -4,7 +4,7 @@ GitHub: LucaCode
 Copyright(c) Ing. Luca Gian Scaringella
  */
 
-import React, { useEffect } from "react";
+import React, {useCallback, useEffect} from "react";
 import logo from "../../../assets/image/zationLogo.svg";
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -45,16 +45,16 @@ const Dashboard: React.FC = () => {
   const toggleMobileSidebar = () => {
     document.getElementsByTagName("body")[0].classList.toggle("sidebar-show");
   };
-  const dismissMobileSidebar = () => {
+  const dismissMobileSidebar = useCallback(() => {
     if (document.getElementsByTagName("body")[0]?.classList?.contains("sidebar-show"))
       toggleMobileSidebar();
-  }
+  },[]);
   useEffect(() => {
     const main = document.getElementsByClassName("main")[0];
     if (!main) return;
     main.addEventListener("click", dismissMobileSidebar, true);
     return () => main.removeEventListener("click", dismissMobileSidebar, true);
-  }, []);
+  }, [dismissMobileSidebar]);
 
   const openAccMenu = (event: any) => {
     setAccMenuAnchor(event.currentTarget);

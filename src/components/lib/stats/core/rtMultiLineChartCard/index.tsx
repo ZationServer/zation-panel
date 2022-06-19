@@ -5,7 +5,7 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React, {useEffect, useRef} from "react";
-import {ChartOptions, ChartData, Chart, LegendItem, LegendElement} from 'chart.js';
+import {ChartOptions, ChartData, Chart} from 'chart.js';
 import {Line} from "react-chartjs-2";
 import RTCard, {RTCardHandle} from "../../../cards/rtCard";
 import {capitalizeFirstLetter} from "../../../../../lib/utils/string";

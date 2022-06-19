@@ -4,7 +4,7 @@ GitHub: LucaCode
 Copyright(c) Ing. Luca Gian Scaringella
  */
 
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import useClient from "./lib/hooks/useClient";
 import {ConnectAbortError, TimeoutError} from "zation-client";
 import useConnector from './lib/hooks/useConnector';
@@ -29,12 +29,12 @@ function App() {
     const [error,setError] = useState<Error | null>(null);
     stateRef.current = state;
 
-    const loadPanel = async () => {
+    const loadPanel = useCallback(async () => {
         setState(AppState.Loading);
         await connector.connect(client);
         //wait 3000ms so that servers can respond
         setTimeout(() => setState(AppState.Panel),3000);
-    };
+    },[client,connector]);
 
     useEffect(() => {
         client.onDisconnect(() => {
@@ -64,7 +64,7 @@ function App() {
                 else setError(new Error("Unknown error occurred"));
             }
         })();
-    },[]);
+    },[client,loadPanel]);
     return (
         <div className="view-root">
             {error ? <ErrorView message={error.message}/> :

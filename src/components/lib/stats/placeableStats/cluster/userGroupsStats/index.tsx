@@ -23,7 +23,7 @@ const UserGroupsStats: React.FC<{
         fetchValues={() => {
             const res = {
                 [capitalizeFirstLetter(connector.defaultUserGroupName)]: connector.clusterSummary.users.defaultUserGroupCount,
-                ["Panel user"]: connector.clusterSummary.users.panelUserCount,
+                "Panel user": connector.clusterSummary.users.panelUserCount,
             };
             const authUserGroupsCount = connector.clusterSummary.users.authUserGroupsCounts;
             for(const group in authUserGroupsCount) {
