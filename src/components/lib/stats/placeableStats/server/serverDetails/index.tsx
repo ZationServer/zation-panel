@@ -5,21 +5,26 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import React, {useEffect} from 'react';
-import {Grid, Typography, useMediaQuery, Tooltip, Divider} from "@mui/material";
+import {Divider, Grid, Tooltip, Typography, useMediaQuery} from "@mui/material";
 import {ReactComponent as ServerBackground} from '../../../../../../assets/image/serverBackground.svg'
 import {ReactComponent as Server} from '../../../../../../assets/image/server.svg'
 import {ReactComponent as Crown} from '../../../../../../assets/image/crown.svg'
 import {ReactComponent as Gears} from '../../../../../../assets/image/gears.svg'
+import {ReactComponent as Warning} from '../../../../../../assets/image/warning.svg'
+import {ReactComponent as Certificate} from '../../../../../../assets/image/certificate.svg'
+import {ReactComponent as Protected} from '../../../../../../assets/image/protected.svg'
+import {ReactComponent as Debug} from '../../../../../../assets/image/debug.svg'
 import {ReactComponent as ZationLogo} from '../../../../../../assets/image/zationLogo.svg'
 import classes from "./index.module.css";
 import useConnector from "../../../../../../lib/hooks/useConnector";
-import {WorkerInformation} from "../../../../../../lib/definitions/serverInformation";
+import {ServerType, WorkerInformation} from "../../../../../../lib/definitions/serverInformation";
 import {formatServerType} from "../../../../../../lib/utils/serverType";
 import {useForceUpdate} from "../../../../../../lib/hooks/useForceReload";
 import TimeUtils from "../../../../../../lib/utils/time";
 import {isIPv6} from "is-ip";
 import IconInfoItem from "../../../../../utils/IconInfoItem";
 import TagList from "../../../../../utils/TagList";
+import {capitalizeFirstLetter} from "../../../../../../lib/utils/string";
 
 const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval = 1000}) => {
 
@@ -36,6 +41,23 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
     const ip = server.ip;
     const tags = (server as WorkerInformation).tags ?? [];
 
+    function getServerWarningReasons(): string[] {
+        const reasons = [];
+        if (server.type === ServerType.Worker) {
+            if ((server as WorkerInformation).license == null)
+                reasons.push("The server does not have a license.");
+            if (server.debug)
+                reasons.push("The server debug mode is activated.");
+        }
+        const usage = server.resourceUsage;
+        if (usage.machine.cpu >= 90)
+            reasons.push("High CPU usage.");
+        if (((usage.machine.memory.usedMemMb / usage.machine.memory.totalMemMb) * 100) > 90)
+            reasons.push("High memory consumption.");
+        return reasons;
+    }
+    const warningReasons: string[] = getServerWarningReasons();
+
     return (<Grid container>
         <Grid item xs={12}>
             <Grid container alignItems={"flex-start"} className={classes.rootContainer}>
@@ -47,6 +69,30 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
                             <Crown className={classes.crown}/>
                         </Tooltip>
                         : null}
+                    {warningReasons.length > 0 ?
+                        <Tooltip title={<div className={classes.tooltipMultiline}>{warningReasons.join("\n")}</div>}>
+                            <Warning className={classes.warning}/>
+                        </Tooltip>
+                        : null}
+                    {server.type === ServerType.Worker ?
+                        <Grid container className={classes.symbolInfoBar} spacing={1.2}>
+                            <Grid item>
+                                <Tooltip title={server.license != null ? "The server does have a valid license." :
+                                    "The server does not have a license."}>
+                                    <Certificate style={{fill: server.license != null ? "#4AFFA8" : "rgba(6,8,10,0.45)"}}/>
+                                </Tooltip>
+                            </Grid>
+                            <Grid item>
+                                <Tooltip title={`TLS is ${server.tls ? "activated" : "deactivated"}.`}>
+                                    <Protected style={{fill: server.tls ? "#4AFFA8" : "rgba(6,8,10,0.45)"}}/>
+                                </Tooltip>
+                            </Grid>
+                            {server.debug ? <Grid item>
+                                <Tooltip title={"The server is running in debug mode."}>
+                                    <Debug/>
+                                </Tooltip>
+                            </Grid> : null}
+                        </Grid> : null}
                 </Grid> : <Grid item>
                     <Server className={classes.serverMobile}/>
                 </Grid>}
@@ -85,7 +131,7 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
                         <Grid item xs={12}>
                             <IconInfoItem
                                 title={server.os}
-                                subTitle={server.platform}
+                                subTitle={capitalizeFirstLetter(server.platform)}
                                 icon={<Gears className={classes.operatingSystemIcon}/>}
                             />
                         </Grid>

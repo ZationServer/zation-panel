@@ -18,9 +18,11 @@
 }
 
 .serverMobile {
-    height: 5rem;
-    width: 5rem;
+    width: 10rem;
     padding-right: 1rem;
+    margin-bottom: -4rem;
+    margin-top: -4rem;
+    margin-right: 1rem;
 }
 
 .crown {
@@ -49,6 +51,20 @@ div.serverNameContainer {
     margin-bottom: 0.6rem;
 }
 
+.tooltipMultiline {
+    white-space: pre-line
+}
+
+div.symbolInfoBar {
+    position: absolute;
+    left: 24rem;
+    top: 18rem;
+}
+
+div.symbolInfoBar svg {
+    width: 1.8rem
+}
+
 hr.infoDivider {
     height: 0.05rem;
     background-color: var(--primary-color);
@@ -64,6 +80,10 @@ div.infoContainer {
     padding-left: 15vw;
     flex-grow: 10;
     text-align: left;
+}
+
+div.infoContainer > div {
+    position: absolute;
 }
 
 div.infoContainer p {
@@ -102,6 +122,13 @@ div.rootContainer {
     margin-right: -0.25rem;
 }
 
+.warning {
+    position: absolute;
+    left: 18rem;
+    top: 2.6rem;
+    width: 4rem;
+}
+
 @media (max-width:1260px)  {
     .serverGraphicsContainer {
         height: 16.3rem;
@@ -119,8 +146,19 @@ div.rootContainer {
         top: 4.8rem;
         left: 6rem;
     }
+    .warning {
+        left: 15.5rem;
+        top: 3.8rem;
+        width: 2.8rem;
+    }
+    div.symbolInfoBar {
+        left: 20rem;
+        top: 16.2rem;
+    }
+    div.symbolInfoBar svg {
+        width: 1.5rem
+    }
     div.infoContainer {
-        padding-top: 6.7rem;
         padding-left: 3rem;
     }
     div.infoContainer p {
@@ -154,5 +192,11 @@ div.rootContainer {
     }
     div.rootContainer {
         top: 0;
+    }
+    div.infoContainer > div {
+        position: relative;
+    }
+    div.serverNameContainer {
+        margin-bottom: 0;
     }
 }
