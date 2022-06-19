@@ -22,12 +22,12 @@ interface BasicStaticServerInformation extends GeneralSystemInfo {
     path: string,
     tls: boolean,
     nodeVersion: string,
-    ip: string,
     serverVersion: string,
     launchedTimestamp: number,
 }
 
 export interface StaticWorkerInformation extends BasicStaticServerInformation {
+    id: string,
     readonly type: ServerType.Worker,
     hostname: string,
     appName: string,
@@ -49,6 +49,7 @@ export interface StaticStateInformation extends BasicStaticServerInformation {
 
 interface BasicDynamicServerInformation {
     id: string,
+    ip: string,
     clientCount: number,
     resourceUsage: ResourceUsageInformation,
     httpMessageCount: number,
