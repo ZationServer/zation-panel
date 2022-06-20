@@ -4,7 +4,7 @@ GitHub: LucaCode
 Copyright(c) Ing. Luca Gian Scaringella
  */
 
-import React, {useCallback, useEffect} from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 import logo from "../../../assets/image/zationLogo.svg";
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -32,10 +32,12 @@ import Clients from "./sides/clients";
 import Servers from "./sides/servers";
 import NotFound from "./sides/notFound";
 import Server from "./sides/server";
+import ScrollToTop from "../../utils/scrollToTop";
 
 const Dashboard: React.FC = () => {
   const client = useClient();
   const username = useUsername();
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
   const [accMenuAnchor, setAccMenuAnchor] = React.useState<HTMLElement | null>(
     null
@@ -67,8 +69,10 @@ const Dashboard: React.FC = () => {
     <div
       id="dashboard"
       className="sidebar-lg-show sidebar-fixed fadeIn animated"
+      ref={dashboardRef}
     >
       <Router>
+        <ScrollToTop containerRef={dashboardRef}/>
         <AppBar position="sticky" className={"navbar"}>
           <Toolbar>
             <Box className="nav-btn-box">
