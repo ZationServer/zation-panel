@@ -17,14 +17,6 @@
     left: 5rem;
 }
 
-.serverMobile {
-    width: 10rem;
-    padding-right: 1rem;
-    margin-bottom: -4rem;
-    margin-top: -4rem;
-    margin-right: 1rem;
-}
-
 .crown {
     position: absolute;
     width: 3rem;
@@ -198,5 +190,29 @@ div.rootContainer {
     }
     div.serverNameContainer {
         margin-bottom: 0;
+    }
+    .server {
+        width: 10rem;
+        padding-right: 1rem;
+        margin-bottom: -4rem;
+        margin-top: -4rem;
+        margin-right: 1rem;
+        top: 0;
+        left: 0;
+    }
+    .serverGraphicsContainer {
+        min-width: 13rem;
+        height: 14.3rem;
+    }
+    .crown {
+        top: 0.28rem;
+        left: 1rem;
+    }
+    .warning {
+        left: 8.5rem;
+        top: -0.5rem;
+    }
+    .rootContainer {
+        min-width: 30rem;
     }
 }

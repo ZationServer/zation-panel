@@ -61,8 +61,8 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
     return (<Grid container>
         <Grid item xs={12}>
             <Grid container alignItems={"flex-start"} className={classes.rootContainer}>
-                {!mobileMode ? <Grid item className={classes.serverGraphicsContainer}>
-                    <ServerBackground className={classes.serverBackground}/>
+                <Grid item className={classes.serverGraphicsContainer}>
+                    {mobileMode ? null : <ServerBackground className={classes.serverBackground}/>}
                     <Server className={classes.server}/>
                     {(server as WorkerInformation).leader ?
                         <Tooltip title={"Leader"}>
@@ -93,9 +93,7 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
                                 </Tooltip>
                             </Grid> : null}
                         </Grid> : null}
-                </Grid> : <Grid item>
-                    <Server className={classes.serverMobile}/>
-                </Grid>}
+                </Grid>
                 <Grid item className={classes.infoContainer}>
                     <Grid container direction="column" spacing={0.1}>
                         <Grid item xs={12}>
