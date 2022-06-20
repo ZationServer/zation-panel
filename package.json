@@ -37,6 +37,7 @@
     "cytoscape-fcose": "2.1.0",
     "cytoscape-node-html-label": "1.2.2",
     "emitix": "^2.0.0",
+    "is-ip": "^4.0.0",
     "moment": "^2.29.1",
     "queric": "^2.0.0",
     "react": "^17.0.2",
@@ -50,7 +51,6 @@
     "typescript": "^4.5.4",
     "unique-names-generator": "4.7.1",
     "web-vitals": "^2.1.2",
-    "is-ip": "^4.0.0",
     "zation-client": "3.0.0-dev.31"
   },
   "scripts": {
