@@ -2,6 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <script type="text/javascript">
+      const PATH = window.location.pathname;
+      const panelIndex = PATH.lastIndexOf('/panel');
+      const parsedRootPanelPath = (PATH.substring(0,(panelIndex+6)).replace(/(\/)+$/,'')) || "/";
+      const BASE_PANEL_PATH = (panelIndex === -1 || parsedRootPanelPath === '') ? '/' : (parsedRootPanelPath + "/") ;
+      const base = document.createElement('base');
+      base.href = BASE_PANEL_PATH;
+      document.getElementsByTagName('head')[0].appendChild(base);
+    </script>
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon/favicon-16x16.png">
