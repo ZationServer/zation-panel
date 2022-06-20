@@ -11,9 +11,6 @@ import {ReactComponent as Server} from '../../../../../../assets/image/server.sv
 import {ReactComponent as Crown} from '../../../../../../assets/image/crown.svg'
 import {ReactComponent as Gears} from '../../../../../../assets/image/gears.svg'
 import {ReactComponent as Warning} from '../../../../../../assets/image/warning.svg'
-import {ReactComponent as Certificate} from '../../../../../../assets/image/certificate.svg'
-import {ReactComponent as Protected} from '../../../../../../assets/image/protected.svg'
-import {ReactComponent as Debug} from '../../../../../../assets/image/debug.svg'
 import {ReactComponent as ZationLogo} from '../../../../../../assets/image/zationLogo.svg'
 import classes from "./index.module.css";
 import useConnector from "../../../../../../lib/hooks/useConnector";
@@ -25,6 +22,7 @@ import {isIPv6} from "is-ip";
 import IconInfoItem from "../../../../../utils/IconInfoItem";
 import TagList from "../../../../../utils/TagList";
 import {capitalizeFirstLetter} from "../../../../../../lib/utils/string";
+import SymbolInfoBar from "./subComponents/SymbolInfoBar";
 
 const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval = 1000}) => {
 
@@ -75,24 +73,8 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
                         </Tooltip>
                         : null}
                     {server.type === ServerType.Worker ?
-                        <Grid container className={classes.symbolInfoBar} spacing={1.2}>
-                            <Grid item>
-                                <Tooltip title={server.license != null ? "The server does have a valid license." :
-                                    "The server does not have a license."}>
-                                    <Certificate style={{fill: server.license != null ? "#4AFFA8" : "rgba(6,8,10,0.45)"}}/>
-                                </Tooltip>
-                            </Grid>
-                            <Grid item>
-                                <Tooltip title={`TLS is ${server.tls ? "activated" : "deactivated"}.`}>
-                                    <Protected style={{fill: server.tls ? "#4AFFA8" : "rgba(6,8,10,0.45)"}}/>
-                                </Tooltip>
-                            </Grid>
-                            {server.debug ? <Grid item>
-                                <Tooltip title={"The server is running in debug mode."}>
-                                    <Debug/>
-                                </Tooltip>
-                            </Grid> : null}
-                        </Grid> : null}
+                        <SymbolInfoBar brightDeactivatedSymbols={mobileMode} server={server}
+                                       className={classes.symbolInfoBar}/> : null}
                 </Grid>
                 <Grid item className={classes.infoContainer}>
                     <Grid container direction="column" spacing={0.1}>

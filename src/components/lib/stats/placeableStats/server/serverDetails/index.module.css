@@ -72,10 +72,22 @@ div.infoContainer {
     padding-left: 15vw;
     flex-grow: 10;
     text-align: left;
+    max-width: 14rem;
+}
+
+div.infoContainer p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block !important;
 }
 
 div.infoContainer > div {
     position: absolute;
+}
+
+div.infoContainer > div > div {
+    width: 100%
 }
 
 div.infoContainer p {
@@ -212,7 +224,41 @@ div.rootContainer {
         left: 8.5rem;
         top: -0.5rem;
     }
+    div.symbolInfoBar {
+        top: 0.5rem;
+        left: initial;
+        right: -28rem;
+    }
+    div.symbolInfoBar svg {
+        width: 1.2rem
+    }
+}
+
+@media (max-width: 730px) {
+    div.symbolInfoBar {
+        top: 14rem;
+        left: initial;
+        right: -8rem;
+    }
+    div.symbolInfoBar svg {
+        width: 1.6rem
+    }
     .rootContainer {
-        min-width: 30rem;
+        margin-bottom: 2rem;
+    }
+    hr.infoDivider {
+        width: 10rem;
+    }
+    div.infoContainer {
+        max-width: 11rem;
+    }
+    .serverGraphicsContainer {
+        min-width: 12rem;
+    }
+}
+
+@media (max-width: 400px) {
+    hr.infoDivider {
+        width: 9rem;
     }
 }

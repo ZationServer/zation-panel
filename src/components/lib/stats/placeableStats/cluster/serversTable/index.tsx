@@ -82,6 +82,7 @@ const ServersTable: React.FC<{
                 },
                 {
                     title: "Age",
+                    cellStyle: { whiteSpace: 'nowrap' },
                     field: "launchedTimestamp",
                     render: row => (
                         <AgeColumn timestamp={row.launchedTimestamp}/>
