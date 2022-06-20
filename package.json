@@ -1,6 +1,6 @@
 {
   "name": "zation-panel",
-  "version": "3.0.0-dev.1",
+  "version": "3.0.0-dev.2",
   "description": "Zation Panel",
   "license": "SEE LICENSE IN <README.md>",
   "main": "build/index.html",
