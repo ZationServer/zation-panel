@@ -33,6 +33,7 @@ import Servers from "./sides/servers";
 import NotFound from "./sides/notFound";
 import Server from "./sides/server";
 import ScrollToTop from "../../utils/scrollToTop";
+import { ROOT_PANEL_PATH } from "../../../lib/utils/constants";
 
 const Dashboard: React.FC = () => {
   const client = useClient();
@@ -71,7 +72,7 @@ const Dashboard: React.FC = () => {
       className="sidebar-lg-show sidebar-fixed fadeIn animated"
       ref={dashboardRef}
     >
-      <Router>
+      <Router basename={ROOT_PANEL_PATH}>
         <ScrollToTop containerRef={dashboardRef}/>
         <AppBar position="sticky" className={"navbar"}>
           <Toolbar>
