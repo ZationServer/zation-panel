@@ -243,7 +243,7 @@ div.rootContainer {
     div.symbolInfoBar svg {
         width: 1.6rem
     }
-    .rootContainer {
+    .rootContainer.activeSymbolInfoBar {
         margin-bottom: 2rem;
     }
     hr.infoDivider {

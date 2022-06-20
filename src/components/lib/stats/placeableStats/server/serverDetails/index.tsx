@@ -55,10 +55,12 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
         return reasons;
     }
     const warningReasons: string[] = getServerWarningReasons();
+    const activeSymbolInfoBar = server.type === ServerType.Worker;
 
     return (<Grid container>
         <Grid item xs={12}>
-            <Grid container alignItems={"flex-start"} className={classes.rootContainer}>
+            <Grid container alignItems={"flex-start"}
+                  className={[classes.rootContainer,...(activeSymbolInfoBar ? [classes.activeSymbolInfoBar] : [])].join(" ")}>
                 <Grid item className={classes.serverGraphicsContainer}>
                     {mobileMode ? null : <ServerBackground className={classes.serverBackground}/>}
                     <Server className={classes.server}/>
@@ -72,7 +74,7 @@ const ServerDetails: React.FC<{ id: string, interval: number }> = ({id, interval
                             <Warning className={classes.warning}/>
                         </Tooltip>
                         : null}
-                    {server.type === ServerType.Worker ?
+                    {activeSymbolInfoBar ?
                         <SymbolInfoBar brightDeactivatedSymbols={mobileMode} server={server}
                                        className={classes.symbolInfoBar}/> : null}
                 </Grid>
