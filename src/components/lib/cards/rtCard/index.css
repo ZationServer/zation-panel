@@ -1,0 +1,72 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+.card.bg-info {
+    border-color: var(--secondary-color);
+}
+
+.cardGreen.bg-info {
+    border-color: rgba(43, 225, 98,.6)!important;
+}
+
+.bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-dark {
+    color: #fff;
+}
+
+.big-card .chart-wrapper{
+    flex-grow: 1;
+    margin-top: 0.4rem;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.bg-info {
+    background-color: var(--secondary-color) !important;
+}
+
+.card {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #c8ced3;
+    border-radius: 0.25rem;
+}
+
+.card.big-card {
+    height: 23rem;
+    background-color: var(--paper-dark-bg-color) !important;
+}
+
+.card.big-card.flexible-big-height {
+    height: auto;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.25rem 1rem 1.25rem;
+}
+
+.card .value-text {
+    font-size: 1.3125rem;
+    font-weight: 600;
+    font-family: "NexaBold";
+}
+
+.card .description-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: NexaLight;
+    margin-top: 0.4em;
+}

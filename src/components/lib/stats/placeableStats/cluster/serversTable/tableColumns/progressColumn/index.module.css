@@ -1,0 +1,25 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+.progressBar {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .65625rem;
+    background-color: #f0f3f5;
+    width: 7rem;
+}
+
+.progressBarIndicator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #2f353a;
+    transition: width .6s ease;
+}

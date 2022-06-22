@@ -1,6 +1,6 @@
 {
   "name": "zation-panel",
-  "version": "0.7.5",
+  "version": "3.0.0-pre-alpha.1",
   "description": "Zation Panel",
   "license": "SEE LICENSE IN <README.md>",
   "main": "build/index.html",
@@ -9,12 +9,49 @@
     "url": "https://github.com/ZationServer/zation-panel.git"
   },
   "files": [
-    "build/**/*"
+    "build/**/*",
+    "!.DS_Store"
   ],
   "author": {
-    "name": "Luca Scarignella",
-    "email": "lucacode1@gmail.com",
-    "url": "https://luca.scaringella.de"
+    "name": "Ing. Luca Gian Scaringella",
+    "email": "lucacode1@gmail.com"
+  },
+  "devDependencies": {
+    "@date-io/core": "^1.3.13",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@material-table/core": "^0.2.34",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.5",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/cytoscape": "3.19.2",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.15",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "chart.js": "^3.7.0",
+    "chartjs-adapter-moment": "^1.0.0",
+    "cytoscape": "3.20.0",
+    "cytoscape-fcose": "2.1.0",
+    "cytoscape-node-html-label": "1.2.2",
+    "emitix": "^2.0.0",
+    "is-ip": "^4.0.0",
+    "moment": "^2.29.1",
+    "queric": "^2.0.0",
+    "react": "^17.0.2",
+    "react-chartjs-2": "^4.0.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "react-spinners": "0.11.0",
+    "sass": "^1.45.1",
+    "typescript": "^4.5.4",
+    "unique-names-generator": "4.7.1",
+    "web-vitals": "^2.1.2",
+    "zation-client": "3.0.0-pre-alpha.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,46 +59,23 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "./",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "homepage": "/zation/assets/panel/",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "@blueprintjs/core": "3.12.0",
-    "@emotion/core": "latest",
-    "@material-ui/core": "3.9.4",
-    "@material-ui/icons": "3.0.2",
-    "bootstrap": ">=4.3.1",
-    "chart.js": "2.7.3",
-    "events": "3.0.0",
-    "material-table": "1.18.0",
-    "mdbreact": "4.10.0",
-    "prop-types": "15.6.2",
-    "react": "16.8.2",
-    "react-alert": "^5.0.0",
-    "react-bootstrap": "1.0.1",
-    "react-center": "^1.1.1",
-    "react-chartjs-2": "2.7.4",
-    "react-dom": "16.8.2",
-    "react-icons": "3.3.0",
-    "react-router-dom": "4.3.1",
-    "react-router-page-transition": "3.1.0",
-    "react-scripts": "^2.1.5",
-    "react-sidenav": "3.1.7",
-    "react-spinners": "0.5.1",
-    "react-view-switch": "0.1.4",
-    "styled-components": "4.1.3",
-    "zation-client": "^1.6.3",
-    "cytoscape": "3.6.2",
-    "cytoscape-euler": "1.2.1",
-    "cytoscape-node-html-label": "1.1.3",
-    "fsevents": "^1.2.7",
-    "node-sass": "^4.14.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,0 +1,114 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+.MuiPaper-root.navbar {
+    background-color: var(--paper-dark-bg-color);
+    min-height: 64px;
+    max-height: 64px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-grow: 1;
+    margin-left: 1rem;
+    margin-top: 0.2em;
+}
+
+.MuiTypography-root.brand-title {
+    color: var(--primary-color);
+    font-family: NexaBold;
+    font-size: 1.4em;
+    margin-left: 0.2em;
+}
+
+.brand-icon img {
+    max-width: 100%;
+    height: auto;
+}
+
+.brand-icon {
+    min-width: 2.5em;
+}
+
+.MuiAvatar-root.avatar {
+    background-color: var(--paper-dark-bg-color);
+}
+
+.MuiPaper-root.account-menu {
+    background-color: var(--paper-dark-bg-color);
+    min-width: 10em;
+}
+
+.MuiPaper-root.account-menu li:hover {
+    background-color: var(--paper-active-bg-color);
+}
+
+.MuiPaper-root.account-menu li {
+    transition: background-color .1s ease-in-out;
+}
+
+.MuiPaper-root.account-menu span {
+    font-family: NexaBold;
+    color: white;
+    font-size: 0.8em;
+}
+
+.MuiPaper-root.account-menu svg {
+    color: white;
+}
+
+@media (min-width: 992px) {
+    html:not([dir="rtl"]) .main {
+        margin-left: 200px;
+    }
+}
+
+#dashboard {
+    height: 100%;
+    overflow-x: hidden;
+    min-width: 370px;
+}
+
+.main {
+    height: calc(100% - 64px);
+    flex: 1;
+    min-width: 370px;
+    z-index: 1000;
+    position: relative;
+    transition: margin-left 0.25s;
+}
+
+@media (min-width: 992px) {
+    .sidebar-minimized main{
+        margin-left: 3rem!important;
+    }
+}
+
+.main > .container-fluid {
+    height: calc(100% - 1.5rem);
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.main > .container-fluid > div {
+    padding-bottom: 1.5rem;
+}
+
+.navbar {
+    min-width: 370px;
+}
+
+.nav-btn-box {
+    flex-grow: 1;
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .nav-btn-box {
+        display: flex;
+    }
+}

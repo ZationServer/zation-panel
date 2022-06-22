@@ -1,0 +1,43 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
+.card {
+    height: 35rem !important;
+}
+
+.wrapper {
+    flex-grow: 1;
+    margin-top: 0.4rem;
+    display: flex;
+}
+
+.container {
+    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.primaryLabel {
+    font-size: 0.4rem;
+    top: 0.2rem;
+}
+
+.secondaryLabel {
+    font-size: 0.35rem;
+    top: 0.1rem;
+}
+
+.label {
+    font-family: NexaBold;
+    text-align: center;
+    margin: 0.3rem;
+    position: relative;
+    color: white;
+}
+
+.secondaryLeaderLabel {
+    line-height: 0.4rem;
+}
