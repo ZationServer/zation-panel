@@ -37,5 +37,4 @@ Except for the repositories of the ZationServer organization that contain an MIT
 These repositories are free to use with the conditions of the MIT license.
 
 To use Zation on a public server or for commercial use, you must purchase a license.
-
-- https://github.com/ZationServer/zation/wiki/Zation-End-User-License-Agreement
+Read the [Zation End User License Agreement](https://github.com/ZationServer/zation/wiki/Zation-End-User-License-Agreement) for more information.
