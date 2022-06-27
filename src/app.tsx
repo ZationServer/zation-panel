@@ -39,7 +39,7 @@ function App() {
     useEffect(() => {
         client.onDisconnect(() => {
             setTimeout(()=> {
-                if(!client.connected) setError(new Error('The connection to the servers is lost.'));
+                if(!client.connected) setError(new Error('The connection to the server is lost.'));
             },5000);
         });
 
