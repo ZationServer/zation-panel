@@ -33,7 +33,7 @@ export interface StaticWorkerInformation extends BasicStaticServerInformation {
     appName: string,
     tags: [string,string?][],
     debug: boolean,
-    scaling: boolean,
+    clusterLinked: boolean,
     license?: LicenseInformation,
     panelAuthUserMap: Record<string,string>,
     defaultUserName: string
