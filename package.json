@@ -36,7 +36,7 @@
     "cytoscape": "3.20.0",
     "cytoscape-fcose": "2.1.0",
     "cytoscape-node-html-label": "1.2.2",
-    "emitix": "^2.0.0",
+    "emitix": "^2.2.0",
     "is-ip": "^4.0.0",
     "moment": "^2.29.1",
     "queric": "^2.0.0",
