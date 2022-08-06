@@ -51,7 +51,7 @@
     "typescript": "^4.5.4",
     "unique-names-generator": "4.7.1",
     "web-vitals": "^2.1.2",
-    "zation-client": "3.0.0-pre-alpha.3"
+    "zation-client": "3.0.0-pre-alpha.4"
   },
   "scripts": {
     "start": "react-scripts start",
