@@ -5,7 +5,7 @@ Copyright(c) Ing. Luca Gian Scaringella
  */
 
 import {Client} from "zation-client";
-import {APIDefinition} from "../definitions/apiDefinition";
+import {PanelAPIDefinition} from "../definitions/apiDefinition";
 
 export default class HeartbeatTicker {
 
@@ -14,7 +14,7 @@ export default class HeartbeatTicker {
 
     private interval: NodeJS.Timer | null = null;
 
-    start(client: Client<APIDefinition>,intervalMs = 4000) {
+    start(client: Client<PanelAPIDefinition>, intervalMs = 4000) {
         HeartbeatTicker.instance.stop();
         this.interval = setInterval(async () => {
             try {

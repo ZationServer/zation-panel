@@ -4,7 +4,7 @@ GitHub: LucaCode
 Copyright(c) Ing. Luca Gian Scaringella
  */
 
-import {CustomAPIDefinition} from "zation-client";
+import {APIDefinition, ChannelDef, ControllerDef, ReceiverDef} from "zation-client";
 import {DynamicServerInformation, ServerInformation} from "./serverInformation";
 import LogMessage from "./logMessage";
 
@@ -14,17 +14,7 @@ export interface PanelChannelPublishes {
     log: LogMessage
 }
 
-export type APIDefinition = CustomAPIDefinition<{
-    controllers: {
-        "#panel/auth": [{username: any,password: any},void]
-    }
-    receivers: {
-        '#panel': boolean | undefined
-    },
-    channels: {
-        '#panel': {
-            publishes: PanelChannelPublishes,
-            member: void
-        }
-    }
+export type PanelAPIDefinition = APIDefinition<{
+    '#panel/auth': ControllerDef<{username: any,password: any},void>,
+    '#panel': ReceiverDef<boolean | undefined> & ChannelDef<PanelChannelPublishes,void>
 }>;

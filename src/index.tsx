@@ -17,14 +17,14 @@ import App from './app';
 import reportWebVitals from './reportWebVitals';
 import {ClientContext} from "./lib/hooks/useClient";
 import {Client} from "zation-client";
-import {APIDefinition} from "./lib/definitions/apiDefinition";
+import {PanelAPIDefinition} from "./lib/definitions/apiDefinition";
 import {DEV, SERVER_PATH} from "./lib/utils/constants";
 import {ConnectorContext} from "./lib/hooks/useConnector";
 import Connector from "./lib/core/connector";
 
 ReactDOM.render(
   <React.StrictMode>
-      <ClientContext.Provider value={new Client<APIDefinition>(!DEV ? {
+      <ClientContext.Provider value={new Client<PanelAPIDefinition>(!DEV ? {
           hostname: window.location.hostname,
           port:  parseInt(window.location.port),
           path: SERVER_PATH,

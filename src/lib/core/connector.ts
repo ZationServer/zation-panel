@@ -6,7 +6,7 @@ Copyright(c) Ing. Luca Gian Scaringella
 
 import ClusterSummary from "../definitions/clusterSummary";
 import {Channel, Client} from "zation-client";
-import {APIDefinition, PanelChannelPublishes} from "../definitions/apiDefinition";
+import {PanelAPIDefinition, PanelChannelPublishes} from "../definitions/apiDefinition";
 import EventEmitter from "emitix";
 import {Writable} from "../utils/typeUtils";
 import LogMessage from "../definitions/logMessage";
@@ -90,7 +90,7 @@ export default class Connector extends EventEmitter.Protected<{
     readonly logs: LogMessage[] = [];
     public maxLogMessagesCount: number = 40;
 
-    private client?: Client<APIDefinition>;
+    private client?: Client<PanelAPIDefinition>;
     private panelCh: Channel<void,PanelChannelPublishes> | null = null;
 
     private latencyChecker: LatencyChecker = new LatencyChecker();
@@ -111,7 +111,7 @@ export default class Connector extends EventEmitter.Protected<{
         }
     }
 
-    async connect(client: Client<APIDefinition>) {
+    async connect(client: Client<PanelAPIDefinition>) {
         this.client = client;
         this.latencyChecker.client = client;
         const ch = client.channel('#panel') as Channel<void,PanelChannelPublishes>;
