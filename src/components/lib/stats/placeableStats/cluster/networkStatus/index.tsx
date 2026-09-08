@@ -296,7 +296,11 @@ const NetworkStatus: React.FC<{
             cy.fit();
         };
         window.addEventListener('resize', resizeListener);
-        return () => window.removeEventListener('resize', resizeListener);
+        return () => {
+            window.removeEventListener('resize', resizeListener);
+            cy.destroy();
+            cyRef.current = null;
+        };
     },[containerRef,buildStructure,navigate]);
 
     useEffect(() => {

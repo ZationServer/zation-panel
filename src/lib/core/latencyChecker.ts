@@ -12,7 +12,7 @@ export default class LatencyChecker {
     private _client?: Client;
     set client(client: Client) {
         this._client = client;
-        this.updateCurrentLatency(10);
+        this.updateCurrentLatency(10).catch(() => {});
     }
 
     readonly lastLatency: number = -1;
@@ -37,7 +37,7 @@ export default class LatencyChecker {
             Promise.all([
                 this.updateCurrentLatency(resolution),
                 new Promise(res => setTimeout(res,delay))
-            ]).then(() => tick());
+            ]).then(() => tick(), () => setTimeout(tick,delay));
         };
         this._currentLatencyChain = chainControl;
         tick();

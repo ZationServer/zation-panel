@@ -31,7 +31,11 @@ function App() {
 
     const loadPanel = useCallback(async () => {
         setState(AppState.Loading);
-        await connector.connect(client);
+        try {await connector.connect(client);}
+        catch (_) {
+            setError(new Error('Could not load the panel.'));
+            return;
+        }
         //wait 3000ms so that servers can respond
         setTimeout(() => setState(AppState.Panel),3000);
     },[client,connector]);
